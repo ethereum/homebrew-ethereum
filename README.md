@@ -26,7 +26,7 @@ repository locally with `brew tap caktux/ethereum`.
 
 ##Options
 
-See `brew info ethereum`
+See `brew info ethereum` and use `--verbose` to get more info while installing.
 
 
 ##Patching
