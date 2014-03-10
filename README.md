@@ -8,13 +8,10 @@ Homebrew Tap for Ethereum
 ```
 brew tap caktux/ethereum
 brew install ethereum
-brew link ethereum --overwrite
 brew linkapps
 ```
 
 Then `open /Applications/AlethZero.app` or run `eth` (with `-i` for interactive mode)
-
-The `brew link ethereum --overwrite` is optional, it overwrites what `make install` put in `/usr/local`, so that if you do `brew remove ethereum` it also cleans that up.
 
 To get the latest, do:
 ```

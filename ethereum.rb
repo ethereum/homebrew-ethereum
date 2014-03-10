@@ -24,11 +24,15 @@ class Ethereum < Formula
 	option 'with-faucet', "Try the faucet patch"
 
 	def patches
-		# inreplace 'eth/CMakeLists.txt' do |s|
-		#   s.gsub! "replace", "with"
-		#   # s.remove_make_var! %w[CFLAGS LDFLAGS CC LD]
-		#   # s.change_make_var! "CC", ENV.cc
-		# end
+		inreplace 'libethereum/CMakeLists.txt' do |s|
+		  # s.gsub! "replace", "with"
+		  s.gsub! "install( TARGETS", "# install( TARGETS"
+		  # s.remove_make_var! %w[CFLAGS LDFLAGS CC LD]
+		  # s.change_make_var! "CC", ENV.cc
+		end
+		inreplace 'eth/CMakeLists.txt' do |s|
+		  s.gsub! "install( TARGETS", "# install( TARGETS"
+		end
 
 		urls = [
 		  ["with-ncurses", "https://gist.githubusercontent.com/caktux/9377648/raw/3df13429d51ad8267b2189c3be3ede3325bc1d6b/ethereum-cli-ncurses.patch"],
