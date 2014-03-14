@@ -25,6 +25,15 @@ repository locally with `brew tap caktux/ethereum`.
 
 See `brew info ethereum` and use `--verbose` to get more info while installing.
 
+##Troubleshooting
+
+* Make sure to update XCode (latest is 5.1) and the command line tools.
+* Run `brew update` and `brew upgrade`
+* Fix what the `brew doctor` says
+* Reinstall dependencies: `brew reinstall boost --c++11`
+* Make changes to `/usr/local/Library/Taps/caktux-ethereum/ethereum.rb`
+* Reinstall with `brew reinstall ethereum.rb` (send a pull request!)
+* Take a walk
 
 ##Patching
 
