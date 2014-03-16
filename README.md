@@ -25,6 +25,8 @@ repository locally with `brew tap caktux/ethereum`.
 
 See `brew info ethereum` for all options.
 
+Option           | desc.
+-----------------|---------
 `--headless`     | Headless
 `--with-ncurses` | Try the ncurses patch
 `--with-faucet`  | Try the faucet patch
