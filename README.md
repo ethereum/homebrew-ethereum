@@ -13,7 +13,7 @@ brew linkapps
 
 Then `open /Applications/AlethZero.app` or run `eth` (with `-i` for interactive mode)
 
-To get the latest, do:
+Get the latest with:
 ```
 brew install ethereum --HEAD
 ```
@@ -23,13 +23,19 @@ repository locally with `brew tap caktux/ethereum`.
 
 ##Options
 
-See `brew info ethereum` and use `--verbose` to get more info while installing.
+See `brew info ethereum` for all options.
+
+`--headless`     | Headless
+`--with-ncurses` | Try the ncurses patch
+`--with-faucet`  | Try the faucet patch
+
 
 ##Troubleshooting
 
+* Use `--verbose` to get more info while installing.
 * Make sure to update XCode (latest is 5.1) and the command line tools.
 * Run `brew update` and `brew upgrade`
-* Fix what the `brew doctor` says
+* Fix what the `brew doctor` says.
 * Reinstall dependencies: `brew reinstall boost --c++11`
 * Make changes to `/usr/local/Library/Taps/caktux-ethereum/ethereum.rb`
 * Reinstall with `brew reinstall ethereum.rb` (send a pull request!)

@@ -19,7 +19,7 @@ class Ethereum < Formula
 	depends_on 'gmp'
 	depends_on 'ncurses' if build.include? 'with-ncurses'
 
-	option 'build-release', "Develop or Release"
+	option 'headless', "Headless"
 	option 'with-ncurses', "Try the ncurses patch"
 	option 'with-faucet', "Try the faucet patch"
 
@@ -61,14 +61,18 @@ class Ethereum < Formula
 
 			# args << "--build-release" if build.include? '--build-release'
 
-			if build.include? "--build-release"
-				args << "-DCMAKE_BUILD_TYPE=Release"
-			elsif build.include? "--with-faucet"
-				args << "-DCMAKE_BUILD_TYPE=Faucet"
-			elsif build.include? "--with-ncurses"
+			if build.include? "with-ncurses"
 				args << "-DCMAKE_BUILD_TYPE=ncurses"
-			else
+			elsif build.include? "with-faucet"
+				args << "-DCMAKE_BUILD_TYPE=faucet"
+			elsif build.include? "HEAD"
 				args << "-DCMAKE_BUILD_TYPE=Develop"
+			else
+				args << "-DCMAKE_BUILD_TYPE=brew"
+			end
+
+			if build.include? "headless"
+				args << "-DHEADLESS=1"
 			end
 
 			system "cmake", *args
@@ -76,7 +80,9 @@ class Ethereum < Formula
 			# system "make install"
 
 			bin.install 'eth/eth'
-			prefix.install 'alethzero/AlethZero.app'
+			if !build.include? "headless"
+				prefix.install 'alethzero/AlethZero.app'
+			end
 			lib.install Dir['libethereum/*.dylib']
 			lib.install Dir['secp256k1/*.dylib']
 			# prefix.install Dir['*']
