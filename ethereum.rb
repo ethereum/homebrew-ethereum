@@ -21,6 +21,7 @@ class Ethereum < Formula
 
 	option 'headless', "Headless"
 	option 'with-ncurses', "Try the ncurses patch"
+	option 'with-export', "Dump to CSV, ncurses patch required"
 	option 'with-faucet', "Try the faucet patch"
 
 	def patches
@@ -36,10 +37,12 @@ class Ethereum < Formula
 
 		urls = [
 		  ["with-ncurses", "https://gist.githubusercontent.com/caktux/9377648/raw/0578151f92c489f1ae140049cace16c4f3e63a41/ethereum-cli-ncurses.patch"],
+		  ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/ecce6752a594ba352eb65cc05d046bca54097cf8/export-after-ncurses.patch"],
 		  ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/77033978f5fab8c7cab87135b29d1fdf095351db/faucet-develop.patch"],
 		]
 
 		p = []
+		p << urls[0][1] if build.include? 'with-export' and !build.include? 'with-ncurses'
 		urls.each do |u|
 		  p << u[1] if build.include? u[0]
 		end

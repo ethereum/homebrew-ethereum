@@ -18,6 +18,11 @@ Get the latest with:
 brew install ethereum --HEAD
 ```
 
+Update and reinstall with:
+```
+brew update && brew reinstall ethereum
+```
+
 These brews can be installed via the raw GitHub URLs, or by cloning this
 repository locally with `brew tap caktux/ethereum`.
 
@@ -28,9 +33,9 @@ See `brew info ethereum` for all options.
 Option           | desc.
 -----------------|---------
 `--headless`     | Headless
-`--with-ncurses` | Try the ncurses patch
-`--with-faucet`  | Try the faucet patch
-
+`--with-ncurses` | ncurses patch
+`--with-export`  | Dump to CSV, applies ncurses before
+`--with-faucet`  | Faucet patch
 
 ##Troubleshooting
 
