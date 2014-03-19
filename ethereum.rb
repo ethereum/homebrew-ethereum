@@ -36,8 +36,8 @@ class Ethereum < Formula
 		end
 
 		urls = [
-		  ["with-ncurses", "https://gist.githubusercontent.com/caktux/9377648/raw/0578151f92c489f1ae140049cace16c4f3e63a41/ethereum-cli-ncurses.patch"],
-		  ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/ecce6752a594ba352eb65cc05d046bca54097cf8/export-after-ncurses.patch"],
+		  ["with-ncurses", "https://gist.githubusercontent.com/caktux/9377648/raw/d378ef5998a2ab8380933890aac8294262deacd1/ethereum-cli-ncurses.patch"],
+		  ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/660e716a0072cdb5e45300a80811c225ffc6db19/export-after-ncurses.patch"],
 		  ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/77033978f5fab8c7cab87135b29d1fdf095351db/faucet-develop.patch"],
 		]
 
