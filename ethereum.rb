@@ -7,7 +7,7 @@ class Ethereum < Formula
 	url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '6eb93a8fdcc2930b9776f269d98c493b4d70b722'
 	# url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
 	# url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'release-poc-3'
-	version '0.3.11'
+	version '0.3.11-v8-brew-15' # official_version-protocol_version-brew_version
 
 	depends_on 'cmake' => :build
 	depends_on 'boost' => "--c++11"
@@ -37,7 +37,7 @@ class Ethereum < Formula
 
 		urls = [
 		  ["with-ncurses", "https://gist.githubusercontent.com/caktux/9377648/raw/d378ef5998a2ab8380933890aac8294262deacd1/ethereum-cli-ncurses.patch"],
-		  ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/660e716a0072cdb5e45300a80811c225ffc6db19/export-after-ncurses.patch"],
+		  ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/564c490ec188746cb067efedf31dc9b60103ffa1/export-after-ncurses.patch"],
 		  ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/77033978f5fab8c7cab87135b29d1fdf095351db/faucet-develop.patch"],
 		]
 
