@@ -4,10 +4,10 @@ class Ethereum < Formula
 		
 	homepage 'https://github.com/ethereum/cpp-ethereum'
 	head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
-	url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '6eb93a8fdcc2930b9776f269d98c493b4d70b722'
+	url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '261b351fc1aba90e0d26dcdc59fe660c3735cb2c'
 	# url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
 	# url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'release-poc-3'
-	version '0.3.11-v8-brew-16' # official_version-protocol_version-brew_version
+	version '0.3.11-v8-brew-17' # official_version-protocol_version-brew_version
 
 	depends_on 'cmake' => :build
 	depends_on 'boost' => "--c++11"
