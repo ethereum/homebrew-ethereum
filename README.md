@@ -18,6 +18,11 @@ Get the latest with:
 brew install ethereum --HEAD
 ```
 
+Current branches:
+* `--HEAD` is on [call](https://github.com/ethereum/cpp-ethereum/commits/call)
+* `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop)
+* normal install uses a fixed commit
+
 Update and upgrade:
 ```
 brew update && brew upgrade

@@ -3,11 +3,13 @@ require 'formula'
 class Ethereum < Formula
 		
 	homepage 'https://github.com/ethereum/cpp-ethereum'
-	head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
+	head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'call'
 	url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '153c7c36cb56a48a54de7ed86faefa6c7568fb3f'
-	# url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
 	# url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'release-poc-3'
 	version '0.4.0-v8-brew-18' # official_version-protocol_version-brew_version
+	devel do
+		url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
+	end
 
 	depends_on 'cmake' => :build
 	depends_on 'boost' => "--c++11"
@@ -41,6 +43,8 @@ class Ethereum < Formula
 		  ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/77033978f5fab8c7cab87135b29d1fdf095351db/faucet-develop.patch"],
 		]
 
+		urls[0][1] = "https://gist.githubusercontent.com/caktux/9377648/raw/268a41c1d29badd2b3c33a8912e985888176b4a2/ethereum-cli-ncurses.patch" if build.devel?
+
 		p = []
 		p << urls[0][1] if build.include? 'with-export' and !build.include? 'with-ncurses'
 		urls.each do |u|
@@ -69,7 +73,9 @@ class Ethereum < Formula
 			elsif build.include? "with-faucet"
 				args << "-DCMAKE_BUILD_TYPE=faucet"
 			elsif build.include? "HEAD"
-				args << "-DCMAKE_BUILD_TYPE=Develop"
+				args << "-DCMAKE_BUILD_TYPE=call"
+			elsif build.devel?
+				args << "-DCMAKE_BUILD_TYPE=develop"
 			else
 				args << "-DCMAKE_BUILD_TYPE=brew"
 			end
