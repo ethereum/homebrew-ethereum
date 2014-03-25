@@ -11,17 +11,33 @@ brew install ethereum
 brew linkapps
 ```
 
-Then `open /Applications/AlethZero.app` or run `eth` (with `-i` for interactive mode)
+Then `open /Applications/AlethZero.app` or run `eth -i` (interactive mode)
 
 Get the latest with:
 ```
 brew install ethereum --HEAD
 ```
 
-Update and reinstall with:
+Update and upgrade:
+```
+brew update && brew upgrade
+```
+
+After minor updates, reinstall with:
 ```
 brew update && brew reinstall ethereum
 ```
+
+List available versions with:
+```
+brew versions ethereum
+```
+
+If you have other versions installed, you can switch with:
+```
+brew switch ethereum <version>
+```
+Or follow this [StackOverflow answer](http://stackoverflow.com/a/9832084/2639784)
 
 These brews can be installed via the raw GitHub URLs, or by cloning this
 repository locally with `brew tap caktux/ethereum`.
