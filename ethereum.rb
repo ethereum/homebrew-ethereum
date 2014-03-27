@@ -4,9 +4,9 @@ class Ethereum < Formula
 		
 	homepage 'https://github.com/ethereum/cpp-ethereum'
 	head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'call'
-	url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'c036ff048a0957da1856d11c5fd79dad714a9821'
+	url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'be1923212bea42f3f5450e98f1c6798b8ea8a6aa'
 	# url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'release-poc-3'
-	version '0.4.0-v8-brew-20' # official_version-protocol_version-brew_version
+	version '0.4.0-v9-brew-21' # official_version-protocol_version-brew_version
 	devel do
 		url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
 	end
@@ -39,7 +39,7 @@ class Ethereum < Formula
 
 		urls = [
 		  ["with-ncurses", "https://gist.githubusercontent.com/caktux/9377648/raw/a8d6bd800a34d48db2111ba683879888b7421f93/ethereum-cli-ncurses.patch"],
-		  ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/923e3a8dc22a899f3ee0353b8a30ff211a2d5d27/export-after-ncurses.patch"],
+		  ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/81ecdfe0d3e187eec79430ad2f30f115afe2e68d/export-after-ncurses.patch"],
 		  ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/4591ad61cc43888b0be7a49eec8f987bc30c010b/faucet-develop.patch"],
 		]
 
