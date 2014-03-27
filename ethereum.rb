@@ -4,9 +4,9 @@ class Ethereum < Formula
 		
 	homepage 'https://github.com/ethereum/cpp-ethereum'
 	head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'call'
-	url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'e0036b5f278627e3212aea83d6b85ac467ee9243'
+	url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'c036ff048a0957da1856d11c5fd79dad714a9821'
 	# url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'release-poc-3'
-	version '0.4.0-v8-brew-19' # official_version-protocol_version-brew_version
+	version '0.4.0-v8-brew-20' # official_version-protocol_version-brew_version
 	devel do
 		url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
 	end
@@ -22,9 +22,9 @@ class Ethereum < Formula
 	depends_on 'ncurses' if build.include? 'with-ncurses'
 
 	option 'headless', "Headless"
-	option 'with-ncurses', "Try the ncurses patch"
+	option 'with-ncurses', "ncurses patch (merged in HEAD)"
 	option 'with-export', "Dump to CSV, ncurses patch required"
-	option 'with-faucet', "Try the faucet patch"
+	option 'with-faucet', "Faucet patch"
 
 	def patches
 		inreplace 'libethereum/CMakeLists.txt' do |s|
@@ -38,15 +38,18 @@ class Ethereum < Formula
 		end
 
 		urls = [
-		  ["with-ncurses", "https://gist.githubusercontent.com/caktux/9377648/raw/43405218a3700849ae899605d2ec27568c17288c/ethereum-cli-ncurses.patch"],
-		  ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/907681da69a866f0e9eedd2ff68fde78e38cd43d/export-after-ncurses.patch"],
-		  ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/77033978f5fab8c7cab87135b29d1fdf095351db/faucet-develop.patch"],
+		  ["with-ncurses", "https://gist.githubusercontent.com/caktux/9377648/raw/a8d6bd800a34d48db2111ba683879888b7421f93/ethereum-cli-ncurses.patch"],
+		  ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/923e3a8dc22a899f3ee0353b8a30ff211a2d5d27/export-after-ncurses.patch"],
+		  ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/4591ad61cc43888b0be7a49eec8f987bc30c010b/faucet-develop.patch"],
 		]
 
-		urls[0][1] = "https://gist.githubusercontent.com/caktux/9377648/raw/a8d6bd800a34d48db2111ba683879888b7421f93/ethereum-cli-ncurses.patch" if build.devel?
+		if !build.devel? and build.include? 'with-ncurses'
+			urls.shift
+			opoo "ncurses already merged, skipping patch"
+		end
 
 		p = []
-		p << urls[0][1] if build.include? 'with-export' and !build.include? 'with-ncurses'
+		p << urls[0][1] if build.devel? and build.include? 'with-export' and !build.include? 'with-ncurses'
 		urls.each do |u|
 		  p << u[1] if build.include? u[0]
 		end

@@ -54,7 +54,7 @@ See `brew info ethereum` for all options.
 Option           | desc.
 -----------------|---------
 `--headless`     | Headless
-`--with-ncurses` | ncurses patch
+`--with-ncurses` | ncurses patch (merged in HEAD)
 `--with-export`  | Dump to CSV, applies ncurses before
 `--with-faucet`  | Faucet patch
 
