@@ -53,7 +53,8 @@ See `brew info ethereum` for all options.
 
 Option           | desc.
 -----------------|---------
-`--headless`     | Headless
+`--headless`     | Headless, install command line interface only, no GUI app
+`--without-gui`  | synonym for headless
 `--with-ncurses` | ncurses patch (merged in HEAD)
 `--with-export`  | Dump to CSV, applies ncurses before
 `--with-faucet`  | Faucet patch
