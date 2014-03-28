@@ -23,7 +23,8 @@ repository locally with `brew tap caktux/ethereum`.
 
 ##Options
 
-See `brew info ethereum` and use `--verbose` to get more info while installing.
+To install only the ethereum command line interface (`eth` only, ie., headless build), use `--without-gui`.
+For more options, see `brew info ethereum` and use `--verbose` to get more info while installing.
 
 ##Troubleshooting
 
