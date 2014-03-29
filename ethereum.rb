@@ -6,7 +6,7 @@ class Ethereum < Formula
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'call'
   url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'be1923212bea42f3f5450e98f1c6798b8ea8a6aa'
   # url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'release-poc-3'
-  version '0.4.0-v9-brew-22' # official_version-protocol_version-brew_version
+  version '0.4.0-v9-brew-23' # official_version-protocol_version-brew_version
   devel do
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
   end
