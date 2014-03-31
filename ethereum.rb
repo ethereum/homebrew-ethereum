@@ -4,9 +4,9 @@ class Ethereum < Formula
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'call'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'be1923212bea42f3f5450e98f1c6798b8ea8a6aa'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '5a487f857d58ea536624081f8ab82500f8421512'
   # url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'release-poc-3'
-  version '0.4.0-v9-brew-23' # official_version-protocol_version-brew_version
+  version '0.4.0-v9-brew-24' # official_version-protocol_version-brew_version
   devel do
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
   end
@@ -49,9 +49,6 @@ class Ethereum < Formula
     end
 
     p = []
-
-    # Temp patches
-    p[0] = "https://gist.githubusercontent.com/caktux/956c9bb6fb6728ebd810/raw/eed5c6663cfb639ef33f4ce6a75c8cb1786e0f57/un-g_logPost.patch" unless build.devel?
 
     # Required ncurses patch on --devel using --with-export
     p << urls[0][1] if build.devel? and build.include? 'with-export' and !build.include? 'with-ncurses'
