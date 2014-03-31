@@ -2,11 +2,14 @@ require 'formula'
 
 class Ethereum < Formula
 
+  # official_version-protocol_version-brew_version
+  version '0.4.1-v10-brew-25'
+
   homepage 'https://github.com/ethereum/cpp-ethereum'
-  head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'call'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '5a487f857d58ea536624081f8ab82500f8421512'
+  head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'splitcode'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'bb836d09895ff44d7fa1fc72e42a18e2eb3aa6a8'
   # url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'release-poc-3'
-  version '0.4.0-v9-brew-24' # official_version-protocol_version-brew_version
+
   devel do
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
   end
@@ -39,8 +42,8 @@ class Ethereum < Formula
 
     urls = [
       ["with-ncurses", "https://gist.githubusercontent.com/caktux/9377648/raw/a8d6bd800a34d48db2111ba683879888b7421f93/ethereum-cli-ncurses.patch"],
-      ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/68a2f44953a1773db09af1cd20d0fd6788298bae/export-after-ncurses.patch"],
-      ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/4591ad61cc43888b0be7a49eec8f987bc30c010b/faucet-develop.patch"],
+      ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/de0c99d48dac683e5d1b8d3621db6499cd69b2ba/export-after-ncurses.patch"],
+      ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/a561f6c750c90b24d807048ef8c902afca18daef/faucet-develop.patch"],
     ]
 
     if !build.devel? and build.include? 'with-ncurses'
@@ -49,6 +52,12 @@ class Ethereum < Formula
     end
 
     p = []
+
+    # Faucet patch for devel branch
+    urls[2][1] = "https://gist.githubusercontent.com/caktux/9335964/raw/77033978f5fab8c7cab87135b29d1fdf095351db/faucet-develop.patch" if build.devel?
+
+    # Apply pull request # 139 to fix send and transact in CLI client
+    p << "https://github.com/ethereum/cpp-ethereum/pull/139.patch" if !build.head? and !build.devel?
 
     # Required ncurses patch on --devel using --with-export
     p << urls[0][1] if build.devel? and build.include? 'with-export' and !build.include? 'with-ncurses'
