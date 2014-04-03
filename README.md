@@ -19,8 +19,7 @@ brew install ethereum --HEAD
 ```
 
 Current branches:
-* `--HEAD` is on [splitcode](https://github.com/ethereum/cpp-ethereum/commits/splitcode) (0.4.1)
-* `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop) (0.3.11)
+* `--HEAD` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop) (0.4.1)
 * normal install uses a fixed commit on latest branch (0.4.1)
 
 Update and upgrade:
@@ -54,7 +53,6 @@ See `brew info ethereum` for all options.
 Option           | desc.
 -----------------|---------
 `--headless`     | Headless
-`--with-ncurses` | ncurses patch (merged in HEAD)
 `--with-export`  | Dump to CSV, applies ncurses before
 `--with-faucet`  | Faucet patch
 

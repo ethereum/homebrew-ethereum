@@ -3,16 +3,11 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.1-v10-brew-26'
+  version '0.4.1-v10-brew-27'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
-  head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'splitcode'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '86c0487cf029876b2a8c2031cd426d083bf245bc'
-  # url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'release-poc-3'
-
-  devel do
-    url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
-  end
+  head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'd13acb64641b0ca86f1290f35eea4ed7918fb86d'
 
   depends_on 'cmake' => :build
   depends_on 'boost' => "--c++11"
@@ -25,39 +20,25 @@ class Ethereum < Formula
   depends_on 'ncurses'
 
   option 'headless', "Headless"
-  option 'with-ncurses', "ncurses patch (merged except with --devel)"
   option 'with-export', "Dump to CSV, ncurses patch required"
   option 'with-faucet', "Faucet patch"
 
   def patches
+    # Prevent default binary installation so we can link using brew
     inreplace 'libethereum/CMakeLists.txt' do |s|
       s.gsub! "install( TARGETS", "# install( TARGETS"
-      # s.gsub! "replace", "with"
-      # s.remove_make_var! %w[CFLAGS LDFLAGS CC LD]
-      # s.change_make_var! "CC", ENV.cc
     end
     inreplace 'eth/CMakeLists.txt' do |s|
       s.gsub! "install( TARGETS", "# install( TARGETS"
     end
 
+    # Patches
     urls = [
-      ["with-ncurses", "https://gist.githubusercontent.com/caktux/9377648/raw/a8d6bd800a34d48db2111ba683879888b7421f93/ethereum-cli-ncurses.patch"],
       ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/de0c99d48dac683e5d1b8d3621db6499cd69b2ba/export-after-ncurses.patch"],
       ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/a561f6c750c90b24d807048ef8c902afca18daef/faucet-develop.patch"],
     ]
 
-    if !build.devel? and build.include? 'with-ncurses'
-      urls.shift
-      opoo "ncurses already merged, skipping patch"
-    end
-
     p = []
-
-    # Faucet patch for devel branch
-    urls[2][1] = "https://gist.githubusercontent.com/caktux/9335964/raw/77033978f5fab8c7cab87135b29d1fdf095351db/faucet-develop.patch" if build.devel?
-
-    # Required ncurses patch on --devel using --with-export
-    p << urls[0][1] if build.devel? and build.include? 'with-export' and !build.include? 'with-ncurses'
 
     urls.each do |u|
       p << u[1] if build.include? u[0]
@@ -84,8 +65,6 @@ class Ethereum < Formula
     elsif build.include? "with-faucet"
       args << "-DCMAKE_BUILD_TYPE=faucet"
     elsif build.include? "HEAD"
-      args << "-DCMAKE_BUILD_TYPE=call"
-    elsif build.devel?
       args << "-DCMAKE_BUILD_TYPE=develop"
     else
       args << "-DCMAKE_BUILD_TYPE=brew"
