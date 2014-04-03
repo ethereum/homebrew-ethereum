@@ -3,11 +3,11 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.1-v10-brew-25'
+  version '0.4.1-v10-brew-26'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'splitcode'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'bb836d09895ff44d7fa1fc72e42a18e2eb3aa6a8'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '86c0487cf029876b2a8c2031cd426d083bf245bc'
   # url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'release-poc-3'
 
   devel do
@@ -55,9 +55,6 @@ class Ethereum < Formula
 
     # Faucet patch for devel branch
     urls[2][1] = "https://gist.githubusercontent.com/caktux/9335964/raw/77033978f5fab8c7cab87135b29d1fdf095351db/faucet-develop.patch" if build.devel?
-
-    # Apply pull request # 139 to fix send and transact in CLI client
-    p << "https://github.com/ethereum/cpp-ethereum/pull/139.patch" if !build.head? and !build.devel?
 
     # Required ncurses patch on --devel using --with-export
     p << urls[0][1] if build.devel? and build.include? 'with-export' and !build.include? 'with-ncurses'
