@@ -3,11 +3,11 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.1-v10-brew-27'
+  version '0.4.2-v11-brew-28'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'd13acb64641b0ca86f1290f35eea4ed7918fb86d'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '6ba3f66ff41580396609f21401675678de6c271b'
 
   depends_on 'cmake' => :build
   depends_on 'boost' => "--c++11"
@@ -20,7 +20,7 @@ class Ethereum < Formula
   depends_on 'ncurses'
 
   option 'headless', "Headless"
-  option 'with-export', "Dump to CSV, ncurses patch required"
+  option 'with-export', "Dump to CSV"
   option 'with-faucet', "Faucet patch"
 
   def patches

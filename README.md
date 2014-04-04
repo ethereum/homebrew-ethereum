@@ -48,7 +48,7 @@ repository locally with `brew tap caktux/ethereum`.
 
 ##Options
 
-See `brew info ethereum` for all options.
+See `brew info ethereum` for all options. `--with-`... features are experimental patches.
 
 Option           | desc.
 -----------------|---------
