@@ -3,11 +3,11 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.2-v11-brew-28'
+  version '0.4.2-v11-brew-29'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '6ba3f66ff41580396609f21401675678de6c271b'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'e7710d94bf7ff1603b554d80d0f66c2ea953a0e5'
 
   depends_on 'cmake' => :build
   depends_on 'boost' => "--c++11"
@@ -20,6 +20,7 @@ class Ethereum < Formula
   depends_on 'ncurses'
 
   option 'headless', "Headless"
+  option 'with-forms', "ncurses forms"
   option 'with-export', "Dump to CSV"
   option 'with-faucet', "Faucet patch"
 
@@ -34,8 +35,9 @@ class Ethereum < Formula
 
     # Patches
     urls = [
+      ["with-forms", "wget https://gist.githubusercontent.com/caktux/aa6554f911f442f14faa/raw/910de3a0d54807a462e98471a1df4bc943dcf2c7/holy-forms.patch"],
       ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/de0c99d48dac683e5d1b8d3621db6499cd69b2ba/export-after-ncurses.patch"],
-      ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/a561f6c750c90b24d807048ef8c902afca18daef/faucet-develop.patch"],
+      ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/216a5a7c7bd9df1525b3b48f319651804d2fb626/faucet-develop.patch"],
     ]
 
     p = []
@@ -60,8 +62,8 @@ class Ethereum < Formula
 
     # args << "--build-release" if build.include? '--build-release'
 
-    if build.include? "with-ncurses"
-      args << "-DCMAKE_BUILD_TYPE=ncurses"
+    if build.include? "with-forms"
+      args << "-DCMAKE_BUILD_TYPE=forms"
     elsif build.include? "with-faucet"
       args << "-DCMAKE_BUILD_TYPE=faucet"
     elsif build.include? "HEAD"
