@@ -3,11 +3,11 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.2-v11-brew-30'
+  version '0.4.2-v11-brew-31'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'e7710d94bf7ff1603b554d80d0f66c2ea953a0e5'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '0be4904097c1463701df0464bddf8a3455c875a2'
 
   depends_on 'cmake' => :build
   depends_on 'boost' => "--c++11"
@@ -35,7 +35,7 @@ class Ethereum < Formula
 
     # Patches
     urls = [
-      ["with-forms", "https://gist.githubusercontent.com/caktux/aa6554f911f442f14faa/raw/d05b6a28c5f8c713fbd8ee20671305afa23bafe7/holy-forms.patch"],
+      ["with-forms", "https://gist.githubusercontent.com/caktux/aa6554f911f442f14faa/raw/c176d73565cf87721fbd82024d99712801fa52e3/holy-forms.patch"],
       ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/de0c99d48dac683e5d1b8d3621db6499cd69b2ba/export-after-ncurses.patch"],
       ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/216a5a7c7bd9df1525b3b48f319651804d2fb626/faucet-develop.patch"],
     ]
