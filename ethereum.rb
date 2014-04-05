@@ -3,7 +3,7 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.2-v11-brew-29'
+  version '0.4.2-v11-brew-30'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
@@ -35,7 +35,7 @@ class Ethereum < Formula
 
     # Patches
     urls = [
-      ["with-forms", "wget https://gist.githubusercontent.com/caktux/aa6554f911f442f14faa/raw/910de3a0d54807a462e98471a1df4bc943dcf2c7/holy-forms.patch"],
+      ["with-forms", "https://gist.githubusercontent.com/caktux/aa6554f911f442f14faa/raw/910de3a0d54807a462e98471a1df4bc943dcf2c7/holy-forms.patch"],
       ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/de0c99d48dac683e5d1b8d3621db6499cd69b2ba/export-after-ncurses.patch"],
       ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/216a5a7c7bd9df1525b3b48f319651804d2fb626/faucet-develop.patch"],
     ]
