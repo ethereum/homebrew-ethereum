@@ -35,7 +35,7 @@ class Ethereum < Formula
 
     # Patches
     urls = [
-      ["with-forms", "https://gist.githubusercontent.com/caktux/aa6554f911f442f14faa/raw/4dfccc2efa345df01d66975ea62da75a59854cf8/holy-forms.patch"],
+      ["with-forms", "https://gist.githubusercontent.com/caktux/aa6554f911f442f14faa/raw/cc279ea0ec0f46c1298883e26d2cbd8dae7bd460/holy-forms.patch"],
       ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/de0c99d48dac683e5d1b8d3621db6499cd69b2ba/export-after-ncurses.patch"],
       ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/216a5a7c7bd9df1525b3b48f319651804d2fb626/faucet-develop.patch"],
     ]
