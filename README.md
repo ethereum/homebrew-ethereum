@@ -19,8 +19,9 @@ brew install ethereum --HEAD
 ```
 
 Current branches:
-* `--HEAD` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop) (0.4.1)
-* normal install uses a fixed commit on latest branch (0.4.1)
+* `--HEAD` is on latest release branch
+* `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop)
+* normal install uses a fixed commit on latest release branch
 
 Update and upgrade:
 ```

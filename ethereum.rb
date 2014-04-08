@@ -3,11 +3,14 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.2-v11-brew-31'
+  version '0.4.2-v11-brew-32'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
-  head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '0be4904097c1463701df0464bddf8a3455c875a2'
+  head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'release-poc-4'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '15de8a3a1ac8fa1a9a456fc5173293249e0b8d7e'
+  devel do
+    url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
+  end
 
   depends_on 'cmake' => :build
   depends_on 'boost' => "--c++11"
@@ -42,6 +45,11 @@ class Ethereum < Formula
 
     p = []
 
+    if !build.devel? and build.include? 'with-forms'
+      urls.shift
+      opoo "ncurses forms already merged, skipping patch"
+    end
+
     urls.each do |u|
       p << u[1] if build.include? u[0]
     end
@@ -62,12 +70,14 @@ class Ethereum < Formula
 
     # args << "--build-release" if build.include? '--build-release'
 
-    if build.include? "with-forms"
+    if build.devel? and build.include? "with-forms"
       args << "-DCMAKE_BUILD_TYPE=forms"
     elsif build.include? "with-faucet"
       args << "-DCMAKE_BUILD_TYPE=faucet"
+    elsif build.devel?
+      args << "-DCMAKE_BUILD_TYPE=Develop"
     elsif build.include? "HEAD"
-      args << "-DCMAKE_BUILD_TYPE=develop"
+      args << "-DCMAKE_BUILD_TYPE=Debug"
     else
       args << "-DCMAKE_BUILD_TYPE=brew"
     end
@@ -82,6 +92,7 @@ class Ethereum < Formula
     bin.install 'eth/eth'
     if !build.include? "headless"
       prefix.install 'alethzero/AlethZero.app'
+      prefix.install 'walleth/Walleth.app'
     end
     lib.install Dir['libethereum/*.dylib']
     lib.install Dir['secp256k1/*.dylib']
