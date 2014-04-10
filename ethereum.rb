@@ -3,11 +3,11 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.2-v11-brew-32'
+  version '0.4.3-v11-brew-33'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
-  head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'release-poc-4'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '15de8a3a1ac8fa1a9a456fc5173293249e0b8d7e'
+  head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '47572e8041da9360d7f7627196223afbfea9efe9'
   devel do
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
   end
@@ -23,7 +23,6 @@ class Ethereum < Formula
   depends_on 'ncurses'
 
   option 'headless', "Headless"
-  option 'with-forms', "ncurses forms"
   option 'with-export', "Dump to CSV"
   option 'with-faucet', "Faucet patch"
 
@@ -38,17 +37,19 @@ class Ethereum < Formula
 
     # Patches
     urls = [
-      ["with-forms", "https://gist.githubusercontent.com/caktux/aa6554f911f442f14faa/raw/ecb7565bf9b56ecd9c74f212315b60e98791f50c/holy-forms.patch"],
       ["with-export", "https://gist.githubusercontent.com/caktux/9615529/raw/de0c99d48dac683e5d1b8d3621db6499cd69b2ba/export-after-ncurses.patch"],
       ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/216a5a7c7bd9df1525b3b48f319651804d2fb626/faucet-develop.patch"],
     ]
 
     p = []
 
-    if !build.devel? and build.include? 'with-forms'
-      urls.shift
-      opoo "ncurses forms already merged, skipping patch"
-    end
+    # Revert ncurses split and apply other fixes, see pull request for details
+    # https://github.com/ethereum/cpp-ethereum/pull/157
+    p << "https://github.com/caktux/cpp-ethereum/commit/85e642e9c6791215db54f6ba6a2e728a38ace389.patch"
+    # trim_all and cnote
+    p << "https://github.com/caktux/cpp-ethereum/commit/ea34084720781dfbf49b5feba4db579c5d75a493.patch"
+    # parse data and fix inspect
+    p << "https://github.com/caktux/cpp-ethereum/commit/b94dcbf57847ee63d1400c4884ad76e535617019.patch"
 
     urls.each do |u|
       p << u[1] if build.include? u[0]
@@ -70,9 +71,7 @@ class Ethereum < Formula
 
     # args << "--build-release" if build.include? '--build-release'
 
-    if build.devel? and build.include? "with-forms"
-      args << "-DCMAKE_BUILD_TYPE=forms"
-    elsif build.include? "with-faucet"
+    if build.include? "with-faucet"
       args << "-DCMAKE_BUILD_TYPE=faucet"
     elsif build.devel?
       args << "-DCMAKE_BUILD_TYPE=Develop"
