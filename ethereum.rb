@@ -3,7 +3,7 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.3-v11-brew-34'
+  version '0.4.3-v11-brew-35'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
@@ -31,14 +31,17 @@ class Ethereum < Formula
     inreplace 'libethereum/CMakeLists.txt' do |s|
       s.gsub! "install( TARGETS", "# install( TARGETS"
     end
-    inreplace 'libqethereum/CMakeLists.txt' do |s|
-      s.gsub! "install( TARGETS", "# install( TARGETS"
-    end
     inreplace 'eth/CMakeLists.txt' do |s|
       s.gsub! "install( TARGETS", "# install( TARGETS"
     end
-    inreplace 'neth/CMakeLists.txt' do |s|
-      s.gsub! "install( TARGETS", "# install( TARGETS"
+    devel do
+      inreplace 'libqethereum/CMakeLists.txt' do |s|
+        s.gsub! "fixup_bundle", "# fixup_bundle"
+        s.gsub! "install( TARGETS", "# install( TARGETS"
+      end
+      inreplace 'neth/CMakeLists.txt' do |s|
+        s.gsub! "install( TARGETS", "# install( TARGETS"
+      end
     end
 
     # Patches
@@ -95,7 +98,7 @@ class Ethereum < Formula
     end
 
     system "cmake", *args
-    system "make" #, "install"
+    system "make", "install"
 
     bin.install 'eth/eth'
     bin.install 'neth/neth' if build.devel?
