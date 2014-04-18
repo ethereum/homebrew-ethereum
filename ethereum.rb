@@ -3,7 +3,7 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.3-v11-brew-33'
+  version '0.4.3-v11-brew-34'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
@@ -23,7 +23,7 @@ class Ethereum < Formula
   depends_on 'ncurses'
 
   option 'headless', "Headless"
-  option 'with-export', "Dump to CSV"
+  option 'with-export', "Dump to CSV" unless build.devel?
   option 'with-faucet', "Faucet patch"
 
   def patches
@@ -31,7 +31,13 @@ class Ethereum < Formula
     inreplace 'libethereum/CMakeLists.txt' do |s|
       s.gsub! "install( TARGETS", "# install( TARGETS"
     end
+    inreplace 'libqethereum/CMakeLists.txt' do |s|
+      s.gsub! "install( TARGETS", "# install( TARGETS"
+    end
     inreplace 'eth/CMakeLists.txt' do |s|
+      s.gsub! "install( TARGETS", "# install( TARGETS"
+    end
+    inreplace 'neth/CMakeLists.txt' do |s|
       s.gsub! "install( TARGETS", "# install( TARGETS"
     end
 
@@ -41,15 +47,18 @@ class Ethereum < Formula
       ["with-faucet", "https://gist.githubusercontent.com/caktux/9335964/raw/216a5a7c7bd9df1525b3b48f319651804d2fb626/faucet-develop.patch"],
     ]
 
+    # Faucet for neth in develop
+    urls[1][1] = "https://gist.githubusercontent.com/caktux/11020803/raw/a79df8f3aa743e22f325936151d1660297cb219f/faucet-neth.patch" if build.devel?
+
     p = []
 
     # Revert ncurses split and apply other fixes, see pull request for details
     # https://github.com/ethereum/cpp-ethereum/pull/157
-    p << "https://github.com/caktux/cpp-ethereum/commit/85e642e9c6791215db54f6ba6a2e728a38ace389.patch"
+    p << "https://github.com/caktux/cpp-ethereum/commit/85e642e9c6791215db54f6ba6a2e728a38ace389.patch" unless build.devel?
     # trim_all and cnote
-    p << "https://github.com/caktux/cpp-ethereum/commit/ea34084720781dfbf49b5feba4db579c5d75a493.patch"
+    p << "https://github.com/caktux/cpp-ethereum/commit/ea34084720781dfbf49b5feba4db579c5d75a493.patch" unless build.devel?
     # parse data and fix inspect
-    p << "https://github.com/caktux/cpp-ethereum/commit/b94dcbf57847ee63d1400c4884ad76e535617019.patch"
+    p << "https://github.com/caktux/cpp-ethereum/commit/b94dcbf57847ee63d1400c4884ad76e535617019.patch" unless build.devel?
 
     urls.each do |u|
       p << u[1] if build.include? u[0]
@@ -86,14 +95,16 @@ class Ethereum < Formula
     end
 
     system "cmake", *args
-    system "make", "install"
+    system "make" #, "install"
 
     bin.install 'eth/eth'
+    bin.install 'neth/neth' if build.devel?
     if !build.include? "headless"
       prefix.install 'alethzero/AlethZero.app'
       prefix.install 'walleth/Walleth.app'
     end
     lib.install Dir['libethereum/*.dylib']
+    lib.install Dir['libqethereum/*.dylib'] if build.devel?
     lib.install Dir['secp256k1/*.dylib']
     # prefix.install Dir['*']
   end
