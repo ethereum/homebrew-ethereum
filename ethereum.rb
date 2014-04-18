@@ -34,7 +34,7 @@ class Ethereum < Formula
     inreplace 'eth/CMakeLists.txt' do |s|
       s.gsub! "install( TARGETS", "# install( TARGETS"
     end
-    devel do
+    if build.devel?
       inreplace 'libqethereum/CMakeLists.txt' do |s|
         s.gsub! "fixup_bundle", "# fixup_bundle"
         s.gsub! "install( TARGETS", "# install( TARGETS"
