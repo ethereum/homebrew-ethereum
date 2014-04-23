@@ -3,7 +3,7 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.3-v11-brew-35'
+  version '0.4.3-v11-brew-36'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
@@ -106,6 +106,7 @@ class Ethereum < Formula
       prefix.install 'alethzero/AlethZero.app'
       prefix.install 'walleth/Walleth.app'
     end
+    lib.install Dir['libethcore/*.dylib'] if build.devel?
     lib.install Dir['libethereum/*.dylib']
     lib.install Dir['libqethereum/*.dylib'] if build.devel?
     lib.install Dir['secp256k1/*.dylib']
