@@ -3,7 +3,7 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.3-v11-brew-36'
+  version '0.4.3-v11-brew-37'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
@@ -21,8 +21,11 @@ class Ethereum < Formula
   depends_on 'leveldb'
   depends_on 'gmp'
   depends_on 'ncurses'
+  depends_on 'curl'
+  depends_on 'jsonrpc' if build.include? 'with-jsonrpc'
 
   option 'headless', "Headless"
+  option 'with-jsonrpc', "With JSON-RPC" if build.devel?
   option 'with-export', "Dump to CSV" unless build.devel?
   option 'with-faucet', "Faucet patch"
 
@@ -51,7 +54,7 @@ class Ethereum < Formula
     ]
 
     # Faucet for neth in develop
-    urls[1][1] = "https://gist.githubusercontent.com/caktux/11020803/raw/a79df8f3aa743e22f325936151d1660297cb219f/faucet-neth.patch" if build.devel?
+    urls[1][1] = "https://gist.githubusercontent.com/caktux/11020803/raw/beb7b1b85a12675c46eb4ad965f97e8064a7c2be/faucet-neth.patch" if build.devel?
 
     p = []
 
