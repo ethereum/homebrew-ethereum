@@ -3,11 +3,11 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-brew_version
-  version '0.4.3-v11-brew-37'
+  version '0.4.3-v11-brew-38'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '47572e8041da9360d7f7627196223afbfea9efe9'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '46a746a6d1f8f283a8eb433593bbac529b66b050'
   devel do
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
   end
@@ -38,6 +38,18 @@ class Ethereum < Formula
       s.gsub! "install( TARGETS", "# install( TARGETS"
     end
     if build.devel?
+      inreplace 'libethcore/CMakeLists.txt' do |s|
+        s.gsub! "install( TARGETS", "# install( TARGETS"
+      end
+      inreplace 'libethsupport/CMakeLists.txt' do |s|
+        s.gsub! "install( TARGETS", "# install( TARGETS"
+      end
+      inreplace 'libevm/CMakeLists.txt' do |s|
+        s.gsub! "install( TARGETS", "# install( TARGETS"
+      end
+      inreplace 'liblll/CMakeLists.txt' do |s|
+        s.gsub! "install( TARGETS", "# install( TARGETS"
+      end
       inreplace 'libqethereum/CMakeLists.txt' do |s|
         s.gsub! "fixup_bundle", "# fixup_bundle"
         s.gsub! "install( TARGETS", "# install( TARGETS"
@@ -78,13 +90,7 @@ class Ethereum < Formula
   end
 
   def install
-    args = [
-      # "--prefix=#{prefix}",
-      # "PKG_CONFIG_PATH=#{HOMEBREW_PREFIX}/opt/curl/lib/pkgconfig:#{HOMEBREW_PREFIX}/opt/ethereum/lib/pkgconfig"
-      # "--enable-some-flag"
-    ]
-
-    # args << "--build-release" if build.include? '--build-release'
+    args = []
 
     if build.include? "with-faucet"
       args << "-DCMAKE_BUILD_TYPE=faucet"
@@ -105,11 +111,15 @@ class Ethereum < Formula
 
     bin.install 'eth/eth'
     bin.install 'neth/neth' if build.devel?
+    bin.install 'lllc/lllc' if build.devel?
     if !build.include? "headless"
       prefix.install 'alethzero/AlethZero.app'
       prefix.install 'walleth/Walleth.app'
     end
     lib.install Dir['libethcore/*.dylib'] if build.devel?
+    lib.install Dir['libethsupport/*.dylib'] if build.devel?
+    lib.install Dir['libevm/*.dylib'] if build.devel?
+    lib.install Dir['liblll/*.dylib'] if build.devel?
     lib.install Dir['libethereum/*.dylib']
     lib.install Dir['libqethereum/*.dylib'] if build.devel?
     lib.install Dir['secp256k1/*.dylib']

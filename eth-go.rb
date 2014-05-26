@@ -19,13 +19,17 @@ class EthGo < Formula
   def install
     ENV["PKG_CONFIG_PATH"] = "#{HOMEBREW_PREFIX}/opt/qt5/lib/pkgconfig"
 
-    ENV["GOPATH"] = prefix
+    ENV["GOPATH"] = "#{buildpath}:#{prefix}"
     ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
 
     system "go", "env"
     system "go", "get", "-d", "."
+
+    system "rm", "-rf", "src/github.com/ethereum/eth-go"
+    ln_s buildpath, "src/github.com/ethereum/eth-go"
+
     system "go", "build", "-v", "."
 
-    # lib.install Dir['*']
+    prefix.install Dir['*']
   end
 end
