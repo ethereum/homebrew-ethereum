@@ -7,23 +7,45 @@ Homebrew Tap for Ethereum
 
 ```
 brew tap caktux/ethereum
+```
+
+###C++ client
+```
 brew install ethereum
 brew linkapps
 ```
 
-Then `open /Applications/AlethZero.app` or run `eth -i` (interactive mode)
-
-Get the latest with:
+###Go client
 ```
-brew install ethereum --HEAD
+brew install go-ethereum
 ```
 
-Current branches:
+##Running
+
+###C++ client
+`open /Applications/AlethZero.app`, `eth` (CLI), or `neth` (ncurses interface)
+
+###Go client
+`ethereal` (GUI) or `ethereum` (CLI)
+
+
+##Development
+Get the latest version with:
+```
+brew install ethereum --devel
+```
+
+Current branches (c++):
 * `--HEAD` is on latest release branch
 * `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop)
 * normal install uses a fixed commit on latest release branch
 
-Update and upgrade:
+Go:
+* `--HEAD` is on develop branch
+* normal install is on master branch
+
+
+##Upgrading
 ```
 brew update && brew upgrade
 ```
@@ -60,7 +82,7 @@ Option           | desc.
 ##Troubleshooting
 
 * Use `--verbose` to get more info while installing.
-* Make sure to update XCode (latest is 5.1) and the command line tools.
+* Make sure to update XCode and the command line tools.
 * Run `brew update` and `brew upgrade`
 * Fix what the `brew doctor` says.
 * Reinstall dependencies: `brew reinstall boost --c++11`
