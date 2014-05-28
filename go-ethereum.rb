@@ -2,7 +2,7 @@ require 'formula'
 
 class GoEthereum < Formula
 
-  version '0.5.0-rc9'
+  version '0.5.0-rc11'
 
   homepage 'https://github.com/ethereum/go-ethereum'
   head 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
