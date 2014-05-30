@@ -15,10 +15,6 @@ class GoEthereum < Formula
 
   option "headless", "Headless"
 
-  def patches
-    DATA
-  end
-
   def install
     ENV["PKG_CONFIG_PATH"] = "#{HOMEBREW_PREFIX}/opt/qt5/lib/pkgconfig"
     ENV["QT5VERSION"] = `pkg-config --modversion Qt5Core`
@@ -61,16 +57,3 @@ class GoEthereum < Formula
 
 end
 __END__
-diff --git a/ethereal/ui/ui_lib.go b/ethereal/ui/ui_lib.go
-index 1c88b01..d4cb0ac 100644
---- a/ethereal/ui/ui_lib.go
-+++ b/ethereal/ui/ui_lib.go
-@@ -105,7 +105,7 @@ func DefaultAssetPath() string {
-		case "darwin":
-			// Get Binary Directory
-			exedir, _ := osext.ExecutableFolder()
--			base = filepath.Join(exedir, "../Resources")
-+			base = filepath.Join(exedir, "../opt/go-ethereum/src/ethereal/assets")
-		case "linux":
-			base = "/usr/share/ethereal"
-		case "window":

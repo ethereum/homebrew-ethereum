@@ -16,6 +16,10 @@ class EthGo < Formula
 
   keg_only "No executable"
 
+  def patches
+    DATA
+  end
+
   def install
     ENV["PKG_CONFIG_PATH"] = "#{HOMEBREW_PREFIX}/opt/qt5/lib/pkgconfig"
 
@@ -33,3 +37,17 @@ class EthGo < Formula
     prefix.install Dir['*']
   end
 end
+__END__
+diff --git a/ethutil/config.go b/ethutil/config.go
+index 916b0d1..ec41b7b 100644
+--- a/ethutil/config.go
++++ b/ethutil/config.go
+@@ -55,7 +55,7 @@ func ApplicationFolder(base string) string {
+			if err != nil {
+				fmt.Println(err)
+			} else {
+-				assetPath := path.Join(os.Getenv("GOPATH"), "src", "github.com", "ethereum", "go-ethereum", "ethereal", "assets")
++				assetPath := "/usr/local/opt/go-ethereum/src/ethereal/assets"
+				file.Write([]byte(defaultConf + "\nasset_path = " + assetPath))
+			}
+		}

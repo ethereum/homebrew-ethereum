@@ -3,39 +3,39 @@ homebrew-ethereum
 
 Homebrew Tap for Ethereum
 
-##Installation
+## Installation
 
 ```
 brew tap caktux/ethereum
 ```
 
-###C++ client
+### C++ client
 ```
 brew install ethereum
 brew linkapps
 ```
 
-###Go client
+### Go client
 ```
 brew install go-ethereum
 ```
 
-##Running
+## Running
 
-###C++ client
+### C++ client
 `open /Applications/AlethZero.app`, `eth` (CLI), or `neth` (ncurses interface)
 
-###Go client
+### Go client
 `ethereal` (GUI) or `ethereum` (CLI)
 
 
-##Development
+## Development
 Get the latest version with:
 ```
 brew install ethereum --devel
 ```
 
-Current branches (c++):
+Current branches (C++):
 * `--HEAD` is on latest release branch
 * `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop)
 * normal install uses a fixed commit on latest release branch
@@ -45,16 +45,25 @@ Go:
 * normal install is on master branch
 
 
-##Upgrading
+## Upgrading
+
 ```
 brew update && brew upgrade
 ```
 
-After minor updates, reinstall with:
+## Minor updates
+
+### C++ client
 ```
 brew update && brew reinstall ethereum
 ```
 
+### Go client
+```
+brew update && brew reinstall eth-go go-ethereum
+```
+
+## Versions
 List available versions with:
 ```
 brew versions ethereum
@@ -71,7 +80,7 @@ repository locally with `brew tap caktux/ethereum`.
 
 ##Options
 
-See `brew info ethereum` for all options. `--with-`... features are experimental patches.
+See `brew info ethereum` or `brew info go-ethereum` for all options. `--with-...` features are experimental patches.
 
 Option           | desc.
 -----------------|---------
