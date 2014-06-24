@@ -2,7 +2,7 @@ require 'formula'
 
 class GoEthereum < Formula
 
-  version '0.5.0-rc11'
+  version '0.5.14'
 
   homepage 'https://github.com/ethereum/go-ethereum'
   head 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
@@ -19,7 +19,7 @@ class GoEthereum < Formula
     ENV["PKG_CONFIG_PATH"] = "#{HOMEBREW_PREFIX}/opt/qt5/lib/pkgconfig"
     ENV["QT5VERSION"] = `pkg-config --modversion Qt5Core`
     ENV["CGO_CPPFLAGS"] = "-I#{HOMEBREW_PREFIX}/opt/qt5/include/QtCore"
-    ENV["GOPATH"] = "#{buildpath}:#{HOMEBREW_PREFIX}/opt/eth-go:#{prefix}"
+    ENV["GOPATH"] = "#{buildpath}:#{prefix}:#{HOMEBREW_PREFIX}/opt/eth-go:#{HOMEBREW_PREFIX}/opt/serpent-go"
     ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
 
     # Debug env

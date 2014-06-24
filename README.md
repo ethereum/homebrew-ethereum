@@ -30,9 +30,16 @@ brew install go-ethereum
 
 
 ## Development
-Get the latest version with:
+Get the latest development version with:
+
+### C++ client
 ```
-brew install ethereum --devel
+brew reinstall ethereum --devel
+```
+
+### Go client
+```
+brew reinstall eth-go go-ethereum --HEAD
 ```
 
 Current branches (C++):
@@ -85,8 +92,16 @@ See `brew info ethereum` or `brew info go-ethereum` for all options. `--with-...
 Option           | desc.
 -----------------|---------
 `--headless`     | Headless
-`--with-export`  | Dump to CSV, applies ncurses before
-`--with-faucet`  | Faucet patch
+`--with-debug`   | Pass -DCMAKE_BUILD_TYPE=Debug
+`--with-jsonrpc` | Install libjson-rpc-cpp
+
+### jsonrpc
+
+`brew info jsonrpc`
+
+Option           | desc.
+-----------------|---------
+`--allow-origin` | Add Access-Control-Allow-Origin: * in headers
 
 ##Troubleshooting
 
