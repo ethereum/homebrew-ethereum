@@ -2,7 +2,7 @@ require 'formula'
 
 class GoEthereum < Formula
 
-  version '0.5.14'
+  version '0.5.15'
 
   homepage 'https://github.com/ethereum/go-ethereum'
   head 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
@@ -46,6 +46,8 @@ class GoEthereum < Formula
 
     bin.install 'ethereum'
     bin.install 'ethereal' unless build.include? "headless"
+
+    mv 'src/ethereal/assets', prefix/'Resources'
 
     prefix.install Dir['src']
   end

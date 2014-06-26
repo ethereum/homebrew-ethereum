@@ -2,7 +2,7 @@ require 'formula'
 
 class EthGo < Formula
 
-  version '0.5.14'
+  version '0.5.15'
 
   homepage 'https://github.com/ethereum/eth-go'
   head 'https://github.com/ethereum/eth-go.git', :branch => 'develop'
@@ -40,16 +40,3 @@ class EthGo < Formula
   end
 end
 __END__
-diff --git a/ethutil/config.go b/ethutil/config.go
-index 916b0d1..ec41b7b 100644
---- a/ethutil/config.go
-+++ b/ethutil/config.go
-@@ -55,7 +55,7 @@ func ApplicationFolder(base string) string {
-			if err != nil {
-				fmt.Println(err)
-			} else {
--				assetPath := path.Join(os.Getenv("GOPATH"), "src", "github.com", "ethereum", "go-ethereum", "ethereal", "assets")
-+				assetPath := "/usr/local/opt/go-ethereum/src/ethereal/assets"
-				file.Write([]byte(defaultConf + "\nasset_path = " + assetPath))
-			}
-		}
