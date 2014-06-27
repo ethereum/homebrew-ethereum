@@ -89,11 +89,12 @@ repository locally with `brew tap caktux/ethereum`.
 
 See `brew info ethereum` or `brew info go-ethereum` for all options. `--with-...` features are experimental patches.
 
-Option           | desc.
------------------|---------
-`--headless`     | Headless
-`--with-debug`   | Pass -DCMAKE_BUILD_TYPE=Debug
-`--with-jsonrpc` | Install libjson-rpc-cpp
+Option               | desc.
+---------------------|---------
+`--headless`         | Headless
+`--with-debug`       | Pass -DCMAKE_BUILD_TYPE=Debug
+`--without-jsonrpc`  | Build without libjson-rpc-cpp as dependency
+`--without-paranoia` | Build with -DPARANOIA=0
 
 ### jsonrpc
 
