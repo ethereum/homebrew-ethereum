@@ -19,6 +19,7 @@ class Serpent < Formula
 
     bin.install ["serpent"]
     lib.install ["libserpent.a"]
+    lib.install ["libserpent.so"]
     prefix.install ["pyserpent.so"]
 
     mkdir "libserpent"
