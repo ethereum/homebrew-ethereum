@@ -9,7 +9,7 @@ class Ethereum < Formula
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
   url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '46a746a6d1f8f283a8eb433593bbac529b66b050'
   devel do
-    version '0.5.11-20'
+    version '0.5.12-20'
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
   end
 
@@ -47,6 +47,9 @@ class Ethereum < Formula
     ]
 
     p = []
+
+    # Apply pull request #226...
+    p << "https://github.com/ethereum/cpp-ethereum/pull/226.patch"
 
     urls.each do |u|
       p << u[1] if build.include? u[0]
