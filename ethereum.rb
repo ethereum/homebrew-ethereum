@@ -20,7 +20,7 @@ class Ethereum < Formula
   depends_on 'cryptopp'
   depends_on 'miniupnpc'
   depends_on 'leveldb'
-  depends_on 'gmp'
+  depends_on 'gmp' unless build.devel?
   depends_on 'curl'
   depends_on 'jsonrpc' unless build.include? 'without-jsonrpc'
 
@@ -47,9 +47,6 @@ class Ethereum < Formula
     ]
 
     p = []
-
-    # Apply pull request #226...
-    p << "https://github.com/ethereum/cpp-ethereum/pull/226.patch"
 
     urls.each do |u|
       p << u[1] if build.include? u[0]
