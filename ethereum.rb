@@ -87,6 +87,7 @@ class Ethereum < Formula
     bin.install 'eth/eth'
     bin.install 'neth/neth' if build.devel?
     bin.install 'lllc/lllc' if build.devel?
+    bin.install 'sc/sc' if build.devel?
     bin.install 'exp/exp' if build.include? "with-debug"
     if !build.include? "headless"
       prefix.install 'alethzero/AlethZero.app'
