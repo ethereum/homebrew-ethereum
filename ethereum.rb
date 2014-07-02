@@ -28,6 +28,7 @@ class Ethereum < Formula
   option 'without-jsonrpc', "Build without JSON-RPC dependency"
   option "without-paranoia", "Build with -DPARANOIA=0"
   option 'with-debug', "Build with debug"
+  option 'with-vmtrace', "Build with VMTRACE"
 
   def patches
     # Prevent default binary installation so we can link using brew
@@ -72,13 +73,9 @@ class Ethereum < Formula
       args << "-DCMAKE_BUILD_TYPE=brew"
     end
 
-    if build.include? "headless"
-      args << "-DHEADLESS=1"
-    end
-
-    if build.include? "without-paranoia"
-      args << "-DPARANOIA=0"
-    end
+    args << "-DHEADLESS=1" if build.include? "headless"
+    args << "-DVMTRACE=1" if build.include? "with-vmtrace"
+    args << "-DPARANOIA=0" if build.include? "without-paranoia"
 
     system "cmake", *args
     system "make"
