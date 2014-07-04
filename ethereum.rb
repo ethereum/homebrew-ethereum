@@ -9,7 +9,7 @@ class Ethereum < Formula
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
   url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '46a746a6d1f8f283a8eb433593bbac529b66b050'
   devel do
-    version '0.5.13-21'
+    version '0.5.13-22'
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
   end
 
