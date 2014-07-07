@@ -2,7 +2,7 @@ require 'formula'
 
 class SerpentGo < Formula
 
-  version '0.5.15'
+  version '0.5.16'
 
   homepage 'https://github.com/obscuren/serpent-go'
   url 'https://github.com/obscuren/serpent-go.git', :branch => 'master'
