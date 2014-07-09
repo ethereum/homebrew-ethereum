@@ -14,7 +14,7 @@ class Ethereum < Formula
   end
 
   depends_on 'cmake' => :build
-  depends_on 'boost' => "--c++11"
+  depends_on 'boost' => ["c++11", "with-python"]
   # depends_on 'pkg-config' => :build
   depends_on 'qt5' unless build.include? 'headless'
   depends_on 'cryptopp'
