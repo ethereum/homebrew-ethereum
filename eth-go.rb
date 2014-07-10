@@ -12,8 +12,6 @@ class EthGo < Formula
   depends_on 'mercurial'
   depends_on 'gmp'
   depends_on 'readline'
-  depends_on 'pkg-config'
-  depends_on 'serpent-go'
 
   keg_only "No executable"
 
@@ -22,8 +20,6 @@ class EthGo < Formula
   end
 
   def install
-    ENV["PKG_CONFIG_PATH"] = "#{HOMEBREW_PREFIX}/opt/qt5/lib/pkgconfig"
-
     ENV["GOPATH"] = "#{buildpath}:#{prefix}:#{HOMEBREW_PREFIX}/opt/serpent-go"
     ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
 
@@ -39,15 +35,18 @@ class EthGo < Formula
   end
 end
 __END__
+
 diff --git a/ethcrypto/mnemonic.go b/ethcrypto/mnemonic.go
-index 6134f85..b8edfa5 100644
+index 7258467..b8edfa5 100644
 --- a/ethcrypto/mnemonic.go
 +++ b/ethcrypto/mnemonic.go
-@@ -3,16 +3,12 @@ package ethcrypto
+@@ -3,26 +3,12 @@ package ethcrypto
  import (
  	"fmt"
  	"io/ioutil"
+-	"os"
 -	"path"
+-	"path/filepath"
 -	"runtime"
  	"strconv"
  	"strings"
@@ -56,6 +55,14 @@ index 6134f85..b8edfa5 100644
  func InitWords() []string {
 -	_, thisfile, _, _ := runtime.Caller(1)
 -	filename := path.Join(path.Dir(thisfile), "mnemonic.words.lst")
+-	if _, err := os.Stat(filename); os.IsNotExist(err) {
+-		fmt.Printf("reading mnemonic word list file 'mnemonic.words.lst' from source folder failed, looking in current folder.")
+-		dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+-		if err != nil {
+-			panic(fmt.Errorf("problem getting current folder: ", err))
+-		}
+-		filename = path.Join(dir, "mnemonic.words.lst")
+-	}
 -	content, err := ioutil.ReadFile(filename)
 +	content, err := ioutil.ReadFile("/usr/local/opt/eth-go/ethcrypto/mnemonic.words.lst")
  	if err != nil {

@@ -2,33 +2,25 @@ require 'formula'
 
 class Serpent < Formula
 
-  version '1.3.8'
+  version '1.4.13'
 
-  homepage 'https://github.com/ethereum/serpent'
-  url 'https://github.com/ethereum/serpent.git', :branch => 'master'
+  homepage 'https://github.com/ethereum/langs'
+  url 'https://github.com/ethereum/langs.git', :branch => 'master'
 
-  # depends_on 'pkg-config'
+  depends_on 'cmake' => :build
+  depends_on 'boost' => ["c++11", "with-python"]
 
   def patches
     DATA
   end
 
   def install
-    system "make", "serpentc"
-    system "make"
-
-    bin.install ["serpent"]
-    lib.install ["libserpent.a"]
-    lib.install ["libserpent.so"]
-    prefix.install ["pyserpent.so"]
-
-    mkdir "libserpent"
-    mv Dir["*.h"], "libserpent"
-    include.install "libserpent"
+    system "cmake", ".", *std_cmake_args + ["-DLANGUAGES=1"]
+    system "make", "install"
 
     pyserpent = "#{HOMEBREW_PREFIX}/lib/python2.7/site-packages/pyserpent.so"
     rm pyserpent if File.symlink?(pyserpent)
-    ln_s prefix/"pyserpent.so", pyserpent
+    ln_s lib/"libpyserpent.dylib", pyserpent
   end
 end
 __END__

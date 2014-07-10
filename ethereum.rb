@@ -9,7 +9,7 @@ class Ethereum < Formula
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
   url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '46a746a6d1f8f283a8eb433593bbac529b66b050'
   devel do
-    version '0.5.13-23'
+    version '0.5.14-23'
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
   end
 
@@ -61,7 +61,7 @@ class Ethereum < Formula
   end
 
   def install
-    args = []
+    args = *std_cmake_args + ["-DLANGUAGES=0"]
 
     if build.include? "with-debug"
       args << "-DCMAKE_BUILD_TYPE=Debug"
@@ -81,16 +81,10 @@ class Ethereum < Formula
     system "make"
     system "make", "install"
 
-    bin.install 'eth/eth'
-    bin.install 'neth/neth' if build.devel?
-    bin.install 'lllc/lllc' if build.devel?
-    bin.install 'sc/sc' if build.devel?
-    bin.install 'exp/exp' if build.include? "with-debug"
     if !build.include? "headless"
       prefix.install 'alethzero/AlethZero.app'
       prefix.install 'walleth/Walleth.app'
     end
-    lib.install Dir['**/*.dylib']
   end
 
   test do
