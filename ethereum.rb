@@ -31,11 +31,6 @@ class Ethereum < Formula
   option 'with-vmtrace', "Build with VMTRACE"
 
   def patches
-    # Prevent default binary installation so we can link using brew
-    inreplace Dir['**/CMakeLists.txt'] do |s|
-      s.gsub! "install( TARGETS", "# install( TARGETS" if s.include? "install( TARGETS"
-    end
-
     if build.devel?
       inreplace 'libqethereum/CMakeLists.txt' do |s|
         s.gsub! "fixup_bundle", "# fixup_bundle"
@@ -61,7 +56,7 @@ class Ethereum < Formula
   end
 
   def install
-    args = *std_cmake_args + ["-DLANGUAGES=0"]
+    args = *std_cmake_args, "-DLANGUAGES=0"
 
     if build.include? "with-debug"
       args << "-DCMAKE_BUILD_TYPE=Debug"

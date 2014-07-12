@@ -14,29 +14,17 @@ class Jsonrpc < Formula
 
   def install
     system "cd", "build"
-    system "cmake", "."
-    system "make"
-    lib.install Dir['out/*.dylib']
+    system "cmake", *std_cmake_args
+    system "make", "install"
   end
 
   def patches
-    DATA if build.include? "allow-origin"
+    p = ["https://github.com/cinemast/libjson-rpc-cpp/pull/51.patch"]
+
+    p << "https://gist.githubusercontent.com/caktux/b876fb0bf638f02387a8/raw/0b4ae5ab9ede6f4d88b5a5143437de00d92aa052/jsonrpc-allow-origin.patch" if build.include? "allow-origin"
+
+    return p
   end
 
 end
 __END__
-diff --git a/src/jsonrpc/connectors/httpserver.cpp b/src/jsonrpc/connectors/httpserver.cpp
-index 7e9c08f..4da94d1 100644
---- a/src/jsonrpc/connectors/httpserver.cpp
-+++ b/src/jsonrpc/connectors/httpserver.cpp
-@@ -133,7 +133,9 @@ namespace jsonrpc
-     {
-         struct mg_connection* conn = (struct mg_connection*) addInfo;
-         if (mg_printf(conn, "HTTP/1.1 200 OK\r\n"
--                      "Content-Type: application/json\r\n"
-+                      "Access-Control-Allow-Origin: *\r\n"
-+                      "Access-Control-Allow-Headers: Content-Type\r\n"
-+                      "Content-Type: application/json; charset=utf-8\r\n"
-                       "Content-Length: %d\r\n"
-                       "\r\n"
-                       "%s",(int)response.length(), response.c_str()) > 0)
