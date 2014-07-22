@@ -9,7 +9,7 @@ class Ethereum < Formula
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
   url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '46a746a6d1f8f283a8eb433593bbac529b66b050'
   devel do
-    version '0.5.14-23'
+    version '0.5.16-23'
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
   end
 
@@ -31,12 +31,6 @@ class Ethereum < Formula
   option 'with-vmtrace', "Build with VMTRACE"
 
   def patches
-    if build.devel?
-      inreplace 'libqethereum/CMakeLists.txt' do |s|
-        s.gsub! "fixup_bundle", "# fixup_bundle"
-      end
-    end
-
     # Patches
     urls = [
       # ["with-option", "https://gist.githubusercontent.com/..."],
