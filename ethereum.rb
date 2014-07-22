@@ -3,11 +3,11 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version
-  version '0.4.3-11'
+  version '0.5.16-23'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '46a746a6d1f8f283a8eb433593bbac529b66b050'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'dff4b428b92988988ec22395288553ac69303416'
   devel do
     version '0.5.16-23'
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
@@ -20,7 +20,7 @@ class Ethereum < Formula
   depends_on 'cryptopp'
   depends_on 'miniupnpc'
   depends_on 'leveldb'
-  depends_on 'gmp' unless build.devel?
+  depends_on 'gmp'
   depends_on 'curl'
   depends_on 'jsonrpc' unless build.include? 'without-jsonrpc'
 
@@ -37,6 +37,8 @@ class Ethereum < Formula
     ]
 
     p = []
+
+    p << "https://github.com/ethereum/cpp-ethereum/pull/248.diff" unless build.devel?
 
     urls.each do |u|
       p << u[1] if build.include? u[0]
