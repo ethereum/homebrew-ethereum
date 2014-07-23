@@ -49,6 +49,9 @@ class GoEthereum < Formula
 
     mv 'src/ethereal/assets', prefix/'Resources'
 
+    # Copy mnemonic.words.lst from eth-go to Resources
+    system "cp", "#{HOMEBREW_PREFIX}/opt/eth-go/ethcrypto/mnemonic.words.lst", prefix/"Resources"
+
     prefix.install Dir['src']
   end
 
