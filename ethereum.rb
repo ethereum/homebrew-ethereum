@@ -2,14 +2,14 @@ require 'formula'
 
 class Ethereum < Formula
 
-  # official_version-protocol_version
-  version '0.5.16-23'
+  # official_version-protocol_version-database_version
+  version '0.5.17-23'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'dff4b428b92988988ec22395288553ac69303416'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master', :revision => '0d979f14a474ae7242041ad0ebfd38391d57ec33'
   devel do
-    version '0.5.16-23'
+    version '0.6.0-23-1'
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
   end
 
@@ -37,8 +37,6 @@ class Ethereum < Formula
     ]
 
     p = []
-
-    p << "https://github.com/ethereum/cpp-ethereum/pull/248.diff" unless build.devel?
 
     urls.each do |u|
       p << u[1] if build.include? u[0]
