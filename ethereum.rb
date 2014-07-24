@@ -7,7 +7,7 @@ class Ethereum < Formula
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master', :revision => '0d979f14a474ae7242041ad0ebfd38391d57ec33'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master', :revision => '2fff90ba788ff85c9135b609448c66b5bc501131'
   devel do
     version '0.6.0-23-1'
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
