@@ -31,6 +31,10 @@ class Ethereum < Formula
   option 'with-vmtrace', "Build with VMTRACE"
 
   def patches
+    inreplace "libethereum/Client.cpp" do |s|
+      s.gsub! "cdebug", "// cdebug"
+    end
+
     # Patches
     urls = [
       # ["with-option", "https://gist.githubusercontent.com/..."],
