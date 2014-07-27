@@ -2,7 +2,7 @@ require 'formula'
 
 class EthGo < Formula
 
-  version '0.5.22'
+  version '0.6.0'
 
   homepage 'https://github.com/ethereum/eth-go'
   head 'https://github.com/ethereum/eth-go.git', :branch => 'develop'
