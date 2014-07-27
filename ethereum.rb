@@ -32,7 +32,7 @@ class Ethereum < Formula
 
   def patches
     inreplace "libethereum/Client.cpp" do |s|
-      s.gsub! "cdebug", "// cdebug"
+      s.gsub! "cwork", "// cwork"
     end
 
     # Patches
