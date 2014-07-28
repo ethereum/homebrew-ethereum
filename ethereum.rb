@@ -9,7 +9,7 @@ class Ethereum < Formula
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
   url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master', :revision => '592190562a07e3641d35214eb0e530f5a9682cd6'
   devel do
-    version '0.6.1-23-1'
+    version '0.6.1-24-1'
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
   end
 
@@ -31,10 +31,6 @@ class Ethereum < Formula
   option 'with-vmtrace', "Build with VMTRACE"
 
   def patches
-    inreplace "libethereum/Client.cpp" do |s|
-      s.gsub! "cwork", "// cwork"
-    end
-
     # Patches
     urls = [
       # ["with-option", "https://gist.githubusercontent.com/..."],
