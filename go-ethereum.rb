@@ -2,7 +2,8 @@ require 'formula'
 
 class GoEthereum < Formula
 
-  version '0.6.0'
+  # official_version-protocol_version
+  version '0.6.0-25'
 
   homepage 'https://github.com/ethereum/go-ethereum'
   head 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
@@ -25,6 +26,12 @@ class GoEthereum < Formula
     # Debug env
     system "go", "env"
 
+    # Link eth-go
+    # otherwise we get from master branch no matter what
+    mkdir_p "src/github.com/ethereum"
+    ln_s "#{HOMEBREW_PREFIX}/opt/eth-go", "src/github.com/ethereum/eth-go"
+    ln_s buildpath, "src/github.com/ethereum/go-ethereum"
+
     # Get dependencies
     system "go", "get", "-d", "./ethereum"
     system "go", "get", "-d", "./ethereal" unless build.include? "headless"
@@ -36,9 +43,7 @@ class GoEthereum < Formula
 
     # Replace ourselves with ourselves from "go get",
     # otherwise we build from master branch no matter what
-    system "rm", "-rf", "src/github.com/ethereum/eth-go"
     system "rm", "-rf", "src/github.com/ethereum/go-ethereum"
-    ln_s "#{HOMEBREW_PREFIX}/opt/eth-go", "src/github.com/ethereum/eth-go"
     ln_s "#{buildpath}/src", "src/github.com/ethereum/go-ethereum"
 
     system "go", "build", "-v", "./src/ethereum"

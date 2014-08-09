@@ -2,7 +2,8 @@ require 'formula'
 
 class EthGo < Formula
 
-  version '0.6.0'
+  # official_version-protocol_version
+  version '0.6.0-25'
 
   homepage 'https://github.com/ethereum/eth-go'
   head 'https://github.com/ethereum/eth-go.git', :branch => 'develop'
@@ -24,10 +25,11 @@ class EthGo < Formula
     ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
 
     system "go", "env"
-    system "go", "get", "-d", "."
 
-    system "rm", "-rf", "src/github.com/ethereum/eth-go"
+    mkdir_p "src/github.com/ethereum"
     ln_s buildpath, "src/github.com/ethereum/eth-go"
+
+    system "go", "get", "-d", "."
 
     system "go", "build", "-v", "."
 

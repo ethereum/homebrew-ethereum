@@ -31,6 +31,14 @@ class Ethereum < Formula
   option 'with-vmtrace', "Build with VMTRACE"
 
   def patches
+    if build.devel?
+      inreplace "third/CMakeLists.txt" do |s|
+        s.gsub! "third.icns ", ""
+        s.gsub! "set_target_properties(${EXECUTEABLE} PROPERTIES MACOSX_BUNDLE_INFO_PLIST",
+                "# set_target_properties(${EXECUTEABLE} PROPERTIES MACOSX_BUNDLE_INFO_PLIST"
+      end
+    end
+
     # Patches
     urls = [
       # ["with-option", "https://gist.githubusercontent.com/..."],
@@ -73,6 +81,7 @@ class Ethereum < Formula
     if !build.include? "headless"
       prefix.install 'alethzero/AlethZero.app'
       prefix.install 'walleth/Walleth.app'
+      prefix.install 'third/Third.app' if build.devel?
     end
   end
 
