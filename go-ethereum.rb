@@ -26,7 +26,7 @@ class GoEthereum < Formula
     # Debug env
     system "go", "env"
 
-    # Link eth-go
+    # Link eth-go and current buildpath
     # otherwise we get from master branch no matter what
     mkdir_p "src/github.com/ethereum"
     ln_s "#{HOMEBREW_PREFIX}/opt/eth-go", "src/github.com/ethereum/eth-go"
@@ -36,14 +36,15 @@ class GoEthereum < Formula
     system "go", "get", "-d", "./ethereum"
     system "go", "get", "-d", "./ethereal" unless build.include? "headless"
 
-    # Go wants us in src folder
+    # Move to src folder to leave room for binaries
     system "mv", "ethereal", "src/"
     system "mv", "ethereum", "src/"
     system "mv", "utils", "src/"
+    system "mv", "javascript", "src/" if Dir.exists?("javascript")
 
-    # Replace ourselves with ourselves from "go get",
-    # otherwise we build from master branch no matter what
+    # Link go-ethereum so we build from the proper branch
     system "rm", "-rf", "src/github.com/ethereum/go-ethereum"
+    ohai "Linking src to src/github.com/ethereum/go-ethereum"
     ln_s "#{buildpath}/src", "src/github.com/ethereum/go-ethereum"
 
     system "go", "build", "-v", "./src/ethereum"
