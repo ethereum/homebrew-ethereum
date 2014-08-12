@@ -53,10 +53,11 @@ class GoEthereum < Formula
     bin.install 'ethereum'
     bin.install 'ethereal' unless build.include? "headless"
 
-    mv 'src/ethereal/assets', prefix/'Resources'
+    system "mv", "src/ethereal/assets", prefix/"Resources"
 
     # Copy mnemonic.words.lst from eth-go to Resources
-    system "cp", "#{HOMEBREW_PREFIX}/opt/eth-go/ethcrypto/mnemonic.words.lst", prefix/"Resources"
+    words = "#{HOMEBREW_PREFIX}/opt/eth-go/ethcrypto/mnemonic.words.lst"
+    system "cp", words, prefix/"Resources" if File.exists?(words)
 
     prefix.install Dir['src']
   end
