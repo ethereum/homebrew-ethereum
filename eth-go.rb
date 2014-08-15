@@ -10,6 +10,7 @@ class EthGo < Formula
   url 'https://github.com/ethereum/eth-go.git', :branch => 'master'
 
   depends_on 'go' => :build
+  depends_on 'pkg-config' => :build
   depends_on 'mercurial'
   depends_on 'gmp'
   depends_on 'readline'
@@ -21,6 +22,9 @@ class EthGo < Formula
   end
 
   def install
+    ENV["PKG_CONFIG_PATH"] = "#{HOMEBREW_PREFIX}/opt/qt5/lib/pkgconfig"
+    ENV["QT5VERSION"] = `pkg-config --modversion Qt5Core`
+    ENV["CGO_CPPFLAGS"] = "-I#{HOMEBREW_PREFIX}/opt/qt5/include/QtCore"
     ENV["GOPATH"] = "#{buildpath}:#{prefix}:#{HOMEBREW_PREFIX}/opt/serpent-go"
     ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
 
