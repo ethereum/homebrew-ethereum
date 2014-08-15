@@ -3,7 +3,7 @@ require 'formula'
 class GoEthereum < Formula
 
   # official_version-protocol_version
-  version '0.6.1-26'
+  version '0.6.2-26'
 
   homepage 'https://github.com/ethereum/go-ethereum'
   head 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
