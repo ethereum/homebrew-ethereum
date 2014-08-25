@@ -14,6 +14,7 @@ class EthGo < Formula
   depends_on 'mercurial'
   depends_on 'gmp'
   depends_on 'readline'
+  depends_on 'serpent-go'
 
   keg_only "No executable"
 
@@ -32,6 +33,9 @@ class EthGo < Formula
 
     mkdir_p "src/github.com/ethereum"
     ln_s buildpath, "src/github.com/ethereum/eth-go"
+
+    mkdir_p "src/github.com/obscuren"
+    ln_s "#{HOMEBREW_PREFIX}/opt/serpent-go", "src/github.com/obscuren/serpent-go"
 
     system "go", "get", "-d", "."
 
