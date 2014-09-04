@@ -10,7 +10,11 @@ class Ethereum < Formula
   url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master', :revision => '592190562a07e3641d35214eb0e530f5a9682cd6'
   devel do
     version '0.6.8-30-1'
-    url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
+    if build.include? "stable"
+      url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'b5eabd4180b8ea35bac84b64c35dac97a4859297'
+    else
+      url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
+    end
   end
 
   depends_on 'cmake' => :build
@@ -29,6 +33,7 @@ class Ethereum < Formula
   option "without-paranoia", "Build with -DPARANOIA=0"
   option 'with-debug', "Build with debug"
   option 'with-vmtrace', "Build with VMTRACE"
+  option 'stable', "Some stable version with --devel"
 
   def patches
     # Patches
