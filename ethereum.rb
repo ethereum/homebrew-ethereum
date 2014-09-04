@@ -7,13 +7,15 @@ class Ethereum < Formula
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop-poc-5'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master', :revision => '592190562a07e3641d35214eb0e530f5a9682cd6'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
+
   devel do
-    version '0.6.8-32-1'
     if build.include? "stable"
+      version '0.6.8-30-1'
       url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'b5eabd4180b8ea35bac84b64c35dac97a4859297'
     else
-      url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
+    version '0.6.8-32-1'
+    url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
     end
   end
 

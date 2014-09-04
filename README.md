@@ -37,6 +37,11 @@ Get the latest development version with:
 brew reinstall ethereum --devel
 ```
 
+For the latest "stable" build on develop (last successful build from [cpt-obvious](http://cpt-obvious.ethercasts.com:8010/waterfall)):
+```
+brew reinstall ethereum --devel --stable
+```
+
 ### Go client
 ```
 brew reinstall eth-go go-ethereum --HEAD
@@ -92,6 +97,7 @@ See `brew info ethereum` or `brew info go-ethereum` for all options. `--with-...
 Option               | desc.
 ---------------------|---------
 `--headless`         | Headless
+`--stable`           | Last successful build using --devel
 `--with-debug`       | Pass -DCMAKE_BUILD_TYPE=Debug
 `--without-jsonrpc`  | Build without libjson-rpc-cpp as dependency
 `--without-paranoia` | Build with -DPARANOIA=0
