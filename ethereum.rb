@@ -11,7 +11,7 @@ class Ethereum < Formula
 
   devel do
     if build.include? "stable"
-    version '0.6.8-32-1'
+      version '0.6.8-32-1'
       url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '515a1c22a9e85f616ae58aa05b45e6b613e4b777'
     else
     version '0.6.8-32-1'
