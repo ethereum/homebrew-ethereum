@@ -37,9 +37,9 @@ Get the latest development version with:
 brew reinstall ethereum --devel
 ```
 
-For the latest "stable" build on develop (last successful build from [cpt-obvious](http://cpt-obvious.ethercasts.com:8010/waterfall)):
+For the latest successful build on develop (last successful build from [cpt-obvious](http://cpt-obvious.ethercasts.com:8010/waterfall)):
 ```
-brew reinstall ethereum --devel --stable
+brew reinstall ethereum --devel --successful
 ```
 
 ### Go client
