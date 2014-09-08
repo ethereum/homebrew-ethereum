@@ -10,7 +10,7 @@ class Ethereum < Formula
   url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
 
   devel do
-    if build.include? "stable"
+    if build.include? "successful"
       version '0.6.8b-32-1'
       url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'b7b17b996345782c13a726a710ba4a95466932c4'
     else
@@ -35,7 +35,7 @@ class Ethereum < Formula
   option "without-paranoia", "Build with -DPARANOIA=0"
   option 'with-debug', "Build with debug"
   option 'with-vmtrace', "Build with VMTRACE"
-  option 'stable', "Some stable version with --devel"
+  option 'successful', "Last successful build with --devel only"
 
   def patches
     # Patches

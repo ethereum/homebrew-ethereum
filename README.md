@@ -97,7 +97,7 @@ See `brew info ethereum` or `brew info go-ethereum` for all options. `--with-...
 Option               | desc.
 ---------------------|---------
 `--headless`         | Headless
-`--stable`           | Last successful build using --devel
+`--successful`       | Last successful build using --devel only
 `--with-debug`       | Pass -DCMAKE_BUILD_TYPE=Debug
 `--without-jsonrpc`  | Build without libjson-rpc-cpp as dependency
 `--without-paranoia` | Build with -DPARANOIA=0
