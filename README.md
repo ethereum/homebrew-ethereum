@@ -43,6 +43,7 @@ brew reinstall ethereum --devel --successful
 ```
 
 **Important note when using --successful**
+
 If you get an error looking like this:
 ```
 ==> Cloning https://github.com/ethereum/cpp-ethereum.git
