@@ -37,10 +37,23 @@ Get the latest development version with:
 brew reinstall ethereum --devel
 ```
 
-For the latest successful build on develop (last successful build from [cpt-obvious](http://cpt-obvious.ethercasts.com:8010/waterfall)):
+For the latest successful build on develop (last successful build from [cpt-obvious](http://build.ethdev.com/waterfall)):
 ```
 brew reinstall ethereum --devel --successful
 ```
+
+**Important note when using --successful**
+If you get an error looking like this:
+```
+==> Cloning https://github.com/ethereum/cpp-ethereum.git
+Updating /Library/Caches/Homebrew/ethereum--git
+fatal: reference is not a tree: <latest commit hash>
+Error: Failed to download resource "ethereum"
+Failure while executing: git checkout -q -f
+```
+
+Either try `brew fetch ethereum` or simply delete the cache with `rm -rf /Library/Caches/Homebrew/ethereum--git`
+
 
 ### Go client
 ```
@@ -48,9 +61,9 @@ brew reinstall eth-go go-ethereum --HEAD
 ```
 
 Current branches (C++):
-* `--HEAD` is on latest release branch
+* `--HEAD` is on latest release develop branch [develop-poc-5](https://github.com/ethereum/cpp-ethereum/commits/develop-poc-5)
 * `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop)
-* normal install uses a fixed commit on latest release branch
+* normal install is on master branch
 
 Go:
 * `--HEAD` is on develop branch
