@@ -42,7 +42,7 @@ For the latest successful build on develop (last successful build from [cpt-obvi
 brew reinstall ethereum --devel --successful
 ```
 
-**Important note when using --successful**
+#### Important note when using --successful
 
 If you get an error looking like this:
 ```
