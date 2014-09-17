@@ -26,7 +26,7 @@ brew install go-ethereum
 `open /Applications/AlethZero.app`, `eth` (CLI), or `neth` (ncurses interface)
 
 ### Go client
-`ethereal` (GUI) or `ethereum` (CLI)
+`Mist` (GUI) or `ethereum` (CLI)
 
 
 ## Development
