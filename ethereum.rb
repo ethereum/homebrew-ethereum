@@ -79,7 +79,6 @@ class Ethereum < Formula
 
     if !build.include? "headless"
       prefix.install 'alethzero/AlethZero.app'
-      prefix.install 'walleth/Walleth.app'
       prefix.install 'third/Third.app' if build.devel?
     end
   end
