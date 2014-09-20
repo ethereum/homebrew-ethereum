@@ -34,10 +34,10 @@ class GoEthereum < Formula
 
     # Get dependencies
     system "go", "get", "-d", "./ethereum"
-    system "go", "get", "-d", "./Mist" unless build.include? "headless"
+    system "go", "get", "-d", "./mist" unless build.include? "headless"
 
     # Move to src folder to leave room for binaries
-    system "mv", "Mist", "src/"
+    system "mv", "mist", "src/"
     system "mv", "ethereum", "src/"
     system "mv", "utils", "src/"
     system "mv", "javascript", "src/" if Dir.exists?("javascript")
@@ -48,12 +48,12 @@ class GoEthereum < Formula
     ln_s "#{buildpath}/src", "src/github.com/ethereum/go-ethereum"
 
     system "go", "build", "-v", "./src/ethereum"
-    system "go", "build", "-v", "./src/Mist" unless build.include? "headless"
+    system "go", "build", "-v", "./src/mist" unless build.include? "headless"
 
     bin.install 'ethereum'
-    bin.install 'Mist' unless build.include? "headless"
+    bin.install 'mist' unless build.include? "headless"
 
-    system "mv", "src/Mist/assets", prefix/"Resources"
+    system "mv", "src/mist/assets", prefix/"Resources"
 
     # Copy mnemonic.words.lst from eth-go to Resources
     words = "#{HOMEBREW_PREFIX}/opt/eth-go/ethcrypto/mnemonic.words.lst"
@@ -64,7 +64,7 @@ class GoEthereum < Formula
 
   test do
     system "ethereum"
-    system "Mist" unless build.include? "headless"
+    system "mist" unless build.include? "headless"
   end
 
 end
