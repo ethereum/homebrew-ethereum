@@ -3,7 +3,7 @@ require 'formula'
 class EthGo < Formula
 
   # official_version-protocol_version
-  version '0.6.6-33'
+  version '0.6.7-33'
 
   homepage 'https://github.com/ethereum/eth-go'
   head 'https://github.com/ethereum/eth-go.git', :branch => 'develop'
