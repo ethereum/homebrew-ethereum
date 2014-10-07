@@ -100,6 +100,8 @@ class Ethereum < Formula
         <true/>
         <key>KeepAlive</key>
         <true/>
+        <key>ThrottleInterval</key>
+        <integer>300</integer>
         <key>ProgramArguments</key>
         <array>
             <string>#{opt_bin}/eth</string>
