@@ -109,7 +109,7 @@ class Ethereum < Formula
             <string>off</string>
             <string>-c</string>
             <string>buildslave</string>
-            <string>poc-6.ethdev.com</string>
+            <string>poc-7.ethdev.com</string>
         </array>
         <key>WorkingDirectory</key>
         <string>#{HOMEBREW_PREFIX}</string>
