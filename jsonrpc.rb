@@ -13,6 +13,7 @@ class Jsonrpc < Formula
   option "allow-origin", "Patch to add Access-Control-Allow-Origin: * in headers"
 
   def install
+    mkdir_p "build"
     system "cd", "build"
     system "cmake", *std_cmake_args
     system "make", "install"
