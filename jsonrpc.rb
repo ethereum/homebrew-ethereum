@@ -5,7 +5,7 @@ class Jsonrpc < Formula
   version '0.2.1'
 
   homepage 'https://github.com/cinemast/libjson-rpc-cpp'
-  url 'https://github.com/cinemast/libjson-rpc-cpp.git', :branch => 'master'
+  url 'https://github.com/cinemast/libjson-rpc-cpp.git', :revision => 'eaca2481e2889d5a5b748383fb02b1d395969cd4'
 
   depends_on 'cmake' => :build
   depends_on 'curl'
