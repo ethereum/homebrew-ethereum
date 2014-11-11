@@ -3,11 +3,13 @@ require 'formula'
 class GoEthereum < Formula
 
   # official_version-protocol_version
-  version '0.7.3-39'
+  version '0.6.7-33'
 
   homepage 'https://github.com/ethereum/go-ethereum'
   url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
+
   devel do
+    version '0.7.3-39'
     url 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
   end
 
@@ -35,18 +37,23 @@ class GoEthereum < Formula
     system "go", "get", "-v", "-u", "-d", "github.com/ethereum/go-ethereum/ethereum"
     system "go", "get", "-v", "-u", "-d", "github.com/ethereum/go-ethereum/mist" unless build.include? "headless"
 
-    # Link go-ethereum so we build from the proper branch
-    system "rm", "-rf", "src/github.com/ethereum/go-ethereum"
-    ohai "Linking . to src/github.com/ethereum/go-ethereum"
-    ln_s "#{buildpath}", "src/github.com/ethereum/go-ethereum"
+    # fix develop vs master discrepancies
+    cmd = "cmd/"
+    unless build.devel?
+      system "mv", "mist", "src/"
+      system "mv", "ethereum", "src/"
+      cmd = "src/"
+    else
+      system "cd src/github.com/ethereum/go-ethereum && git checkout develop"
+    end
 
-    system "go", "build", "-v", "./cmd/ethereum"
-    system "go", "build", "-v", "./cmd/mist" unless build.include? "headless"
+    system "go", "build", "-v", "./#{cmd}ethereum"
+    system "go", "build", "-v", "./#{cmd}mist" unless build.include? "headless"
 
     bin.install 'ethereum'
     bin.install 'mist' unless build.include? "headless"
 
-    system "mv", "cmd/mist/assets", prefix/"Resources"
+    system "mv", "#{cmd}mist/assets", prefix/"Resources"
 
     prefix.install Dir['src']
   end
