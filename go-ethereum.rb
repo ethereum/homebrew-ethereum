@@ -9,7 +9,7 @@ class GoEthereum < Formula
   url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
 
   devel do
-    version '0.7.3-39'
+    version '0.7.5-42'
     url 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
   end
 
