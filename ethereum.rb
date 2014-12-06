@@ -12,7 +12,7 @@ class Ethereum < Formula
   devel do
     if build.include? "successful"
       version '0.7.12-48-5'
-      url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'fd6eb8eded2436ce30ba12406b03b6d40bebe95a'
+      url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'c0c7e5fa6d12ff13a9e90537963583f8c87cd07e'
     else
     version '0.7.12-48-5'
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
