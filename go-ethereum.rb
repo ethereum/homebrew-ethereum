@@ -29,23 +29,22 @@ class GoEthereum < Formula
 
     # Debug env
     system "go", "env"
+    base = "src/github.com/ethereum/go-ethereum"
 
-    # tmp install ripemd160 for develop branch
-    system "go", "get", "-v", "-u", "-d", "code.google.com/p/go.crypto/ripemd160" if build.devel?
-
-    # Get dependencies
-    system "go", "get", "-v", "-u", "-d", "github.com/ethereum/go-ethereum/ethereum"
-    system "go", "get", "-v", "-u", "-d", "github.com/ethereum/go-ethereum/mist" unless build.include? "headless"
+    mkdir_p base
+    Dir["**"].reject{ |f| f['src']}.each do |filename|
+      system "mv", filename, "#{base}/"
+    end
 
     # fix develop vs master discrepancies
-    cmd = "cmd/"
+    cmd = "#{base}/cmd/"
     unless build.devel?
-      system "mv", "mist", "src/"
-      system "mv", "ethereum", "src/"
-      cmd = "src/"
-    else
-      system "cd src/github.com/ethereum/go-ethereum && git checkout develop"
+      cmd = "#{base}/"
     end
+
+    # Get dependencies
+    system "go", "get", "-v", "-t", "-d", "./#{cmd}ethereum"
+    system "go", "get", "-v", "-t", "-d", "./#{cmd}mist" unless build.include? "headless"
 
     system "go", "build", "-v", "./#{cmd}ethereum"
     system "go", "build", "-v", "./#{cmd}mist" unless build.include? "headless"
