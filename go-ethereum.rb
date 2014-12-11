@@ -33,7 +33,7 @@ class GoEthereum < Formula
 
     mkdir_p base
     Dir["**"].reject{ |f| f['src']}.each do |filename|
-      system "mv", filename, "#{base}/"
+      move filename, "#{base}/"
     end
 
     # fix develop vs master discrepancies
@@ -52,7 +52,7 @@ class GoEthereum < Formula
     bin.install 'ethereum'
     bin.install 'mist' unless build.include? "headless"
 
-    system "mv", "#{cmd}mist/assets", prefix/"Resources"
+    move "#{cmd}mist/assets", prefix/"Resources"
 
     prefix.install Dir['src']
   end
