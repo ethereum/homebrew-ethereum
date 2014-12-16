@@ -30,7 +30,7 @@ brew install go-ethereum
 
 
 ## Development
-Get the latest development version with:
+Get the latest development version with the `--devel` flag. Use `--build-from-source` if you don't want a pre-built bottle. Alternatively you can use the `--successful` flag (see [important note below](#important-note-when-using---successful)) or any other [available options](#options).
 
 ### C++ client
 ```
