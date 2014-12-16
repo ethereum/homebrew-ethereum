@@ -9,7 +9,19 @@ class Ethereum < Formula
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'poc-6+'
   url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
 
+  bottle do
+    revision 1
+    root_url 'http://build.ethdev.com/builds/OSX C++ master branch/1/bottle'
+    sha1 '7a05db7a3736e00184a62a7a759c0b146a95fa9a' => :yosemite
+  end
+
   devel do
+    bottle do
+      revision 1
+      root_url 'http://build.ethdev.com/builds/OSX C++ develop brew/1/bottle'
+      sha1 '7a05db7a3736e00184a62a7a759c0b146a95fa9a' => :yosemite
+    end
+
     if build.include? "successful"
       version '0.7.12-49-5'
       url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'd9b6f1fa317578535bdef7b822ab93b0bebd35f3'
