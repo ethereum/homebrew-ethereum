@@ -1,6 +1,6 @@
 require 'formula'
 
-class Jsonrpc < Formula
+class Jsonrpc4 < Formula
 
   version '0.4.1'
 
