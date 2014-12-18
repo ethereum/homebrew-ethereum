@@ -41,8 +41,9 @@ class Ethereum < Formula
   depends_on 'leveldb'
   depends_on 'gmp'
   depends_on 'curl'
-  depends_on 'jsonrpc' unless build.include? 'without-jsonrpc' or build.devel?
-  depends_on 'jsonrpc3' if !build.include? 'without-jsonrpc' and build.devel?
+  depends_on 'jsonrpc' unless build.include? 'without-jsonrpc' # or build.devel?
+  # depends_on 'jsonrpc4' if !build.include? 'without-jsonrpc' and build.devel?
+  # ^ Commented for future json-rpc-cpp upgrade
 
   option 'headless', "Headless"
   option 'without-jsonrpc', "Build without JSON-RPC dependency"
