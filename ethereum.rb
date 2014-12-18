@@ -3,7 +3,7 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version-database_version
-  version '0.6.11-33-2'
+  version '0.7.13-50-5'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'poc-6+'
