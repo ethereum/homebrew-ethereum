@@ -6,7 +6,7 @@ Homebrew Tap for Ethereum
 ## Installation
 
 ```
-brew tap caktux/ethereum
+brew tap ethereum/ethereum
 ```
 
 ### C++ client
@@ -102,7 +102,7 @@ brew switch ethereum <version>
 Or follow this [StackOverflow answer](http://stackoverflow.com/a/9832084/2639784)
 
 These brews can be installed via the raw GitHub URLs, or by cloning this
-repository locally with `brew tap caktux/ethereum`.
+repository locally with `brew tap ethereum/ethereum`.
 
 ##Options
 
@@ -131,7 +131,7 @@ Option           | desc.
 * Run `brew update` and `brew upgrade`
 * Fix what the `brew doctor` says.
 * Reinstall dependencies: `brew reinstall boost --c++11 --with-python`
-* Make changes to `/usr/local/Library/Taps/caktux-ethereum/ethereum.rb`
+* Make changes to `/usr/local/Library/Taps/ethereum/homebrew-ethereum/ethereum.rb`
 * Reinstall with `brew reinstall ethereum.rb` (send a pull request!)
 * Take a walk
 
