@@ -26,7 +26,7 @@ class Ethereum < Formula
       version '0.7.13-50-5'
       url 'https://github.com/ethereum/cpp-ethereum.git', :revision => 'ba562b472bf081594aa68a3b1d94391779ffa9ec'
     else
-    version '0.7.13-50-5'
+    version '0.7.13-49-5'
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
     end
   end
