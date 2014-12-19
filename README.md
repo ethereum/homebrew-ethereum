@@ -62,7 +62,7 @@ brew reinstall eth-go go-ethereum --HEAD
 ```
 
 Current branches (C++):
-* `--HEAD` is on latest release branch [poc-6+](https://github.com/ethereum/cpp-ethereum/commits/poc-6+)
+* `--HEAD` is on latest release branch [poc-7+](https://github.com/ethereum/cpp-ethereum/commits/poc-7+)
 * `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop)
 * normal install is on master branch
 
