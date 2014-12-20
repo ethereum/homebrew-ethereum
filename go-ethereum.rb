@@ -38,9 +38,9 @@ class GoEthereum < Formula
 
     # fix develop vs master discrepancies
     cmd = "#{base}/cmd/"
-    unless build.devel?
-      cmd = "#{base}/"
-    end
+    # unless build.devel?
+    #   cmd = "#{base}/"
+    # end
 
     # Get dependencies
     system "go", "get", "-v", "-t", "-d", "./#{cmd}ethereum"
