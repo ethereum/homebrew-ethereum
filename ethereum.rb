@@ -93,6 +93,9 @@ class Ethereum < Formula
     system "make"
     system "make", "install"
 
+    bin.install 'test/testeth'
+    (prefix/"test").install Dir['test/*.json']
+
     if !build.include? "headless"
       prefix.install 'alethzero/AlethZero.app'
       prefix.install 'mix/Mix.app' if build.devel?
@@ -101,7 +104,7 @@ class Ethereum < Formula
   end
 
   test do
-    system "eth"
+    system "testeth"
   end
 
   def plist; <<-EOS.undent
