@@ -73,7 +73,6 @@ class Ethereum < Formula
 
   def install
     args = *std_cmake_args
-    args << "-DLANGUAGES=0"
 
     if build.include? "with-debug"
       args << "-DCMAKE_BUILD_TYPE=Debug"
