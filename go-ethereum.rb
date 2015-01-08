@@ -17,6 +17,7 @@ class GoEthereum < Formula
   depends_on 'hg' => :build
   depends_on 'pkg-config' => :build
   depends_on 'qt5'
+  depends_on 'gmp'
 
   option "headless", "Headless"
 
