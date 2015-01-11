@@ -33,6 +33,7 @@ class Ethereum < Formula
   depends_on 'cmake' => :build
   depends_on 'boost' => "c++11"
   depends_on 'boost-python' => "c++11"
+  depends_on 'llvm35' => "disable-shared" if build.include? "with-evmjit"
   # depends_on 'pkg-config' => :build
   depends_on 'qt5' unless build.include? 'headless'
   depends_on 'cryptopp'
@@ -45,6 +46,7 @@ class Ethereum < Formula
   # ^ Commented for future json-rpc-cpp upgrade
 
   option 'headless', "Headless"
+  option "with-evmjit", "Build with LLVM-3.5 and enable EVMJIT"
   option 'without-jsonrpc', "Build without JSON-RPC dependency"
   option "without-paranoia", "Build with -DPARANOIA=0"
   option 'with-debug', "Build with debug"
@@ -71,9 +73,17 @@ class Ethereum < Formula
   end
 
   def install
-    ENV["CXX"] = "/usr/bin/clang++"
-
     args = *std_cmake_args
+
+    if build.with? "evmjit"
+      args << "-DLLVM_DIR=/usr/local/lib/llvm-3.5/share/llvm/cmake"
+      args << "-DEVMJIT=1"
+      ENV["CXX"] = "clang++-3.5 -stdlib=libc++"
+      ENV["CXXFLAGS"] = "#{ENV.cxxflags} -nostdinc++ -I/usr/local/opt/llvm35/lib/llvm-3.5/include/c++/v1"
+      ENV["LDFLAGS"] = "#{ENV.ldflags} -L/usr/local/opt/llvm35/lib/llvm-3.5/lib"
+    else
+      ENV["CXX"] = "/usr/bin/clang++"
+    end
 
     if build.include? "with-debug" or build.include? "HEAD" or build.devel?
       args << "-DCMAKE_BUILD_TYPE=Debug"
