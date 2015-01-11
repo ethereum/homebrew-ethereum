@@ -1,7 +1,6 @@
 require 'formula'
 
 class Ethereum < Formula
-
   # official_version-protocol_version-database_version
   version '0.7.14-49-5'
 
@@ -72,16 +71,14 @@ class Ethereum < Formula
   end
 
   def install
+    ENV["CXX"] = "/usr/bin/clang++"
+
     args = *std_cmake_args
 
-    if build.include? "with-debug"
+    if build.include? "with-debug" or build.include? "HEAD" or build.devel?
       args << "-DCMAKE_BUILD_TYPE=Debug"
-    elsif build.devel?
-      args << "-DCMAKE_BUILD_TYPE=Develop"
-    elsif build.include? "HEAD"
-      args << "-DCMAKE_BUILD_TYPE=Release"
     else
-      args << "-DCMAKE_BUILD_TYPE=brew"
+      args << "-DCMAKE_BUILD_TYPE=Release"
     end
 
     args << "-DHEADLESS=1" if build.include? "headless"
