@@ -8,7 +8,19 @@ class GoEthereum < Formula
   homepage 'https://github.com/ethereum/go-ethereum'
   url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
 
+  bottle do
+    revision 1
+    root_url 'http://build.ethdev.com/builds/OSX%20Go%20master%20brew/1/bottle'
+    sha1 'deadbeef' => :yosemite
+  end
+
   devel do
+    bottle do
+      revision 1
+      root_url 'http://build.ethdev.com/builds/OSX%20Go%20develop%20brew/1/bottle'
+      sha1 'deadbeef' => :yosemite
+    end
+
     version '0.8.3-52'
     url 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
   end
