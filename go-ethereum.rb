@@ -34,16 +34,17 @@ class GoEthereum < Formula
   option "headless", "Headless"
 
   def install
+    base = "src/github.com/ethereum/go-ethereum"
+
     ENV["PKG_CONFIG_PATH"] = "#{HOMEBREW_PREFIX}/opt/qt5/lib/pkgconfig"
     ENV["QT5VERSION"] = `pkg-config --modversion Qt5Core`
     ENV["CGO_CPPFLAGS"] = "-I#{HOMEBREW_PREFIX}/opt/qt5/include/QtCore"
-    ENV["GOPATH"] = "#{buildpath}"
+    ENV["GOPATH"] = "#{buildpath}/#{base}/Godeps/_workspace:#{buildpath}"
     ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
     ENV["PATH"] = "#{ENV['GOPATH']}/bin:#{ENV['PATH']}"
 
     # Debug env
     system "go", "env"
-    base = "src/github.com/ethereum/go-ethereum"
 
     # Move checked out source to base
     mkdir_p base
@@ -58,10 +59,7 @@ class GoEthereum < Formula
     # end
 
     # Get dependencies
-    if build.devel?
-      system "go", "get", "github.com/tools/godep"
-      system "cd #{cmd} && godep restore"
-    else
+    unless build.devel?
       system "go", "get", "-v", "-t", "-d", "./#{cmd}ethereum"
       system "go", "get", "-v", "-t", "-d", "./#{cmd}mist" unless build.include? "headless"
     end
