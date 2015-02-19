@@ -30,7 +30,7 @@ brew install go-ethereum
 
 
 ## Development
-Get the latest development version with the `--devel` flag. Use `--build-from-source` if you don't want a pre-built bottle. Alternatively you can use the `--successful` flag (see [important note below](#important-note-when-using---successful)) or any other [available options](#options).
+Get the latest development version with the `--devel` flag. Use `--build-from-source` if you don't want a pre-built bottle. Alternatively you can use the `--successful` flag (cpp-ethereum only, see [important note below](#important-note-when-using---successful)) or any other [available options](#options).
 
 ### C++ client
 ```
@@ -58,7 +58,7 @@ Either try `brew fetch ethereum --devel` or simply delete the cache with `rm -rf
 
 ### Go client
 ```
-brew reinstall eth-go go-ethereum --HEAD
+brew reinstall go-ethereum --devel
 ```
 
 Current branches (C++):
@@ -86,13 +86,14 @@ brew update && brew reinstall ethereum
 
 ### Go client
 ```
-brew update && brew reinstall eth-go go-ethereum
+brew update && brew reinstall go-ethereum
 ```
 
 ## Versions
 List available versions with:
 ```
-brew versions ethereum
+ls -l /usr/local/Cellar/ethereum
+ls -l /usr/local/Cellar/go-ethereum
 ```
 
 If you have other versions installed, you can switch with:
@@ -117,6 +118,8 @@ Option               | desc.
 `--without-paranoia` | Build with -DPARANOIA=0
 
 ### jsonrpc
+* master branch only, develop is now using the Homebrew provided `libjson-rpc-cpp`
+* You will need to `brew unlink jsonrpc && brew link libjson-rpc-cpp` (or the opposite) when switching between branches
 
 `brew info jsonrpc`
 

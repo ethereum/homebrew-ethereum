@@ -39,11 +39,13 @@ class GoEthereum < Formula
     ENV["CGO_CPPFLAGS"] = "-I#{HOMEBREW_PREFIX}/opt/qt5/include/QtCore"
     ENV["GOPATH"] = "#{buildpath}"
     ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
+    ENV["PATH"] = "#{ENV['GOPATH']}/bin:#{ENV['PATH']}"
 
     # Debug env
     system "go", "env"
     base = "src/github.com/ethereum/go-ethereum"
 
+    # Move checked out source to base
     mkdir_p base
     Dir["**"].reject{ |f| f['src']}.each do |filename|
       move filename, "#{base}/"
@@ -56,8 +58,13 @@ class GoEthereum < Formula
     # end
 
     # Get dependencies
-    system "go", "get", "-v", "-t", "-d", "./#{cmd}ethereum"
-    system "go", "get", "-v", "-t", "-d", "./#{cmd}mist" unless build.include? "headless"
+    if build.devel?
+      system "go", "get", "github.com/tools/godep"
+      system "cd #{cmd} && godep restore"
+    else
+      system "go", "get", "-v", "-t", "-d", "./#{cmd}ethereum"
+      system "go", "get", "-v", "-t", "-d", "./#{cmd}mist" unless build.include? "headless"
+    end
 
     system "go", "build", "-v", "./#{cmd}ethereum"
     system "go", "build", "-v", "./#{cmd}mist" unless build.include? "headless"
@@ -66,8 +73,6 @@ class GoEthereum < Formula
     bin.install 'mist' unless build.include? "headless"
 
     move "#{cmd}mist/assets", prefix/"Resources"
-
-    prefix.install Dir['src']
   end
 
   test do
