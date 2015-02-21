@@ -33,7 +33,7 @@ class Ethereum < Formula
   depends_on 'cmake' => :build
   depends_on 'boost' => "c++11"
   depends_on 'boost-python' => "c++11"
-  depends_on 'llvm35' => "disable-shared" if build.include? "with-evmjit"
+  depends_on 'llvm' => ["without-shared", "with-clang"] if build.include? "with-evmjit"
   # depends_on 'pkg-config' => :build
   depends_on 'qt5' unless build.include? 'headless'
   depends_on 'cryptopp'
@@ -41,14 +41,10 @@ class Ethereum < Formula
   depends_on 'leveldb'
   depends_on 'gmp'
   depends_on 'curl'
-  # Use our old jsonrpc 0.3.2 for master
-  depends_on 'jsonrpc' unless build.include? 'without-jsonrpc' or build.devel?
-  # Homebrew's libjson-rpc-cpp 0.4.x+ for develop, make sure to `brew unlink jsonrpc`
-  depends_on 'libjson-rpc-cpp' if !build.include? 'without-jsonrpc' and build.devel?
+  depends_on 'libjson-rpc-cpp'
 
   option 'headless', "Headless"
-  option "with-evmjit", "Build with LLVM-3.5 and enable EVMJIT"
-  option 'without-jsonrpc', "Build without JSON-RPC dependency"
+  option "with-evmjit", "Build with LLVM and enable EVMJIT"
   option "without-paranoia", "Build with -DPARANOIA=0"
   option 'with-debug', "Build with debug"
   option 'with-vmtrace', "Build with VMTRACE"
@@ -77,11 +73,11 @@ class Ethereum < Formula
     args = *std_cmake_args
 
     if build.with? "evmjit"
-      args << "-DLLVM_DIR=/usr/local/lib/llvm-3.5/share/llvm/cmake"
+      args << "-DLLVM_DIR=/usr/local/opt/llvm/share/llvm/cmake"
       args << "-DEVMJIT=1"
-      ENV["CXX"] = "clang++-3.5 -stdlib=libc++"
-      ENV["CXXFLAGS"] = "#{ENV.cxxflags} -nostdinc++ -I/usr/local/opt/llvm35/lib/llvm-3.5/include/c++/v1"
-      ENV["LDFLAGS"] = "#{ENV.ldflags} -L/usr/local/opt/llvm35/lib/llvm-3.5/lib"
+      ENV["CXX"] = "/usr/local/opt/llvm/bin/clang++ -stdlib=libc++"
+      ENV["CXXFLAGS"] = "#{ENV.cxxflags} -nostdinc++ -I/usr/local/opt/llvm/include/llvm"
+      ENV["LDFLAGS"] = "#{ENV.ldflags} -L/usr/local/opt/llvm/lib"
     else
       ENV["CXX"] = "/usr/bin/clang++"
     end

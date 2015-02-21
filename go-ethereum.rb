@@ -52,17 +52,7 @@ class GoEthereum < Formula
       move filename, "#{base}/"
     end
 
-    # fix develop vs master discrepancies
     cmd = "#{base}/cmd/"
-    # unless build.devel?
-    #   cmd = "#{base}/"
-    # end
-
-    # Get dependencies
-    unless build.devel?
-      system "go", "get", "-v", "-t", "-d", "./#{cmd}ethereum"
-      system "go", "get", "-v", "-t", "-d", "./#{cmd}mist" unless build.include? "headless"
-    end
 
     system "go", "build", "-v", "./#{cmd}ethereum"
     system "go", "build", "-v", "./#{cmd}mist" unless build.include? "headless"

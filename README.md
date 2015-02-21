@@ -114,18 +114,7 @@ Option               | desc.
 `--headless`         | Headless
 `--successful`       | Last successful build using --devel only
 `--with-debug`       | Pass -DCMAKE_BUILD_TYPE=Debug
-`--without-jsonrpc`  | Build without libjson-rpc-cpp as dependency
 `--without-paranoia` | Build with -DPARANOIA=0
-
-### jsonrpc
-* master branch only, develop is now using the Homebrew provided `libjson-rpc-cpp`
-* You will need to `brew unlink jsonrpc && brew link libjson-rpc-cpp` (or the opposite) when switching between branches
-
-`brew info jsonrpc`
-
-Option           | desc.
------------------|---------
-`--allow-origin` | Add Access-Control-Allow-Origin: * in headers
 
 ##Troubleshooting
 
