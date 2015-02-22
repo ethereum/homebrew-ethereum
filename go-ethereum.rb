@@ -3,15 +3,15 @@ require 'formula'
 class GoEthereum < Formula
 
   # official_version-protocol_version
-  version '0.8.4-54'
+  version '0.8.5-54'
 
   homepage 'https://github.com/ethereum/go-ethereum'
   url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
 
   bottle do
-    revision 136
-    root_url 'https://build.ethdev.com/builds/OSX%20Go%20master%20brew/136/bottle'
-    sha1 '41a36be5258a063b2ca226e2529cdf081c7c52a8' => :yosemite
+    revision 137
+    root_url 'https://build.ethdev.com/builds/OSX%20Go%20master%20brew/137/bottle'
+    sha1 '58e5eb218c8c6ea2f523183c0d744300fd94797e' => :yosemite
   end
 
   devel do
