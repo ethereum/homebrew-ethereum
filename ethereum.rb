@@ -82,7 +82,7 @@ class Ethereum < Formula
       ENV["CXX"] = "/usr/bin/clang++"
     end
 
-    if build.include? "with-debug" or build.include? "HEAD" or build.devel?
+    if build.include? "with-debug"
       args << "-DCMAKE_BUILD_TYPE=Debug"
     else
       args << "-DCMAKE_BUILD_TYPE=Release"
