@@ -33,7 +33,7 @@ class Ethereum < Formula
   depends_on 'cmake' => :build
   depends_on 'boost' => "c++11"
   depends_on 'boost-python' => "c++11"
-  depends_on 'llvm' => ["without-shared", "with-clang"] unless build.include? "without-evmjit"
+  depends_on 'llvm' => ["without-shared", "with-clang"] if build.include? "with-evmjit"
   # depends_on 'pkg-config' => :build
   depends_on 'qt5' unless build.include? 'headless'
   depends_on 'cryptopp'
@@ -44,7 +44,7 @@ class Ethereum < Formula
   depends_on 'libjson-rpc-cpp'
 
   option 'headless', "Headless"
-  option "without-evmjit", "Build without LLVM and disable EVMJIT"
+  option "with-evmjit", "Build with LLVM and enable EVMJIT"
   option "without-paranoia", "Build with -DPARANOIA=0"
   option 'with-debug', "Build with debug"
   option 'with-vmtrace', "Build with VMTRACE"
@@ -72,7 +72,7 @@ class Ethereum < Formula
   def install
     args = *std_cmake_args
 
-    unless build.without? "evmjit"
+    if build.with? "evmjit"
       args << "-DLLVM_DIR=/usr/local/opt/llvm/share/llvm/cmake"
       args << "-DEVMJIT=1"
       ENV["CXX"] = "/usr/local/opt/llvm/bin/clang++ -stdlib=libc++"

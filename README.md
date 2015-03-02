@@ -113,7 +113,6 @@ Option               | desc.
 ---------------------|---------
 `--headless`         | Headless
 `--successful`       | Last successful build using --devel only
-`--without-evmjit`   | Build without LLVM and disable EVMJIT
 `--with-debug`       | Pass -DCMAKE_BUILD_TYPE=Debug
 `--without-paranoia` | Build with -DPARANOIA=0
 
