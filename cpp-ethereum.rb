@@ -16,9 +16,9 @@ class CppEthereum < Formula
 
   devel do
     bottle do
-      revision 383
-      root_url 'https://build.ethdev.com/builds/OSX%20C%2B%2B%20develop%20brew/383/bottle'
-      sha1 '660d7ac3b486a90ffde2bf59e7f35b9daa251c4f' => :yosemite
+      revision 384
+      root_url 'https://build.ethdev.com/builds/OSX%20C%2B%2B%20develop%20brew/384/bottle'
+      sha1 '8a2666fdc0885b074db795fff9a5430fc567ac48' => :yosemite
     end
 
     if build.include? "successful"
