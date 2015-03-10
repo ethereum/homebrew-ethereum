@@ -1,6 +1,6 @@
 require 'formula'
 
-class Ethereum < Formula
+class CppEthereum < Formula
   # official_version-protocol_version-database_version
   version '0.8.2-54-5'
 

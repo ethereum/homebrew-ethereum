@@ -1,6 +1,6 @@
 require 'formula'
 
-class GoEthereum < Formula
+class Ethereum < Formula
 
   # official_version-protocol_version
   version '0.8.6-54'
