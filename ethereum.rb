@@ -1,113 +1,71 @@
 require 'formula'
 
-class Ethereum < Formula
-  # official_version-protocol_version-database_version
-  version '0.8.2-54-5'
+class GoEthereum < Formula
 
-  homepage 'https://github.com/ethereum/cpp-ethereum'
-  head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'poc-7+'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
+  # official_version-protocol_version
+  version '0.8.6-54'
+
+  homepage 'https://github.com/ethereum/go-ethereum'
+  url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
 
   bottle do
-    revision 157
-    root_url 'https://build.ethdev.com/builds/OSX%20C%2B%2B%20master%20brew/157/bottle'
-    sha1 'ee500affb89b7b1d25d05ee0ac3e25ca55b8131c' => :yosemite
+    revision 141
+    root_url 'https://build.ethdev.com/builds/OSX%20Go%20master%20brew/141/bottle'
+    sha1 '0abffa99b6d819ce554db5e3f4913ef326d97128' => :yosemite
   end
 
   devel do
     bottle do
-      revision 383
-      root_url 'https://build.ethdev.com/builds/OSX%20C%2B%2B%20develop%20brew/383/bottle'
-      sha1 '660d7ac3b486a90ffde2bf59e7f35b9daa251c4f' => :yosemite
+      revision 244
+      root_url 'https://build.ethdev.com/builds/OSX%20Go%20develop%20brew/244/bottle'
+      sha1 '20353449539624450156ba8af4cd829660fae138' => :yosemite
     end
 
-    if build.include? "successful"
-      version '0.8.2-56-7'
-      url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '6f302ee74ba54f9b144e80e97cb148f9b2790aaa'
-    else
-    version '0.8.2-56-7'
-    url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
-    end
+    version '0.8.6-54'
+    url 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
   end
 
-  depends_on 'cmake' => :build
-  depends_on 'boost' => "c++11"
-  depends_on 'boost-python' => "c++11"
-  depends_on 'llvm' => ["without-shared", "with-clang"] if build.include? "with-evmjit"
-  # depends_on 'pkg-config' => :build
-  depends_on 'qt5' unless build.include? 'headless'
-  depends_on 'cryptopp'
-  depends_on 'miniupnpc'
-  depends_on 'leveldb'
+  depends_on 'go' => :build
+  depends_on 'hg' => :build
+  depends_on 'pkg-config' => :build
+  depends_on 'qt5' if build.include? 'with-gui'
   depends_on 'gmp'
-  depends_on 'curl'
-  depends_on 'libjson-rpc-cpp'
 
-  option 'headless', "Headless"
-  option "with-evmjit", "Build with LLVM and enable EVMJIT"
-  option "without-paranoia", "Build with -DPARANOIA=0"
-  option 'with-debug', "Build with debug"
-  option 'with-vmtrace', "Build with VMTRACE"
-  option 'successful', "Last successful build with --devel only"
-
-  def patches
-    # Patches
-    urls = [
-      # ["with-option", "https://gist.githubusercontent.com/..."],
-    ]
-
-    p = []
-
-    urls.each do |u|
-      p << u[1] if build.include? u[0]
-    end
-
-    return p
-
-    # Uncomment below and comment above to use a patch added after __END__
-    # or add your patch to p[]
-    # DATA
-  end
+  option 'with-gui', "Build with GUI (Mist)"
 
   def install
-    args = *std_cmake_args
+    base = "src/github.com/ethereum/go-ethereum"
 
-    if build.with? "evmjit"
-      args << "-DLLVM_DIR=/usr/local/opt/llvm/share/llvm/cmake"
-      args << "-DEVMJIT=1"
-      ENV["CXX"] = "/usr/local/opt/llvm/bin/clang++ -stdlib=libc++"
-      ENV["CXXFLAGS"] = "#{ENV.cxxflags} -nostdinc++ -I/usr/local/opt/llvm/include/llvm"
-      ENV["LDFLAGS"] = "#{ENV.ldflags} -L/usr/local/opt/llvm/lib"
-    else
-      ENV["CXX"] = "/usr/bin/clang++"
+    ENV["PKG_CONFIG_PATH"] = "#{HOMEBREW_PREFIX}/opt/qt5/lib/pkgconfig"
+    ENV["QT5VERSION"] = `pkg-config --modversion Qt5Core`
+    ENV["CGO_CPPFLAGS"] = "-I#{HOMEBREW_PREFIX}/opt/qt5/include/QtCore"
+    ENV["GOPATH"] = "#{buildpath}/#{base}/Godeps/_workspace:#{buildpath}"
+    ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
+    ENV["PATH"] = "#{ENV['GOPATH']}/bin:#{ENV['PATH']}"
+
+    # Debug env
+    system "go", "env"
+
+    # Move checked out source to base
+    mkdir_p base
+    Dir["**"].reject{ |f| f['src']}.each do |filename|
+      move filename, "#{base}/"
     end
 
-    if build.include? "with-debug"
-      args << "-DCMAKE_BUILD_TYPE=Debug"
-    else
-      args << "-DCMAKE_BUILD_TYPE=Release"
-    end
+    cmd = "#{base}/cmd/"
 
-    args << "-DHEADLESS=1" if build.include? "headless"
-    args << "-DVMTRACE=1" if build.include? "with-vmtrace"
-    args << "-DPARANOIA=0" if build.include? "without-paranoia"
+    system "go", "build", "-v", "./#{cmd}ethereum"
+    system "go", "build", "-v", "./#{cmd}mist" if build.include? "with-gui"
 
-    system "cmake", *args
-    system "make"
-    system "make", "install"
+    bin.install 'ethereum'
+    bin.install 'mist' if build.include? "with-gui"
 
-    bin.install 'test/testeth'
-    (prefix/"test").install Dir['test/*.json']
-
-    if !build.include? "headless"
-      prefix.install 'alethzero/AlethZero.app'
-      prefix.install 'mix/Mix.app' if build.devel?
-      # prefix.install 'third/Third.app' if build.devel?
-    end
+    move "#{cmd}mist/assets", prefix/"Resources"
   end
 
   test do
-    system "testeth"
+    system "ethereum"
+    system "mist" if build.include? "with-gui"
   end
 
   def plist; <<-EOS.undent
@@ -125,12 +83,9 @@ class Ethereum < Formula
         <integer>300</integer>
         <key>ProgramArguments</key>
         <array>
-            <string>#{opt_bin}/eth</string>
-            <string>-m</string>
-            <string>off</string>
-            <string>-c</string>
-            <string>buildslave</string>
-            <string>poc-7.ethdev.com</string>
+            <string>#{opt_bin}/ethereum</string>
+            <string>-datadir=#{prefix}/.ethereum</string>
+            <string>-id=buildslave</string>
         </array>
         <key>WorkingDirectory</key>
         <string>#{HOMEBREW_PREFIX}</string>

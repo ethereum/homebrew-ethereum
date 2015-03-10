@@ -9,24 +9,24 @@ Homebrew Tap for Ethereum
 brew tap ethereum/ethereum
 ```
 
-### C++ client
-```
-brew install ethereum
-brew linkapps
-```
-
 ### Go client
 ```
-brew install go-ethereum
+brew install ethereum
+```
+
+### C++ client
+```
+brew install cpp-ethereum
+brew linkapps cpp-ethereum
 ```
 
 ## Running
 
-### C++ client
-`open /Applications/AlethZero.app`, `eth` (CLI), or `neth` (ncurses interface)
-
 ### Go client
 `mist` (GUI) or `ethereum` (CLI)
+
+### C++ client
+`open /Applications/AlethZero.app`, `eth` (CLI), or `neth` (ncurses interface)
 
 
 ## Development
@@ -34,12 +34,12 @@ Get the latest development version with the `--devel` flag. Use `--build-from-so
 
 ### C++ client
 ```
-brew reinstall ethereum --devel
+brew reinstall cpp-ethereum --devel
 ```
 
-For the latest successful build on develop (last successful build from [cpt-obvious](http://build.ethdev.com/waterfall)):
+For the latest successful build on develop (last successful build from [cpt-obvious](https://build.ethdev.com/waterfall)):
 ```
-brew reinstall ethereum --devel --successful
+brew reinstall cpp-ethereum --devel --successful
 ```
 
 #### Important note when using --successful
@@ -53,7 +53,7 @@ Error: Failed to download resource "ethereum"
 Failure while executing: git checkout -q -f
 ```
 
-Either try `brew fetch ethereum --devel` or simply delete the cache with `rm -rf /Library/Caches/Homebrew/ethereum--git`
+Either try `brew fetch cpp-ethereum --devel` or simply delete the cache with `rm -rf /Library/Caches/Homebrew/ethereum--git`
 
 
 ### Go client
@@ -61,13 +61,16 @@ Either try `brew fetch ethereum --devel` or simply delete the cache with `rm -rf
 brew reinstall go-ethereum --devel
 ```
 
-Current branches (C++):
-* `--HEAD` is on latest release branch [poc-7+](https://github.com/ethereum/cpp-ethereum/commits/poc-7+)
-* `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop)
-* normal install is on master branch
+
+### Current branches
 
 Go:
 * `--devel` is on develop branch
+* normal install is on master branch
+
+C++:
+* `--HEAD` is on latest release branch [poc-8](https://github.com/ethereum/cpp-ethereum/commits/poc-7+)
+* `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop)
 * normal install is on master branch
 
 
@@ -79,21 +82,22 @@ brew update && brew upgrade
 
 ## Minor updates
 
-### C++ client
+### Go client
 ```
 brew update && brew reinstall ethereum
 ```
 
-### Go client
+### C++ client
 ```
-brew update && brew reinstall go-ethereum
+brew update && brew reinstall cpp-ethereum
 ```
+
 
 ## Versions
 List available versions with:
 ```
 ls -l /usr/local/Cellar/ethereum
-ls -l /usr/local/Cellar/go-ethereum
+ls -l /usr/local/Cellar/cpp-ethereum
 ```
 
 If you have other versions installed, you can switch with:
@@ -103,18 +107,22 @@ brew switch ethereum <version>
 Or follow this [StackOverflow answer](http://stackoverflow.com/a/9832084/2639784)
 
 These brews can be installed via the raw GitHub URLs, or by cloning this
-repository locally with `brew tap ethereum/ethereum`.
+repository locally with `brew tap ethereum/ethereum`. You can also install binary
+bottles directly with `brew install <bottle_url>`, see [cpt-obvious](https://build.ethdev.com/waterfall)
+for previous builds.
+
 
 ##Options
 
-See `brew info ethereum` or `brew info go-ethereum` for all options. `--with-...` features are experimental patches.
+See `brew info ethereum` or `brew info cpp-ethereum` for all options. `--with-...` features are experimental patches.
 
 Option               | desc.
 ---------------------|---------
-`--headless`         | Headless
+`--with-gui`         | Build with GUI (Mist or AlethZero)
 `--successful`       | Last successful build using --devel only
 `--with-debug`       | Pass -DCMAKE_BUILD_TYPE=Debug
 `--without-paranoia` | Build with -DPARANOIA=0
+
 
 ##Troubleshooting
 
@@ -126,6 +134,7 @@ Option               | desc.
 * Make changes to `/usr/local/Library/Taps/ethereum/homebrew-ethereum/ethereum.rb`
 * Reinstall with `brew reinstall ethereum.rb` (send a pull request!)
 * Take a walk
+
 
 ##Patching
 
