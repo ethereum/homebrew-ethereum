@@ -25,7 +25,7 @@ class CppEthereum < Formula
       version '0.9.0-56-8'
       url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '7948a39e944641315b6bafe3a25b42ad122e193b'
     else
-    version '0.9.0-56-8'
+    version '0.9.0-57-8'
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
     end
   end
