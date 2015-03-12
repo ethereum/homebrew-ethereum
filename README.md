@@ -61,7 +61,7 @@ Either try `brew fetch cpp-ethereum --devel` or simply delete the cache with `rm
 
 ### Go client
 ```
-brew reinstall go-ethereum --devel
+brew reinstall ethereum --devel
 ```
 
 
