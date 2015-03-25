@@ -88,6 +88,7 @@ class CppEthereum < Formula
       args << "-DCMAKE_BUILD_TYPE=Release"
     end
 
+    args << "-DFATDB=1" # https://github.com/ethereum/cpp-ethereum/issues/1403
     args << "-DHEADLESS=1" unless build.include? "with-gui"
     args << "-DVMTRACE=1" if build.include? "with-vmtrace"
     args << "-DPARANOIA=0" if build.include? "without-paranoia"
