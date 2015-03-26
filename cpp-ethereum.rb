@@ -127,11 +127,9 @@ class CppEthereum < Formula
         <key>ProgramArguments</key>
         <array>
             <string>#{opt_bin}/eth</string>
-            <string>-m</string>
-            <string>off</string>
-            <string>-c</string>
-            <string>buildslave</string>
-            <string>poc-7.ethdev.com</string>
+            <string>-d</string>
+            <string>#{prefix}/.ethereum</string>
+            <string>-b</string>
         </array>
         <key>WorkingDirectory</key>
         <string>#{HOMEBREW_PREFIX}</string>

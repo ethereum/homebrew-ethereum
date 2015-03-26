@@ -85,7 +85,6 @@ class Ethereum < Formula
         <array>
             <string>#{opt_bin}/ethereum</string>
             <string>-datadir=#{prefix}/.ethereum</string>
-            <string>-id=buildslave</string>
         </array>
         <key>WorkingDirectory</key>
         <string>#{HOMEBREW_PREFIX}</string>
