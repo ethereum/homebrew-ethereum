@@ -55,17 +55,17 @@ class Ethereum < Formula
 
     cmd = "#{base}/cmd/"
 
-    system "go", "build", "-v", "./#{cmd}ethereum"
+    system "go", "build", "-v", "./#{cmd}geth"
     system "go", "build", "-v", "./#{cmd}mist" if build.include? "with-gui"
 
-    bin.install 'ethereum'
+    bin.install 'geth'
     bin.install 'mist' if build.include? "with-gui"
 
     move "#{cmd}mist/assets", prefix/"Resources"
   end
 
   test do
-    system "ethereum"
+    system "geth"
     system "mist" if build.include? "with-gui"
   end
 
@@ -84,7 +84,7 @@ class Ethereum < Formula
         <integer>300</integer>
         <key>ProgramArguments</key>
         <array>
-            <string>#{opt_bin}/ethereum</string>
+            <string>#{opt_bin}/geth</string>
             <string>-datadir=#{prefix}/.ethereum</string>
         </array>
         <key>WorkingDirectory</key>
