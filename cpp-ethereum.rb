@@ -36,6 +36,7 @@ class CppEthereum < Formula
   depends_on 'llvm' => ["without-shared", "with-clang"] if build.include? "with-evmjit"
   # depends_on 'pkg-config' => :build
   depends_on 'qt5' if build.include? 'with-gui'
+  depends_on 'readline'
   depends_on 'cryptopp'
   depends_on 'miniupnpc'
   depends_on 'leveldb'

@@ -29,6 +29,7 @@ class Ethereum < Formula
   depends_on 'hg' => :build
   depends_on 'pkg-config' => :build
   depends_on 'qt5' if build.include? 'with-gui'
+  depends_on 'readline'
   depends_on 'gmp'
 
   option 'with-gui', "Build with GUI (Mist)"
