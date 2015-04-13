@@ -16,9 +16,9 @@ class Ethereum < Formula
 
   devel do
     bottle do
-      revision 432
-      root_url 'https://build.ethdev.com/builds/OSX%20Go%20develop%20brew/432/bottle'
-      sha1 'dd19af7662268a9be0f69ff66696468ae0e1e7cc' => :yosemite
+      revision 433
+      root_url 'https://build.ethdev.com/builds/OSX%20Go%20develop%20brew/433/bottle'
+      sha1 'b0b8857df5adef6cb588ffc1950e5d0ca81c5ad4' => :yosemite
     end
 
     version '0.9.9-60'
