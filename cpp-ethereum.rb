@@ -90,7 +90,6 @@ class CppEthereum < Formula
     end
 
     args << "-DFATDB=1" # https://github.com/ethereum/cpp-ethereum/issues/1403
-    args << "-DETHASHCL=1"
     args << "-DBUNDLE=default"
     args << "-DGUI=0" unless build.include? "with-gui"
     args << "-DVMTRACE=1" if build.include? "with-vmtrace"
