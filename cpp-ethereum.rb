@@ -43,14 +43,15 @@ class CppEthereum < Formula
   depends_on 'gmp'
   depends_on 'curl'
   depends_on 'libjson-rpc-cpp'
-  depends_on 'v8-315'
+  depends_on 'v8-315' if build.include? 'with-v8-console'
 
-  option 'with-gui', "Build with GUI (AlethZero)"
+  option "with-gui", "Build with GUI (AlethZero)"
   option "with-evmjit", "Build with LLVM and enable EVMJIT"
+  option "with-v8-console", "Build with V8 JavaScript console"
   option "without-paranoia", "Build with -DPARANOIA=0"
-  option 'with-debug', "Build with debug"
-  option 'with-vmtrace', "Build with VMTRACE"
-  option 'successful', "Last successful build with --devel only"
+  option "with-debug", "Build with debug"
+  option "with-vmtrace", "Build with VMTRACE"
+  option "successful", "Last successful build with --devel only"
 
   def patches
     # Patches
@@ -93,6 +94,7 @@ class CppEthereum < Formula
     args << "-DFATDB=1" # https://github.com/ethereum/cpp-ethereum/issues/1403
     args << "-DBUNDLE=default"
     args << "-DGUI=0" unless build.include? "with-gui"
+    args << "-DJSCONSOLE=1" if build.include? "with-v8-console"
     args << "-DVMTRACE=1" if build.include? "with-vmtrace"
     args << "-DPARANOIA=0" if build.include? "without-paranoia"
 
