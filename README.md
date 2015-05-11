@@ -122,6 +122,7 @@ See `brew info ethereum` or `brew info cpp-ethereum` for all options. `--with-..
 Option               | desc.
 ---------------------|---------
 `--with-gui`         | Build with GUI (Mist or AlethZero)
+`--with-gpu-mining`  | Build with GPU mining support (experimental)
 `--successful`       | Last successful build using --devel only
 `--with-v8-console`  | Build with V8 JavaScript console
 `--with-debug`       | Pass -DCMAKE_BUILD_TYPE=Debug

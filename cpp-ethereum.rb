@@ -46,6 +46,7 @@ class CppEthereum < Formula
   depends_on 'v8-315' if build.include? 'with-v8-console'
 
   option "with-gui", "Build with GUI (AlethZero)"
+  option "with-gpu-mining", "Build with OpenCL GPU mining (experimental)"
   option "with-evmjit", "Build with LLVM and enable EVMJIT"
   option "with-v8-console", "Build with V8 JavaScript console"
   option "without-paranoia", "Build with -DPARANOIA=0"
@@ -94,6 +95,7 @@ class CppEthereum < Formula
     args << "-DFATDB=1" # https://github.com/ethereum/cpp-ethereum/issues/1403
     args << "-DBUNDLE=default"
     args << "-DGUI=0" unless build.include? "with-gui"
+    args << "-DETHASHCL=1" if build.include? "with-gpu-mining"
     args << "-DJSCONSOLE=1" if build.include? "with-v8-console"
     args << "-DVMTRACE=1" if build.include? "with-vmtrace"
     args << "-DPARANOIA=0" if build.include? "without-paranoia"
