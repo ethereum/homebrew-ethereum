@@ -97,6 +97,7 @@ class CppEthereum < Formula
     args << "-DJSCONSOLE=1" if build.include? "with-v8-console"
     args << "-DVMTRACE=1" if build.include? "with-vmtrace"
     args << "-DPARANOIA=0" if build.include? "without-paranoia"
+    args << "-DETHASHCL=1"
 
     system "cmake", *args
     system "make"
