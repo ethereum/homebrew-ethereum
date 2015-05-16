@@ -56,7 +56,7 @@ Error: Failed to download resource "ethereum"
 Failure while executing: git checkout -q -f
 ```
 
-Either try `brew fetch cpp-ethereum --devel` or simply delete the cache with `rm -rf /Library/Caches/Homebrew/ethereum--git`
+Either try `brew fetch cpp-ethereum --devel` or simply delete the cache with `rm -rf /Library/Caches/Homebrew/cpp-ethereum--git`
 
 
 ### Go client
