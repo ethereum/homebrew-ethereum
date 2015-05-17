@@ -3,7 +3,7 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version
-  version '9.21.1-60'
+  version '0.9.21-60'
 
   homepage 'https://github.com/ethereum/go-ethereum'
   url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
@@ -21,7 +21,7 @@ class Ethereum < Formula
       sha1 '267697a4d84ad746c111c35b5828d48aff9a662c' => :yosemite
     end
 
-    version '9.21.1-60'
+    version '0.9.21-60'
     url 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
   end
 
