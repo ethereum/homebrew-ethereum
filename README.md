@@ -26,7 +26,7 @@ brew linkapps cpp-ethereum
 ## Running
 
 ### Go client
-`mist` (GUI) or `ethereum` (CLI)
+`mist` (GUI) or `geth` (CLI)
 
 ### C++ client
 `open /Applications/AlethZero.app`, `eth` (CLI), or `neth` (ncurses interface)
