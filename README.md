@@ -126,7 +126,7 @@ Option               | desc.
 `--successful`       | Last successful build using --devel only
 `--with-v8-console`  | Build with V8 JavaScript console
 `--with-debug`       | Pass -DCMAKE_BUILD_TYPE=Debug
-`--without-paranoia` | Build with -DPARANOIA=0
+`--with-paranoia`    | Build with -DPARANOID=1
 
 **Note:** `--with-v8-console` requires that you `brew tap homebrew/homebrew-versions`
 

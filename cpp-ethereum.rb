@@ -33,9 +33,8 @@ class CppEthereum < Formula
   depends_on 'cmake' => :build
   depends_on 'boost' => "c++11"
   depends_on 'boost-python' => "c++11"
-  depends_on 'llvm' => ["without-shared", "with-clang"] if build.include? "with-evmjit"
-  # depends_on 'pkg-config' => :build
-  depends_on 'qt5' if build.include? 'with-gui'
+  depends_on 'llvm' => ["without-shared", "with-clang"] if build.with? "evmjit"
+  depends_on 'qt5' if build.with? 'gui'
   depends_on 'readline'
   depends_on 'cryptopp'
   depends_on 'miniupnpc'
@@ -43,35 +42,16 @@ class CppEthereum < Formula
   depends_on 'gmp'
   depends_on 'curl'
   depends_on 'libjson-rpc-cpp'
-  depends_on 'v8-315' if build.include? 'with-v8-console'
+  depends_on 'v8-315' if build.with? 'v8-console'
 
   option "with-gui", "Build with GUI (AlethZero)"
   option "with-gpu-mining", "Build with OpenCL GPU mining (experimental)"
   option "with-evmjit", "Build with LLVM and enable EVMJIT"
   option "with-v8-console", "Build with V8 JavaScript console"
-  option "without-paranoia", "Build with -DPARANOIA=0"
+  option "with-paranoia", "Build with -DPARANOID=1"
   option "with-debug", "Build with debug"
   option "with-vmtrace", "Build with VMTRACE"
   option "successful", "Last successful build with --devel only"
-
-  def patches
-    # Patches
-    urls = [
-      # ["with-option", "https://gist.githubusercontent.com/..."],
-    ]
-
-    p = []
-
-    urls.each do |u|
-      p << u[1] if build.include? u[0]
-    end
-
-    return p
-
-    # Uncomment below and comment above to use a patch added after __END__
-    # or add your patch to p[]
-    # DATA
-  end
 
   def install
     args = *std_cmake_args
@@ -82,11 +62,9 @@ class CppEthereum < Formula
       ENV["CXX"] = "/usr/local/opt/llvm/bin/clang++ -stdlib=libc++"
       ENV["CXXFLAGS"] = "#{ENV.cxxflags} -nostdinc++ -I/usr/local/opt/llvm/include/llvm"
       ENV["LDFLAGS"] = "#{ENV.ldflags} -L/usr/local/opt/llvm/lib"
-    else
-      ENV["CXX"] = "/usr/bin/clang++"
     end
 
-    if build.include? "with-debug"
+    if build.with? "debug"
       args << "-DCMAKE_BUILD_TYPE=Debug"
     else
       args << "-DCMAKE_BUILD_TYPE=Release"
@@ -94,11 +72,11 @@ class CppEthereum < Formula
 
     args << "-DFATDB=1" # https://github.com/ethereum/cpp-ethereum/issues/1403
     args << "-DBUNDLE=default"
-    args << "-DGUI=0" unless build.include? "with-gui"
-    args << "-DETHASHCL=1" if build.include? "with-gpu-mining"
-    args << "-DJSCONSOLE=1" if build.include? "with-v8-console"
-    args << "-DVMTRACE=1" if build.include? "with-vmtrace"
-    args << "-DPARANOIA=0" if build.include? "without-paranoia"
+    args << "-DGUI=0" if build.without? "gui"
+    args << "-DETHASHCL=1" if build.with? "gpu-mining"
+    args << "-DJSCONSOLE=1" if build.with? "v8-console"
+    args << "-DVMTRACE=1" if build.with? "vmtrace"
+    args << "-DPARANOID=1" if build.with? "paranoia"
 
     system "cmake", *args
     system "make"
@@ -107,7 +85,7 @@ class CppEthereum < Formula
     bin.install 'test/testeth'
     (prefix/"test").install Dir['test/*.json']
 
-    if build.include? "with-gui"
+    if build.with? "gui"
       prefix.install 'alethzero/AlethZero.app'
       prefix.install 'mix/Mix.app' if build.devel?
       # prefix.install 'third/Third.app' if build.devel?
@@ -145,4 +123,3 @@ class CppEthereum < Formula
     EOS
   end
 end
-__END__

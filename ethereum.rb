@@ -26,9 +26,9 @@ class Ethereum < Formula
   end
 
   depends_on 'go' => :build
-  depends_on 'hg' => :build
+  depends_on :hg
   depends_on 'pkg-config' => :build
-  depends_on 'qt5' if build.include? 'with-gui'
+  depends_on 'qt5' if build.with? 'gui'
   depends_on 'readline'
   depends_on 'gmp'
 
@@ -55,18 +55,30 @@ class Ethereum < Formula
 
     cmd = "#{base}/cmd/"
 
+    system "go", "build", "-v", "./#{cmd}evm"
     system "go", "build", "-v", "./#{cmd}geth"
-    system "go", "build", "-v", "./#{cmd}mist" if build.include? "with-gui"
+    system "go", "build", "-v", "./#{cmd}disasm"
+    system "go", "build", "-v", "./#{cmd}console" if build.devel?
+    system "go", "build", "-v", "./#{cmd}rlpdump"
+    system "go", "build", "-v", "./#{cmd}ethtest"
+    system "go", "build", "-v", "./#{cmd}bootnode"
+    system "go", "build", "-v", "./#{cmd}mist" if build.with? "gui"
 
+    bin.install 'evm'
     bin.install 'geth'
-    bin.install 'mist' if build.include? "with-gui"
+    bin.install 'disasm'
+    bin.install 'console'
+    bin.install 'rlpdump'
+    bin.install 'ethtest'
+    bin.install 'bootnode'
+    bin.install 'mist' if build.with? "gui"
 
     move "#{cmd}mist/assets", prefix/"Resources"
   end
 
   test do
     system "geth"
-    system "mist" if build.include? "with-gui"
+    system "mist" if build.with? "gui"
   end
 
   def plist; <<-EOS.undent
@@ -94,4 +106,3 @@ class Ethereum < Formula
     EOS
   end
 end
-__END__
