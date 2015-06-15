@@ -67,7 +67,7 @@ class Ethereum < Formula
     bin.install 'evm'
     bin.install 'geth'
     bin.install 'disasm'
-    bin.install 'console'
+    bin.install 'console' if build.devel?
     bin.install 'rlpdump'
     bin.install 'ethtest'
     bin.install 'bootnode'
