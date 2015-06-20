@@ -27,19 +27,12 @@ class Ethereum < Formula
 
   depends_on 'go' => :build
   depends_on :hg
-  depends_on 'pkg-config' => :build
-  depends_on 'qt5' if build.with? 'gui'
   depends_on 'readline'
   depends_on 'gmp'
-
-  option 'with-gui', "Build with GUI (Mist)"
 
   def install
     base = "src/github.com/ethereum/go-ethereum"
 
-    ENV["PKG_CONFIG_PATH"] = "#{HOMEBREW_PREFIX}/opt/qt5/lib/pkgconfig"
-    ENV["QT5VERSION"] = `pkg-config --modversion Qt5Core`
-    ENV["CGO_CPPFLAGS"] = "-I#{HOMEBREW_PREFIX}/opt/qt5/include/QtCore"
     ENV["GOPATH"] = "#{buildpath}/#{base}/Godeps/_workspace:#{buildpath}"
     ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
     ENV["PATH"] = "#{ENV['GOPATH']}/bin:#{ENV['PATH']}"
@@ -62,7 +55,6 @@ class Ethereum < Formula
     system "go", "build", "-v", "./#{cmd}rlpdump"
     system "go", "build", "-v", "./#{cmd}ethtest"
     system "go", "build", "-v", "./#{cmd}bootnode"
-    system "go", "build", "-v", "./#{cmd}mist" if build.with? "gui"
 
     bin.install 'evm'
     bin.install 'geth'
@@ -71,14 +63,12 @@ class Ethereum < Formula
     bin.install 'rlpdump'
     bin.install 'ethtest'
     bin.install 'bootnode'
-    bin.install 'mist' if build.with? "gui"
 
     move "#{cmd}mist/assets", prefix/"Resources"
   end
 
   test do
-    system "geth"
-    system "mist" if build.with? "gui"
+    system "go", "test", "github.com/ethereum/go-ethereum/..."
   end
 
   def plist; <<-EOS.undent
