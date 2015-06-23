@@ -51,7 +51,6 @@ class Ethereum < Formula
     system "go", "build", "-v", "./#{cmd}evm"
     system "go", "build", "-v", "./#{cmd}geth"
     system "go", "build", "-v", "./#{cmd}disasm"
-    system "go", "build", "-v", "./#{cmd}console" if build.devel?
     system "go", "build", "-v", "./#{cmd}rlpdump"
     system "go", "build", "-v", "./#{cmd}ethtest"
     system "go", "build", "-v", "./#{cmd}bootnode"
@@ -59,7 +58,6 @@ class Ethereum < Formula
     bin.install 'evm'
     bin.install 'geth'
     bin.install 'disasm'
-    bin.install 'console' if build.devel?
     bin.install 'rlpdump'
     bin.install 'ethtest'
     bin.install 'bootnode'
