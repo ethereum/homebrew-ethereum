@@ -61,8 +61,6 @@ class Ethereum < Formula
     bin.install 'rlpdump'
     bin.install 'ethtest'
     bin.install 'bootnode'
-
-    move "#{cmd}mist/assets", prefix/"Resources"
   end
 
   test do
