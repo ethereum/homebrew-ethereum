@@ -42,7 +42,7 @@ class CppEthereum < Formula
   depends_on 'gmp'
   depends_on 'curl'
   depends_on 'libjson-rpc-cpp'
-  depends_on 'v8-315' if build.with? 'v8-console'
+  depends_on 'homebrew/versions/v8-315'
 
   option "with-gui", "Build with GUI (AlethZero)"
   option "with-gpu-mining", "Build with OpenCL GPU mining (experimental)"
