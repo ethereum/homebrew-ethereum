@@ -5,7 +5,6 @@ class CppEthereum < Formula
   version '0.9.29-61'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
-  head 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'poc-8'
   url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
 
   bottle do
@@ -33,7 +32,6 @@ class CppEthereum < Formula
   depends_on 'cmake' => :build
   depends_on 'boost' => "c++11"
   depends_on 'boost-python' => "c++11"
-  depends_on 'llvm' => ["without-shared", "with-clang"] if build.with? "evmjit"
   depends_on 'qt5' if build.with? 'gui'
   depends_on 'readline'
   depends_on 'cryptopp'
@@ -45,16 +43,32 @@ class CppEthereum < Formula
   depends_on 'homebrew/versions/v8-315'
 
   option "with-gui", "Build with GUI (AlethZero)"
-  option "with-gpu-mining", "Build with OpenCL GPU mining (experimental)"
   option "with-evmjit", "Build with LLVM and enable EVMJIT"
-  option "with-v8-console", "Build with V8 JavaScript console"
-  option "with-paranoia", "Build with -DPARANOID=1"
+  option "without-v8-console", "Build without V8 JavaScript console"
+  option "without-gpu-mining", "Build without OpenCL GPU mining (experimental)"
   option "with-debug", "Build with debug"
   option "with-vmtrace", "Build with VMTRACE"
+  option "with-paranoia", "Build with -DPARANOID=1"
   option "successful", "Last successful build with --devel only"
 
   def install
     args = *std_cmake_args
+
+    opoo <<-EOS.undent
+      EVMJIT needs the latest version of LLVM (3.7 or above), currently
+      only available with --HEAD. If an older version was already installed
+      or it did not install automatically, make sure to install it with
+      `brew install llvm --HEAD --with-clang`
+    EOS
+
+    if build.with? "debug" or build.with? "vmtrace" or build.with? "paranoia"
+      args << "-DCMAKE_BUILD_TYPE=Debug"
+    else
+      args << "-DCMAKE_BUILD_TYPE=Release"
+    end
+
+    # Setting BUNDLE prevents overwriting any option...
+    # args << "-DBUNDLE=release" if build.without? "vmtrace" and build.without? "paranoia"
 
     if build.with? "evmjit"
       args << "-DLLVM_DIR=/usr/local/opt/llvm/share/llvm/cmake"
@@ -62,19 +76,19 @@ class CppEthereum < Formula
       ENV["CXX"] = "/usr/local/opt/llvm/bin/clang++ -stdlib=libc++"
       ENV["CXXFLAGS"] = "#{ENV.cxxflags} -nostdinc++ -I/usr/local/opt/llvm/include/llvm"
       ENV["LDFLAGS"] = "#{ENV.ldflags} -L/usr/local/opt/llvm/lib"
-    end
-
-    if build.with? "debug"
-      args << "-DCMAKE_BUILD_TYPE=Debug"
     else
-      args << "-DCMAKE_BUILD_TYPE=Release"
+      args << "-DEVMJIT=0"
     end
 
-    args << "-DFATDB=1" # https://github.com/ethereum/cpp-ethereum/issues/1403
-    args << "-DBUNDLE=default"
-    args << "-DGUI=0" if build.without? "gui"
-    args << "-DETHASHCL=1" if build.with? "gpu-mining"
-    args << "-DJSCONSOLE=1" if build.with? "v8-console"
+    if build.with? "gui"
+      args << "-DFATDB=1" # https://github.com/ethereum/cpp-ethereum/issues/1403
+      args << "-DGUI=1"
+    else
+      args << "-DGUI=0"
+    end
+
+    args << "-DETHASHCL=0" if build.without? "gpu-mining"
+    args << "-DJSCONSOLE=0" if build.without? "v8-console"
     args << "-DVMTRACE=1" if build.with? "vmtrace"
     args << "-DPARANOID=1" if build.with? "paranoia"
 
@@ -90,6 +104,15 @@ class CppEthereum < Formula
       prefix.install 'mix/Mix.app' if build.devel?
       # prefix.install 'third/Third.app' if build.devel?
     end
+  end
+
+  def caveats
+    <<-EOS.undent
+      EVMJIT needs the latest version of LLVM (3.7 or above), currently
+      only available with --HEAD. If an older version was already installed
+      or it did not install automatically, make sure to install it with
+      `brew install llvm --HEAD --with-clang`
+    EOS
   end
 
   test do

@@ -20,16 +20,16 @@ brew install cpp-ethereum
 brew linkapps cpp-ethereum
 ```
 
-**Note regarding Frontier release:** Since Frontier will be CLI only, the default installs do not include GUI binaries in the brew bottles. Add `--with-gui` to brew Mist and AlethZero / Mix IDE.
+**Note regarding Frontier release:** Since Frontier will be CLI only, the default installs do not include GUI binaries in the brew bottles. Add `--with-gui` to brew AlethZero / Mix IDE.
 
 
 ## Running
 
 ### Go client
-`mist` (GUI) or `geth` (CLI)
+`geth`
 
 ### C++ client
-`open /Applications/AlethZero.app`, `eth` (CLI), or `neth` (ncurses interface)
+`eth` (CLI) or `open /Applications/AlethZero.app` (if built `--with-gui`)
 
 
 ## Development
@@ -72,7 +72,6 @@ Go:
 * normal install is on master branch
 
 C++:
-* `--HEAD` is on latest release branch [poc-8](https://github.com/ethereum/cpp-ethereum/commits/poc-7+)
 * `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop)
 * normal install is on master branch
 
@@ -119,16 +118,19 @@ for previous builds.
 
 See `brew info ethereum` or `brew info cpp-ethereum` for all options. `--with-...` features are experimental patches.
 
-Option               | desc.
----------------------|---------
-`--with-gui`         | Build with GUI (Mist or AlethZero)
-`--with-gpu-mining`  | Build with GPU mining support (experimental)
-`--successful`       | Last successful build using --devel only
-`--with-v8-console`  | Build with V8 JavaScript console
-`--with-debug`       | Pass -DCMAKE_BUILD_TYPE=Debug
-`--with-paranoia`    | Build with -DPARANOID=1
+#### cpp-ethereum options
+Option                 | desc.
+-----------------------|---------
+`--with-gui`           | Build with GUI (AlethZero, cpp-ethereum only)
+`--with-evmjit`        | Build with LLVM and enable EVMJIT
+`--successful`         | Last successful build using --devel only
+`--without-gpu-mining` | Build without GPU mining support (experimental)
+`--without-v8-console` | Build without V8 JavaScript console
+`--with-debug`         | Pass -DCMAKE_BUILD_TYPE=Debug
+`--with-vmtrace`       | Build with -DVMTRACE=1
+`--with-paranoia`      | Build with -DPARANOID=1
 
-**Note:** `--with-v8-console` requires that you `brew tap homebrew/homebrew-versions`
+**Note:** `--with-evmjit` requires LLVM to be installed with `brew install llvm --HEAD --with-clang`
 
 ##Troubleshooting
 
