@@ -2,15 +2,15 @@ require 'formula'
 
 class CppEthereum < Formula
   # official_version-protocol_version-database_version
-  version '0.9.37-61'
+  version '0.9.38-61'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
 
   bottle do
-    revision 164
-    root_url 'https://build.ethdev.com/builds/OSX%20C%2B%2B%20master%20brew/164/bottle'
-    sha1 '01708239ac195bf1dd5e491ddf4b9fc2b1c9ad4b' => :yosemite
+    revision 165
+    root_url 'https://build.ethdev.com/builds/OSX%20C%2B%2B%20master%20brew/165/bottle'
+    sha1 '97baffbb5a481cf34d29b418ae2be96b35d76389' => :yosemite
   end
 
   devel do
