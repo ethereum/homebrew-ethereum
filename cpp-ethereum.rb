@@ -8,9 +8,9 @@ class CppEthereum < Formula
   url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
 
   bottle do
-    revision 169
-    root_url 'https://build.ethdev.com/builds/OSX%20C%2B%2B%20master%20brew/169/bottle'
-    sha1 'aa01b05b8fd9052d1b003a39dc6108d13d9ca7bb' => :yosemite
+    revision 171
+    root_url 'https://build.ethdev.com/builds/OSX%20C%2B%2B%20master%20brew/171/bottle'
+    sha1 '802a19dfbd787c44ea6195d86c536dd527b89488' => :yosemite
   end
 
   devel do
