@@ -15,14 +15,14 @@ class CppEthereum < Formula
 
   devel do
     bottle do
-      revision 1080
-      root_url 'https://build.ethdev.com/builds/OSX%20C%2B%2B%20develop%20brew/1080/bottle'
-      sha1 '736b0483cf13659a6b4ca5420da20c25650bfdcc' => :yosemite
+      revision 1081
+      root_url 'https://build.ethdev.com/builds/OSX%20C%2B%2B%20develop%20brew/1081/bottle'
+      sha1 '3c90c5800ce51a832092fa6a1893d7e9c49090f7' => :yosemite
     end
 
     if build.include? "successful"
       version '0.9.40-61'
-      url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '454753c7c0f1100a0b300d444f867eb03e8dae62'
+      url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '88267edd32cdf7e677a5e4e7df0fe545011942a1'
     else
     version '0.9.40-61'
     url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
