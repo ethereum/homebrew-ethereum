@@ -2,7 +2,7 @@ require 'formula'
 
 class CppEthereum < Formula
   # official_version-protocol_version-database_version
-  version '0.9.40-61'
+  version '0.9.41-61'
 
   homepage 'https://github.com/ethereum/cpp-ethereum'
   url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
