@@ -9,9 +9,9 @@ class Ethereum < Formula
   url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
 
   bottle do
-    revision 192
-    root_url 'https://build.ethdev.com/builds/OSX%20Go%20master%20brew/192/bottle'
-    sha1 'b3b25790d7f75ee0810f342109dc7a067771bf21' => :yosemite
+    revision 193
+    root_url 'https://build.ethdev.com/builds/OSX%20Go%20master%20brew/193/bottle'
+    sha1 '47ab26a4024f17c1c7d6dc76cb3a64858643c09d' => :yosemite
   end
 
   devel do
