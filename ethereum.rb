@@ -3,7 +3,7 @@ require 'formula'
 class Ethereum < Formula
 
   # official_version-protocol_version
-  version '1.1.1'
+  version '1.1.2'
 
   homepage 'https://github.com/ethereum/go-ethereum'
   url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
