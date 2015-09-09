@@ -2,35 +2,35 @@ require 'formula'
 
 class CppEthereum < Formula
   # official_version-protocol_version-database_version
-  version '0.9.41'
+  version '1.0rc1'
 
-  homepage 'https://github.com/ethereum/cpp-ethereum'
-  url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'master'
+  homepage 'https://github.com/ethereum/webthree-umbrella'
+  url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 184
-    root_url 'https://build.ethdev.com/builds/OSX%20C%2B%2B%20master%20brew/184/bottle'
-    sha1 '5d0c6905d2c113803647d423caea2c24ddd78377' => :yosemite
+    revision 1143
+    root_url 'https://build.ethdev.com/builds/bin'
+    sha1 '74525beb392bb73fbc7d7539d41a7705883a7a25' => :yosemite
   end
 
   devel do
     bottle do
-      revision 1142
-      root_url 'https://build.ethdev.com/builds/OSX%20C%2B%2B%20develop%20brew/1142/bottle'
-      sha1 'f0055ec094670cad46a169a69ff26ca639f28d01' => :yosemite
+      revision 1143
+      root_url 'https://build.ethdev.com/builds/bin'
+      sha1 '74525beb392bb73fbc7d7539d41a7705883a7a25' => :yosemite
     end
 
     if build.include? "successful"
-      version '0.9.41-61'
-      url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '50c34b6e78c8358d9ce76a9ebe062435625a9d0e'
+      version '1.0rc1'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '9945ee3272c54acac74e6bb3056a84e577e9529c'
     else
-    version '0.9.41-61'
-    url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
+      version '1.0rc1'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
     end
   end
 
   depends_on 'cmake' => :build
-  depends_on 'boost' => "c++11"
+  depends_on 'boost'
   depends_on 'boost-python' => "c++11"
   depends_on 'qt5' if build.with? 'gui'
   depends_on 'readline'
@@ -100,9 +100,9 @@ class CppEthereum < Formula
     (prefix/"test").install Dir['test/*.json']
 
     if build.with? "gui"
-      prefix.install 'alethzero/AlethZero.app'
-      prefix.install 'mix/Mix.app' if build.devel?
-      # prefix.install 'third/Third.app' if build.devel?
+      prefix.install 'alethzero/alethzero/AlethZero.app'
+      prefix.install 'alethzero/alethone/AlethOne.app'
+      prefix.install 'mix/Mix.app'
     end
   end
 
