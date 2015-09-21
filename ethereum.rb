@@ -21,7 +21,7 @@ class Ethereum < Formula
       sha1 'ea3313304aae0cffb9479d23d24899d6caadb37b' => :yosemite
     end
 
-    version '1.1.0'
+    version '1.2.0'
     url 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
   end
 
