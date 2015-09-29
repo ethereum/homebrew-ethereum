@@ -8,21 +8,21 @@ class CppEthereum < Formula
   url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 20
-    root_url 'http://52.28.164.97/job/ethbinaries-build/label=macosx_slave/20/artifact/webthree-umbrella/build'
-    sha1 'ee50e1301b45741bf9a1e6973155b8895637bef9' => :yosemite
+    revision 21
+    root_url 'http://52.28.164.97/job/ethbinaries-build/label=macosx_slave/21/artifact/webthree-umbrella/build'
+    sha1 'e9ecfae93ce8f8cc31afc374768a519bb8881b2a' => :yosemite
   end
 
   devel do
     bottle do
-      revision 20
-      root_url 'http://52.28.164.97/job/ethbinaries-build/label=macosx_slave/20/artifact/webthree-umbrella/build'
-      sha1 'ee50e1301b45741bf9a1e6973155b8895637bef9' => :yosemite
+      revision 21
+      root_url 'http://52.28.164.97/job/ethbinaries-build/label=macosx_slave/21/artifact/webthree-umbrella/build'
+      sha1 'e9ecfae93ce8f8cc31afc374768a519bb8881b2a' => :yosemite
     end
 
     if build.include? "successful"
       version '1.0rc2'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '28f57e666c89375f07737c3ca7c1e8dafdf327db'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '959436b268f36e72154516c91d63b42fe49adab0'
     else
       version '1.0rc2'
       url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
