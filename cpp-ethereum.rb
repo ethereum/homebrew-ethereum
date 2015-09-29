@@ -8,16 +8,16 @@ class CppEthereum < Formula
   url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 25
-    root_url 'http://52.28.164.97/job/ethbinaries-build/label=macosx_slave/25/artifact/webthree-umbrella/build'
-    sha1 '01d0a7ba28a3c841da26c68ddb5cd01f05a55083' => :yosemite
+    revision 26
+    root_url 'http://52.28.164.97/job/ethbinaries-build/label=macosx_slave/26/artifact/webthree-umbrella/build'
+    sha1 '6ba13b325f7024b91c7becc87851a5b1d3ca2bc7' => :yosemite
   end
 
   devel do
     bottle do
-      revision 25
-      root_url 'http://52.28.164.97/job/ethbinaries-build/label=macosx_slave/25/artifact/webthree-umbrella/build'
-      sha1 '01d0a7ba28a3c841da26c68ddb5cd01f05a55083' => :yosemite
+      revision 26
+      root_url 'http://52.28.164.97/job/ethbinaries-build/label=macosx_slave/26/artifact/webthree-umbrella/build'
+      sha1 '6ba13b325f7024b91c7becc87851a5b1d3ca2bc7' => :yosemite
     end
 
     if build.include? "successful"
