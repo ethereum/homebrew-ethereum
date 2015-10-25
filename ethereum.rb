@@ -1,8 +1,6 @@
 require 'formula'
 
 class Ethereum < Formula
-
-  # official_version-protocol_version
   version '1.2.3'
 
   homepage 'https://github.com/ethereum/go-ethereum'
@@ -11,14 +9,14 @@ class Ethereum < Formula
   bottle do
     revision 202
     root_url 'https://build.ethdev.com/builds/OSX%20Go%20master%20brew/202/bottle'
-    sha1 '772d4fb8c7dd318cef91ee2d86a5178b31fc3a07' => :yosemite
+    sha256 'a03cce1a86eccb5b7287534250879f4d49742ff01d3502282d633ca7d1fc716b' => :yosemite
   end
 
   devel do
     bottle do
       revision 889
       root_url 'https://build.ethdev.com/builds/OSX%20Go%20develop%20brew/855/bottle'
-      sha1 '53173764a555a43d7bbb2d9bca73fbd706cc29e6' => :yosemite
+      sha256 '84df21c66775abc94c9d52a37a9bfe06d92ece18344190f04e2e85256232f524' => :yosemite
     end
 
     version '1.2.0'

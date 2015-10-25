@@ -1,7 +1,6 @@
 require 'formula'
 
 class CppEthereum < Formula
-  # official_version-protocol_version-database_version
   version '1.0rc2'
 
   homepage 'https://github.com/ethereum/webthree-umbrella'
