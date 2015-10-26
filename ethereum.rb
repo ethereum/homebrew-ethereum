@@ -10,6 +10,7 @@ class Ethereum < Formula
     revision 202
     root_url 'https://build.ethdev.com/builds/OSX%20Go%20master%20brew/202/bottle'
     sha256 'a03cce1a86eccb5b7287534250879f4d49742ff01d3502282d633ca7d1fc716b' => :yosemite
+    sha256 '' => :el_capitan
   end
 
   devel do
@@ -17,6 +18,7 @@ class Ethereum < Formula
       revision 892
       root_url 'https://build.ethdev.com/builds/OSX%20Go%20develop%20brew/892/bottle'
       sha256 '1487c1d716cc9f9953811ef534f144bb5872d39613bbeb8381742b414ca0cc5a' => :yosemite
+      sha256 '' => :el_capitan
     end
 
     version '1.3.0'
