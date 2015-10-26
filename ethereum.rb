@@ -15,7 +15,7 @@ class Ethereum < Formula
 
   devel do
     bottle do
-      revision 1
+      revision 3
       root_url 'https://build.ethdev.com/builds/OSX%20Go%20develop%20El%20Capitan/bottles'
       sha256 '1487c1d716cc9f9953811ef534f144bb5872d39613bbeb8381742b414ca0cc5a' => :yosemite
       sha256 'acca803998682ccb25b71b24a898aa375349b1db16fa96d5994bc2ab42f371af' => :el_capitan
