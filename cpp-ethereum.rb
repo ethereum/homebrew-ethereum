@@ -1,22 +1,23 @@
 require 'formula'
 
 class CppEthereum < Formula
+  # official_version-protocol_version-database_version
   version '1.0rc2'
 
   homepage 'https://github.com/ethereum/webthree-umbrella'
   url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 96
+    revision 97
     root_url 'https://build.ethdev.com/cpp-binaries-data/brew_receipts'
-    sha1 'bec8aa0b1e55e27a72f56ebcdee27bf8237f0f77' => :yosemite
+    sha1 '0f27d0f423d7e211454d14641944645addf01e25' => :yosemite
   end
 
   devel do
     bottle do
-      revision 96
+      revision 97
       root_url 'https://build.ethdev.com/cpp-binaries-data/brew_receipts'
-      sha1 'bec8aa0b1e55e27a72f56ebcdee27bf8237f0f77' => :yosemite
+      sha1 '0f27d0f423d7e211454d14641944645addf01e25' => :yosemite
     end
 
     if build.include? "successful"
