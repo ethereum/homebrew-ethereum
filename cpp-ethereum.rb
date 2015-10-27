@@ -8,21 +8,21 @@ class CppEthereum < Formula
   url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 98
+    revision 99
     root_url 'https://build.ethdev.com/cpp-binaries-data/brew_receipts'
-    sha1 '8db4430d3d224827dd7ca1b7fc50813d147c50fd' => :yosemite
+    sha1 'ef3944b5c2f5e60ef0b7150276091d6e0fd50518' => :yosemite
   end
 
   devel do
     bottle do
-      revision 98
+      revision 99
       root_url 'https://build.ethdev.com/cpp-binaries-data/brew_receipts'
-      sha1 '8db4430d3d224827dd7ca1b7fc50813d147c50fd' => :yosemite
+      sha1 'ef3944b5c2f5e60ef0b7150276091d6e0fd50518' => :yosemite
     end
 
     if build.include? "successful"
       version '1.0rc2'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '97e4ddffbfebb0ff5f3fb3504365958774dacfe2'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => 'ea9163ea2ed0a6bef8982cb5ff2e203c5ee3dbae'
     else
       version '1.0rc2'
       url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
@@ -31,6 +31,7 @@ class CppEthereum < Formula
 
   depends_on 'cmake' => :build
   depends_on 'boost'
+  depends_on 'boost-python' => "c++11"
   depends_on 'qt5' if build.with? 'gui'
   depends_on 'readline'
   depends_on 'cryptopp'
