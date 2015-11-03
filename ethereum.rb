@@ -21,7 +21,7 @@ class Ethereum < Formula
       sha256 '04ed0533020704daf2cab1215a0932eb05f3f9f362bc4b18c3f4f7a449bec29e' => :el_capitan
     end
 
-    version '1.3.0'
+    version '1.4.0'
     url 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
   end
 
