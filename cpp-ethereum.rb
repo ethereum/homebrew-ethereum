@@ -8,21 +8,21 @@ class CppEthereum < Formula
   url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 124
+    revision 125
     root_url 'https://build.ethdev.com/cpp-binaries-data/brew_receipts'
-    sha1 '737f0b4b20132521e676007ee2398ec579556c4f' => :yosemite
+    sha1 'cd98b42a5724e513dda14d4218bf10abfb37fa79' => :yosemite
   end
 
   devel do
     bottle do
-      revision 124
+      revision 125
       root_url 'https://build.ethdev.com/cpp-binaries-data/brew_receipts'
-      sha1 '737f0b4b20132521e676007ee2398ec579556c4f' => :yosemite
+      sha1 'cd98b42a5724e513dda14d4218bf10abfb37fa79' => :yosemite
     end
 
     if build.include? "successful"
       version '1.0rc2'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => 'acbae1e0504838834b5a00b36438d540d3c368a2'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => 'eda951984e4230795a31d7044ba3812c892e4253'
     else
       version '1.0rc2'
       url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
@@ -31,6 +31,7 @@ class CppEthereum < Formula
 
   depends_on 'cmake' => :build
   depends_on 'boost'
+  depends_on 'boost-python' => "c++11"
   depends_on 'qt5' if build.with? 'gui'
   depends_on 'readline'
   depends_on 'cryptopp'
@@ -95,6 +96,9 @@ class CppEthereum < Formula
     system "make"
     system "make", "install"
 
+    bin.install 'test/testeth'
+    (prefix/"test").install Dir['test/*.json']
+
     if build.with? "gui"
       prefix.install 'alethzero/alethzero/AlethZero.app'
       prefix.install 'alethzero/alethone/AlethOne.app'
@@ -109,6 +113,10 @@ class CppEthereum < Formula
       or it did not install automatically, make sure to install it with
       `brew install llvm --HEAD --with-clang`
     EOS
+  end
+
+  test do
+    system "testeth"
   end
 
   def plist; <<-EOS.undent
