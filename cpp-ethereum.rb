@@ -8,38 +8,26 @@ class CppEthereum < Formula
   url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 214
+    revision 225
     root_url 'https://build.ethdev.com/cpp-binaries-data/brew_receipts'
-    sha1 '03860dabca40711ae4d1506c5da661e8da758aef' => :yosemite
+    sha1 'a8b89cbd6801a97d34930c43feba0917818c4da8' => :yosemite
   end
 
   devel do
     bottle do
-      revision 214
+      revision 225
       root_url 'https://build.ethdev.com/cpp-binaries-data/brew_receipts'
-      sha1 '03860dabca40711ae4d1506c5da661e8da758aef' => :yosemite
+      sha1 'a8b89cbd6801a97d34930c43feba0917818c4da8' => :yosemite
     end
 
     if build.include? "successful"
       version '1.0rc2'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '58d2a77e2ded71bc560ef88442f5686619806ecf'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '8ee450b27460b6511fd3daea4c8dfcf8115fd778'
     else
       version '1.0rc2'
       url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
     end
   end
-
-  depends_on 'cmake' => :build
-  depends_on 'boost'
-  depends_on 'qt5' if build.with? 'gui'
-  depends_on 'readline'
-  depends_on 'cryptopp'
-  depends_on 'miniupnpc'
-  depends_on 'leveldb'
-  depends_on 'gmp'
-  depends_on 'curl'
-  depends_on 'libjson-rpc-cpp'
-  depends_on 'homebrew/versions/v8-315'
 
   option "with-gui", "Build with GUI (AlethZero)"
   option "with-evmjit", "Build with LLVM and enable EVMJIT"
@@ -49,6 +37,18 @@ class CppEthereum < Formula
   option "with-vmtrace", "Build with VMTRACE"
   option "with-paranoia", "Build with -DPARANOID=1"
   option "successful", "Last successful build with --devel only"
+
+  depends_on 'cmake' => :build
+  depends_on 'boost'
+  depends_on 'qt5' => ["with-d-bus"] if build.with? 'gui'
+  depends_on 'readline'
+  depends_on 'cryptopp'
+  depends_on 'miniupnpc'
+  depends_on 'leveldb'
+  depends_on 'gmp'
+  depends_on 'curl'
+  depends_on 'libjson-rpc-cpp'
+  depends_on 'homebrew/versions/v8-315'
 
   def install
     args = *std_cmake_args
