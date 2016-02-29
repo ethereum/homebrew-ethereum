@@ -26,9 +26,6 @@ class Ethereum < Formula
   end
 
   depends_on 'go' => :build
-  depends_on :hg
-  depends_on 'readline'
-  depends_on 'gmp'
 
   def install
     base = "src/github.com/ethereum/go-ethereum"
