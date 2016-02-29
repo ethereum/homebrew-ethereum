@@ -7,10 +7,10 @@ class Ethereum < Formula
   url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
 
   bottle do
-    revision 9
+    revision 10
     root_url 'https://build.ethdev.com/builds/bottles'
     sha256 'af4344e6407a9072bba764b4c4a0e2f893b87fb4066dc7d3a9d8c1a2aac13c23' => :yosemite
-    sha256 '1d1874e770592b9b19d59409fa7e84e348f629937eb9349a5cc3948454dad7cf' => :el_capitan
+    sha256 '36c2bc821f9ca1790b1111d4a1cd1262f4c5fe13effe82956512d47120cac71b' => :el_capitan
   end
 
   devel do
