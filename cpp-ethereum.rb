@@ -8,21 +8,21 @@ class CppEthereum < Formula
   url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 241
+    revision 255
     root_url 'https://build.ethdev.com/cpp-binaries-data/brew_receipts'
-    sha1 'ce4be4a96766bb8cc3929ed41324bf3bfd250676' => :yosemite
+    sha1 'a068318b9221824f64a3b647d493ce90fab6a3f4' => :yosemite
   end
 
   devel do
     bottle do
-      revision 241
+      revision 255
       root_url 'https://build.ethdev.com/cpp-binaries-data/brew_receipts'
-      sha1 'ce4be4a96766bb8cc3929ed41324bf3bfd250676' => :yosemite
+      sha1 'a068318b9221824f64a3b647d493ce90fab6a3f4' => :yosemite
     end
 
     if build.include? "successful"
       version '1.0rc2'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => 'be2b376b1d2e1426c9df20a67ff720bf8b241762'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '1ae1c2d1f93c2188eef50b9156add5e3f61a6efa'
     else
       version '1.0rc2'
       url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
@@ -38,27 +38,21 @@ class CppEthereum < Formula
   option "with-paranoia", "Build with -DPARANOID=1"
   option "successful", "Last successful build with --devel only"
 
-  depends_on 'cmake' => :build
   depends_on 'boost'
+  depends_on 'cmake' => :build
+  depends_on 'cryptopp'
+  depends_on 'curl'
+  depends_on 'gmp'
+  depends_on 'leveldb'
+  depends_on 'libjson-rpc-cpp'
+  depends_on 'llvm37' if build.with? 'evmjit'
+  depends_on 'miniupnpc'
   depends_on 'qt5' => ["with-d-bus"] if build.with? 'gui'
   depends_on 'readline'
-  depends_on 'cryptopp'
-  depends_on 'miniupnpc'
-  depends_on 'leveldb'
-  depends_on 'gmp'
-  depends_on 'curl'
-  depends_on 'libjson-rpc-cpp'
   depends_on 'homebrew/versions/v8-315'
 
   def install
     args = *std_cmake_args
-
-    opoo <<-EOS.undent
-      EVMJIT needs the latest version of LLVM (3.7 or above), currently
-      only available with --HEAD. If an older version was already installed
-      or it did not install automatically, make sure to install it with
-      `brew install llvm --HEAD --with-clang`
-    EOS
 
     if build.with? "debug" or build.with? "vmtrace" or build.with? "paranoia"
       args << "-DCMAKE_BUILD_TYPE=Debug"
@@ -66,15 +60,8 @@ class CppEthereum < Formula
       args << "-DCMAKE_BUILD_TYPE=Release"
     end
 
-    # Setting BUNDLE prevents overwriting any option...
-    # args << "-DBUNDLE=release" if build.without? "vmtrace" and build.without? "paranoia"
-
     if build.with? "evmjit"
-      args << "-DLLVM_DIR=/usr/local/opt/llvm/share/llvm/cmake"
       args << "-DEVMJIT=1"
-      ENV["CXX"] = "/usr/local/opt/llvm/bin/clang++ -stdlib=libc++"
-      ENV["CXXFLAGS"] = "#{ENV.cxxflags} -nostdinc++ -I/usr/local/opt/llvm/include/llvm"
-      ENV["LDFLAGS"] = "#{ENV.ldflags} -L/usr/local/opt/llvm/lib"
     else
       args << "-DEVMJIT=0"
     end
@@ -100,15 +87,6 @@ class CppEthereum < Formula
       prefix.install 'alethzero/alethone/AlethOne.app'
       prefix.install 'mix/Mix.app'
     end
-  end
-
-  def caveats
-    <<-EOS.undent
-      EVMJIT needs the latest version of LLVM (3.7 or above), currently
-      only available with --HEAD. If an older version was already installed
-      or it did not install automatically, make sure to install it with
-      `brew install llvm --HEAD --with-clang`
-    EOS
   end
 
   def plist; <<-EOS.undent
