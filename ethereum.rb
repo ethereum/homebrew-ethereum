@@ -26,45 +26,18 @@ class Ethereum < Formula
   end
 
   depends_on 'go' => :build
-  depends_on :hg
-  depends_on 'readline'
-  depends_on 'gmp'
 
   def install
-    base = "src/github.com/ethereum/go-ethereum"
-
-    ENV["GOPATH"] = "#{buildpath}/#{base}/Godeps/_workspace:#{buildpath}"
     ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
-    ENV["PATH"] = "#{ENV['GOPATH']}/bin:#{ENV['PATH']}"
-
-    # Debug env
-    system "go", "env"
-
-    # Move checked out source to base
-    mkdir_p base
-    Dir["**"].reject{ |f| f['src']}.each do |filename|
-      move filename, "#{base}/"
-    end
-
-    cmd = "#{base}/cmd/"
-
-    system "go", "build", "-v", "./#{cmd}evm"
-    system "go", "build", "-v", "./#{cmd}geth"
-    system "go", "build", "-v", "./#{cmd}disasm"
-    system "go", "build", "-v", "./#{cmd}rlpdump"
-    system "go", "build", "-v", "./#{cmd}ethtest"
-    system "go", "build", "-v", "./#{cmd}bootnode"
-
-    bin.install 'evm'
-    bin.install 'geth'
-    bin.install 'disasm'
-    bin.install 'rlpdump'
-    bin.install 'ethtest'
-    bin.install 'bootnode'
+    system "go", "env" # Debug env
+    system "make", "all"
+    bin.install 'build/bin/evm'
+    bin.install 'build/bin/geth'
+    bin.install 'build/bin/rlpdump'
   end
 
   test do
-    system "go", "test", "github.com/ethereum/go-ethereum/..."
+    system "make", "test"
   end
 
   def plist; <<-EOS.undent
