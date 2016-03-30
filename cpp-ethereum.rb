@@ -8,21 +8,21 @@ class CppEthereum < Formula
   url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 287
+    revision 288
     root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-    sha1 '0098885e92613519b165eadfd6c06d53605616f9' => :yosemite
+    sha1 'e91ad0d8ca38bd31842fce7389d95d5913226703' => :yosemite
   end
 
   devel do
     bottle do
-      revision 287
+      revision 288
       root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-      sha1 '0098885e92613519b165eadfd6c06d53605616f9' => :yosemite
+      sha1 'e91ad0d8ca38bd31842fce7389d95d5913226703' => :yosemite
     end
 
     if build.include? "successful"
       version '1.2.2'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '650c2f023c2e7184ca4ed84d50f263d84a6450fd'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '6c9a8f21f46e00adde8c9a51993fec4c115f27e4'
     else
       version '1.2.2'
       url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
@@ -47,7 +47,6 @@ class CppEthereum < Formula
   depends_on 'llvm37' if build.with? 'evmjit'
   depends_on 'miniupnpc'
   depends_on 'qt5' => ["with-d-bus"] if build.with? 'gui'
-  depends_on 'homebrew/versions/v8-315'
 
   def install
     args = *std_cmake_args
@@ -81,7 +80,6 @@ class CppEthereum < Formula
 
     if build.with? "gui"
       prefix.install 'alethzero/alethzero/AlethZero.app'
-      prefix.install 'alethzero/alethone/AlethOne.app'
       prefix.install 'mix/Mix.app'
     end
   end
