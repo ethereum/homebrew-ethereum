@@ -8,21 +8,21 @@ class CppEthereum < Formula
   url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 289
-    root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-    sha1 'ac68f3cde6b83265d715037a8eb9fa45dbd3ab07' => :yosemite
+    revision 290
+    root_url 'https://build.ethdev.com/cpp-binaries-data/brew_receipts'
+    sha1 '66958d78a46f9afd3be5a11e4fad34ae8c359eee' => :yosemite
   end
 
   devel do
     bottle do
-      revision 289
-      root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-      sha1 'ac68f3cde6b83265d715037a8eb9fa45dbd3ab07' => :yosemite
+      revision 290
+      root_url 'https://build.ethdev.com/cpp-binaries-data/brew_receipts'
+      sha1 '66958d78a46f9afd3be5a11e4fad34ae8c359eee' => :yosemite
     end
 
     if build.include? "successful"
       version '1.2.2'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '545e03b8306cf85c6e62e8e730a22a81af31a8af'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => 'f3a75a2425f7c3b32cfaf934eb13a7365e767134'
     else
       version '1.2.2'
       url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
@@ -31,6 +31,7 @@ class CppEthereum < Formula
 
   option "with-gui", "Build with GUI (AlethZero)"
   option "with-evmjit", "Build with LLVM and enable EVMJIT"
+  option "without-v8-console", "Build without V8 JavaScript console"
   option "without-gpu-mining", "Build without OpenCL GPU mining (experimental)"
   option "with-debug", "Build with debug"
   option "with-vmtrace", "Build with VMTRACE"
@@ -47,6 +48,8 @@ class CppEthereum < Formula
   depends_on 'llvm37' if build.with? 'evmjit'
   depends_on 'miniupnpc'
   depends_on 'qt5' => ["with-d-bus"] if build.with? 'gui'
+  depends_on 'readline'
+  depends_on 'homebrew/versions/v8-315'
 
   def install
     args = *std_cmake_args
@@ -71,6 +74,7 @@ class CppEthereum < Formula
     end
 
     args << "-DETHASHCL=0" if build.without? "gpu-mining"
+    args << "-DJSCONSOLE=0" if build.without? "v8-console"
     args << "-DVMTRACE=1" if build.with? "vmtrace"
     args << "-DPARANOID=1" if build.with? "paranoia"
 
@@ -80,6 +84,7 @@ class CppEthereum < Formula
 
     if build.with? "gui"
       prefix.install 'alethzero/alethzero/AlethZero.app'
+      prefix.install 'alethzero/alethone/AlethOne.app'
       prefix.install 'mix/Mix.app'
     end
   end
