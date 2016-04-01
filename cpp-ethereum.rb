@@ -8,21 +8,21 @@ class CppEthereum < Formula
   url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 296
+    revision 299
     root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-    sha1 '8184e803cbd31b85547b6ae897a1b05f1bb42652' => :yosemite
+    sha1 '77870267415f643f95eac94c0c02be288adf143d' => :yosemite
   end
 
   devel do
     bottle do
-      revision 296
+      revision 299
       root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-      sha1 '8184e803cbd31b85547b6ae897a1b05f1bb42652' => :yosemite
+      sha1 '77870267415f643f95eac94c0c02be288adf143d' => :yosemite
     end
 
     if build.include? "successful"
       version '1.2.3'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => 'c6fc5e542f009695beadc2fbaa1affb48005dd73'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '1ee8ceb03552fdfbe2c363bfd2f54f03ad1ed335'
     else
       version '1.2.3'
       url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
