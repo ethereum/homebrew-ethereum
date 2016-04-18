@@ -8,21 +8,21 @@ class CppEthereum < Formula
   url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 306
+    revision 344
     root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-    sha1 'be4204a96842e2e2f356938c02dabc16c1adf188' => :yosemite
+    sha1 '65466d096eba7ad7f4915c174ee9d47f1c1cba02' => :yosemite
   end
 
   devel do
     bottle do
-      revision 306
+      revision 344
       root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-      sha1 'be4204a96842e2e2f356938c02dabc16c1adf188' => :yosemite
+      sha1 '65466d096eba7ad7f4915c174ee9d47f1c1cba02' => :yosemite
     end
 
     if build.include? "successful"
       version '1.2.3'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '7e7480fcd5c2cdcde4c6d33a629ffc2564d4d096'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => 'c7e5e839167fecb31486b53402b9ff6ff2ea2968'
     else
       version '1.2.3'
       url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
@@ -80,7 +80,7 @@ class CppEthereum < Formula
 
     if build.with? "gui"
       prefix.install 'alethzero/alethzero/AlethZero.app'
-      prefix.install 'mix/Mix.app'
+      prefix.install 'mix/Mix-ide.app'
     end
   end
 
