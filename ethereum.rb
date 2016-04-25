@@ -15,10 +15,10 @@ class Ethereum < Formula
 
   devel do
     bottle do
-      revision 159
+      revision 160
       root_url 'https://build.ethdev.com/builds/bottles-dev'
       sha256 '70b98059996118e0c9b1ef5339051bfdf08c4b20d547ab6627c3df1bf10ef79e' => :yosemite
-      sha256 'fade439ffe7203ccdae449d1f4e3721d36239c63d7c79a88de53c243bb37ae54' => :el_capitan
+      sha256 'de83bce4e8b112622e226b08edc6341a5b9115659574c76964283ae72fd1e70c' => :el_capitan
     end
 
     version '1.5.0'
