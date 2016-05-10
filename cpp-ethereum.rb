@@ -25,6 +25,7 @@ class CppEthereum < Formula
     revision 382
     root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
     sha1 'bcce8b756b52df0b0dc9812a16f2744de89fc4f0' => :yosemite
+    sha1 'bcce8b756b52df0b0dc9812a16f2744de89fc4f0' => :el_capitan
   end
 
   devel do
@@ -32,6 +33,7 @@ class CppEthereum < Formula
       revision 382
       root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
       sha1 'bcce8b756b52df0b0dc9812a16f2744de89fc4f0' => :yosemite
+      sha1 'bcce8b756b52df0b0dc9812a16f2744de89fc4f0' => :el_capitan
     end
 
     if build.include? "successful"
