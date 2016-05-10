@@ -1,28 +1,42 @@
+#------------------------------------------------------------------------------
+# cpp-ethereum.rb
+#
+# Homebrew formula for cpp-ethereum.  Homebrew (http://brew.sh/) is
+# the de-facto standard package manager for OS X, and this Ruby script
+# contains the metadata used to map command-line user settings used
+# with the 'brew' command onto build options.
+#
+# Our docummentation for the cpp-ethereum Homebrew setup is at:
+#
+# http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/osx-homebrew.html
+#
+# (c) 2014-2016 cpp-ethereum contributors.
+#------------------------------------------------------------------------------
+
 require 'formula'
 
 class CppEthereum < Formula
-  # official_version-protocol_version-database_version
   version '1.2.4'
 
   homepage 'https://github.com/ethereum/webthree-umbrella'
   url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
 
   bottle do
-    revision 376
+    revision 382
     root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-    sha1 'c740caea3fad7a37c24347e666e357f67994caa4' => :yosemite
+    sha1 'bcce8b756b52df0b0dc9812a16f2744de89fc4f0' => :yosemite
   end
 
   devel do
     bottle do
-      revision 376
+      revision 382
       root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-      sha1 'c740caea3fad7a37c24347e666e357f67994caa4' => :yosemite
+      sha1 'bcce8b756b52df0b0dc9812a16f2744de89fc4f0' => :yosemite
     end
 
     if build.include? "successful"
       version '1.2.4'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => 'b41060d6d3e54c6b40ee16aefc68be6549a5254b'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '806abe573937eeaddb10feed48cde02c5082576a'
     else
       version '1.2.4'
       url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
@@ -30,8 +44,7 @@ class CppEthereum < Formula
   end
 
   option "with-gui", "Build with GUI (AlethZero)"
-  option "with-evmjit", "Build with LLVM and enable EVMJIT"
-  option "without-gpu-mining", "Build without OpenCL GPU mining (experimental)"
+  option "without-evmjit", "Build without JIT (and its LLVM dependency)"
   option "with-debug", "Build with debug"
   option "with-vmtrace", "Build with VMTRACE"
   option "with-paranoia", "Build with -DPARANOID=1"
@@ -57,10 +70,10 @@ class CppEthereum < Formula
       args << "-DCMAKE_BUILD_TYPE=Release"
     end
 
-    if build.with? "evmjit"
-      args << "-DEVMJIT=1"
-    else
+    if build.without? "evmjit"
       args << "-DEVMJIT=0"
+    else
+      args << "-DEVMJIT=1"
     end
 
     if build.with? "gui"
@@ -70,7 +83,6 @@ class CppEthereum < Formula
       args << "-DGUI=0"
     end
 
-    args << "-DETHASHCL=0" if build.without? "gpu-mining"
     args << "-DVMTRACE=1" if build.with? "vmtrace"
     args << "-DPARANOID=1" if build.with? "paranoia"
 
