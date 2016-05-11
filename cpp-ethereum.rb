@@ -38,7 +38,7 @@ class CppEthereum < Formula
 
     if build.include? "successful"
       version '1.2.4'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '8fea9eb9bbe4f51051736528ca14fdb5e785a838'
+      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => 'b517e62305ae4a9060f7f8a83c8a84f714711937'
     else
       version '1.2.4'
       url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
