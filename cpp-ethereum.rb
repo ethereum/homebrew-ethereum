@@ -59,7 +59,7 @@ class CppEthereum < Formula
   depends_on 'gmp'
   depends_on 'leveldb'
   depends_on 'libjson-rpc-cpp'
-  depends_on 'llvm37' if build.with? 'evmjit'
+  depends_on 'homebrew/versions/llvm38' if build.with? 'evmjit'
   depends_on 'miniupnpc'
   depends_on 'qt5' => ["with-d-bus"] if build.with? 'gui'
 
