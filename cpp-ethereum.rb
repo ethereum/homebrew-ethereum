@@ -24,7 +24,7 @@ class CppEthereum < Formula
   bottle do
     revision 466
     root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-    sha1 'f7f5a2b6e38bba90c88d8c2ed96f3e83d2e7b14b' => :yosemite
+    sha1 '3c70853112dae0cfdd1611c5a6d7f91c295526d4' => :yosemite
     sha1 '61df904308d82628a231c3182c8e67c98e1d83a4' => :el_capitan
   end
 
@@ -32,7 +32,7 @@ class CppEthereum < Formula
     bottle do
       revision 466
       root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-      sha1 'f7f5a2b6e38bba90c88d8c2ed96f3e83d2e7b14b' => :yosemite
+      sha1 '3c70853112dae0cfdd1611c5a6d7f91c295526d4' => :yosemite
       sha1 '61df904308d82628a231c3182c8e67c98e1d83a4' => :el_capitan
     end
 
