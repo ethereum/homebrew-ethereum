@@ -1,7 +1,7 @@
 require 'formula'
 
 class Ethereum < Formula
-  version '1.4.5'
+  version '1.4.7'
 
   homepage 'https://github.com/ethereum/go-ethereum'
   url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
