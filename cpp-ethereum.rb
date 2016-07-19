@@ -19,7 +19,7 @@ class CppEthereum < Formula
   version '1.2.9'
 
   homepage 'https://github.com/ethereum/webthree-umbrella'
-  url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
+  url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'merge_repos'
 
   bottle do
     revision 491
@@ -37,11 +37,11 @@ class CppEthereum < Formula
     end
 
     if build.include? "successful"
-      version '1.2.9'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :revision => '3f03819fe74661f6c22c5f726614b31322063ad7'
+      version '1.3.0'
+      url 'https://github.com/bobsummerwill/cpp-ethereum.git', :revision => '1732767e3b4c3c27316a5a3e68ecd676ab00ceb2'
     else
-      version '1.2.9'
-      url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'develop'
+      version '1.3.0'
+      url 'https://github.com/bobsummerwill/cpp-ethereum.git', :branch => 'merge_repos'
     end
   end
 
