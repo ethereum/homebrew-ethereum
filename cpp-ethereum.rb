@@ -6,7 +6,7 @@
 # contains the metadata used to map command-line user settings used
 # with the 'brew' command onto build options.
 #
-# Our docummentation for the cpp-ethereum Homebrew setup is at:
+# Our documentation for the cpp-ethereum Homebrew setup is at:
 #
 # http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/osx-homebrew.html
 #
@@ -16,25 +16,12 @@
 require 'formula'
 
 class CppEthereum < Formula
-  version '1.2.9'
+  version '1.3.0'
 
-  homepage 'https://github.com/ethereum/webthree-umbrella'
-  url 'https://github.com/ethereum/webthree-umbrella.git', :branch => 'merge_repos'
-
-  bottle do
-    revision 491
-    root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-    sha1 '72de22e2e339e4f377ca21bb16299b524bbdc1ea' => :yosemite
-    sha1 '46435f4ce8c949cd7ce1aad32bfbffccd28a9c7c' => :el_capitan
-  end
+  homepage 'http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/'
+  url 'https://github.com/bobsummerwill/cpp-ethereum.git', :branch => 'merge_repos'
 
   devel do
-    bottle do
-      revision 491
-      root_url 'https://build.ethereum.org/cpp-binaries-data/brew_receipts'
-      sha1 '72de22e2e339e4f377ca21bb16299b524bbdc1ea' => :yosemite
-      sha1 '46435f4ce8c949cd7ce1aad32bfbffccd28a9c7c' => :el_capitan
-    end
 
     if build.include? "successful"
       version '1.3.0'
@@ -45,7 +32,6 @@ class CppEthereum < Formula
     end
   end
 
-  option "with-gui", "Build with GUI (AlethZero)"
   option "without-evmjit", "Build without JIT (and its LLVM dependency)"
   option "with-debug", "Build with debug"
   option "with-vmtrace", "Build with VMTRACE"
@@ -59,9 +45,8 @@ class CppEthereum < Formula
   depends_on 'gmp'
   depends_on 'leveldb'
   depends_on 'libjson-rpc-cpp'
-  depends_on 'homebrew/versions/llvm37' if build.with? 'evmjit'
+  depends_on 'homebrew/versions/llvm38' if build.with? 'evmjit'
   depends_on 'miniupnpc'
-  depends_on 'qt5' => ["with-d-bus"] if build.with? 'gui'
 
   def install
     args = *std_cmake_args
@@ -78,13 +63,6 @@ class CppEthereum < Formula
       args << "-DEVMJIT=1"
     end
 
-    if build.with? "gui"
-      args << "-DFATDB=1" # https://github.com/ethereum/cpp-ethereum/issues/1403
-      args << "-DGUI=1"
-    else
-      args << "-DGUI=0"
-    end
-
     args << "-DVMTRACE=1" if build.with? "vmtrace"
     args << "-DPARANOID=1" if build.with? "paranoia"
 
@@ -92,10 +70,6 @@ class CppEthereum < Formula
     system "make"
     system "make", "install"
 
-    if build.with? "gui"
-      prefix.install 'alethzero/alethzero/AlethZero.app'
-      prefix.install 'mix/Mix-ide.app'
-    end
   end
 
   def plist; <<-EOS.undent
