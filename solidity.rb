@@ -13,9 +13,12 @@
 # (c) 2014-2016 solidity contributors.
 #------------------------------------------------------------------------------
 
+require 'formula'
+
 class Solidity < Formula
+
   desc "The Solidity Contract-Oriented Programming Language"
-  homepage "https://github.com/ethereum/solidity"
+  homepage "http://solidity.readthedocs.org"
   url "https://github.com/ethereum/solidity/archive/v0.3.6.tar.gz"
   version "0.3.6"
   sha256 "1947ce012ca540dc75495ebbb09b3b9ad1d48ffc076a51c7b2f18ca9870b5822"
