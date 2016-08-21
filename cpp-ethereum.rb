@@ -8,7 +8,7 @@
 #
 # Our documentation for the cpp-ethereum Homebrew setup is at:
 #
-# http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/osx-homebrew.html
+# http://cpp-ethereum.org/installing-binaries/osx-homebrew.html
 #
 # (c) 2014-2016 cpp-ethereum contributors.
 #------------------------------------------------------------------------------
@@ -18,17 +18,17 @@ require 'formula'
 class CppEthereum < Formula
   version '1.3.0'
 
-  homepage 'http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/'
-  url 'https://github.com/bobsummerwill/cpp-ethereum.git', :branch => 'merge_repos'
+  homepage 'http://cpp-ethereum.org'
+  url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
 
   devel do
 
     if build.include? "successful"
       version '1.3.0'
-      url 'https://github.com/bobsummerwill/cpp-ethereum.git', :revision => '1732767e3b4c3c27316a5a3e68ecd676ab00ceb2'
+      url 'https://github.com/ethereum/cpp-ethereum.git', :revision => '4943d3eeae865537e18c410e5e7d064825bf2711'
     else
       version '1.3.0'
-      url 'https://github.com/bobsummerwill/cpp-ethereum.git', :branch => 'merge_repos'
+      url 'https://github.com/ethereum/cpp-ethereum.git', :branch => 'develop'
     end
   end
 
@@ -45,7 +45,6 @@ class CppEthereum < Formula
   depends_on 'gmp'
   depends_on 'leveldb'
   depends_on 'libjson-rpc-cpp'
-  depends_on 'homebrew/versions/llvm38' if build.with? 'evmjit'
   depends_on 'miniupnpc'
 
   def install
