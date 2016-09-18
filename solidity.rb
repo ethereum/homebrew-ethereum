@@ -19,9 +19,9 @@ class Solidity < Formula
 
   desc "The Solidity Contract-Oriented Programming Language"
   homepage "http://solidity.readthedocs.org"
-  url "https://github.com/ethereum/solidity/archive/v0.4.1.tar.gz"
-  version "0.4.1"
-  sha256 "83c2c5ac350efe862f481254c78e0bcc2e3ac67a4dbdcef87ba6b4e1b4e58871"
+  url "https://github.com/ethereum/solidity/archive/v0.4.2.tar.gz"
+  version "0.4.2"
+  sha256 "0dd176919cab5492aecb27d1d8de39182b5e880979d5082fca6d7a01ebce28f1"
 
   depends_on "cmake" => :build
   depends_on "boost" => "c++11"
@@ -30,7 +30,7 @@ class Solidity < Formula
   depends_on "jsoncpp"
 
   def install
-    system "/bin/echo '4fc6fc2' > commit_hash.txt"
+    system "/bin/echo 'af6afb04' > commit_hash.txt"
     touch "prerelease.txt"
     system "cmake", ".", *std_cmake_args
     system "make", "install"
