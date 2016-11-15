@@ -1,14 +1,14 @@
 require 'formula'
 
 class Ethereum < Formula
-  version '1.4.18'
+  version '1.5.0'
 
   homepage 'https://github.com/ethereum/go-ethereum'
-  url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
+  url 'https://github.com/ethereum/go-ethereum.git', :branch => 'release/1.5'
 
   devel do
-    version '1.5.0'
-    url 'https://github.com/ethereum/go-ethereum.git', :branch => 'develop'
+    version '1.5.1'
+    url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
   end
 
   depends_on 'go' => :build
