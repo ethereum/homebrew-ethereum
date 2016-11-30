@@ -2,7 +2,7 @@ require 'formula'
 
 class Ethereum < Formula
   homepage 'https://github.com/ethereum/go-ethereum'
-  url 'https://github.com/ethereum/go-ethereum.git', :tag => 'v1.5.3'
+  url 'https://github.com/ethereum/go-ethereum.git', :tag => 'v1.5.4'
 
   devel do
     url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
