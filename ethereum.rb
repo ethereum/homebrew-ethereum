@@ -22,6 +22,7 @@ class Ethereum < Formula
     bin.install 'build/bin/geth'
     bin.install 'build/bin/rlpdump'
     bin.install 'build/bin/puppeth'
+    bin.install 'build/bin/swarm'
   end
 
   test do
