@@ -20,16 +20,13 @@ brew install cpp-ethereum
 brew linkapps cpp-ethereum
 ```
 
-**Note regarding Frontier release:** Since Frontier will be CLI only, the default installs do not include GUI binaries in the brew bottles. Add `--with-gui` to brew AlethZero / Mix IDE.
-
-
 ## Running
 
 ### Go client
 `geth`
 
 ### C++ client
-`eth` (CLI) or `open /Applications/AlethZero.app` (if built `--with-gui`)
+`eth`
 
 
 ## Development
@@ -121,11 +118,8 @@ See `brew info ethereum` or `brew info cpp-ethereum` for all options. `--with-..
 #### cpp-ethereum options
 Option                 | desc.
 -----------------------|---------
-`--with-gui`           | Build with GUI (AlethZero, cpp-ethereum only)
 `--with-evmjit`        | Build with LLVM and enable EVMJIT
 `--successful`         | Last successful build using --devel only
-`--without-gpu-mining` | Build without GPU mining support (experimental)
-`--without-v8-console` | Build without V8 JavaScript console
 `--with-debug`         | Pass -DCMAKE_BUILD_TYPE=Debug
 `--with-vmtrace`       | Build with -DVMTRACE=1
 `--with-paranoia`      | Build with -DPARANOID=1
