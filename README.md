@@ -120,8 +120,6 @@ Option                 | desc.
 -----------------------|---------
 `--with-evmjit`        | Build with LLVM and enable EVMJIT
 `--successful`         | Last successful build using --devel only
-`--without-gpu-mining` | Build without GPU mining support (experimental)
-`--without-v8-console` | Build without V8 JavaScript console
 `--with-debug`         | Pass -DCMAKE_BUILD_TYPE=Debug
 `--with-vmtrace`       | Build with -DVMTRACE=1
 `--with-paranoia`      | Build with -DPARANOID=1
