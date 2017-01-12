@@ -20,7 +20,7 @@ brew install cpp-ethereum
 brew linkapps cpp-ethereum
 ```
 
-**Note regarding Frontier release:** Since Frontier will be CLI only, the default installs do not include GUI binaries in the brew bottles. Add `--with-gui` to brew AlethZero / Mix IDE.
+**Note regarding Frontier release:** Since Frontier will be CLI only, the default installs do not include GUI binaries in the brew bottles. Add `--with-gui` to brew AlethZero / `--with-gui --devel` to brew Mix IDE.
 
 
 ## Running
