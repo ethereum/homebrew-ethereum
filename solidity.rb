@@ -10,7 +10,7 @@
 #
 # http://solidity.readthedocs.io/en/latest/installing-solidity.html
 #
-# (c) 2014-2016 solidity contributors.
+# (c) 2014-2017 solidity contributors.
 #------------------------------------------------------------------------------
 
 require 'formula'
@@ -19,19 +19,16 @@ class Solidity < Formula
 
   desc "The Solidity Contract-Oriented Programming Language"
   homepage "http://solidity.readthedocs.org"
-  url "https://github.com/ethereum/solidity/archive/v0.4.4.tar.gz"
-  version "0.4.4"
-  sha256 "99724abad9f38c32f487131a2e4ccacc4b62a3d1f49cda048c225b95ffa39839"
+  url "https://github.com/ethereum/solidity/releases/download/v0.4.8/solidity_0.4.8.tar.gz"
+  version "0.4.8"
+  sha256 "429c7c46fad256b714a25891dccbbeb90d3dfcdf431706b5816832374c094318"
 
   depends_on "cmake" => :build
   depends_on "boost" => "c++11"
   depends_on "cryptopp"
   depends_on "gmp"
-  depends_on "jsoncpp"
 
   def install
-    system "/bin/echo '4633f3de' > commit_hash.txt"
-    touch "prerelease.txt"
     system "cmake", ".", *std_cmake_args
     system "make", "install"
   end
