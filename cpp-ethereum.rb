@@ -10,7 +10,7 @@
 #
 # http://cpp-ethereum.org/installing-binaries/osx-homebrew.html
 #
-# (c) 2014-2016 cpp-ethereum contributors.
+# (c) 2014-2017 cpp-ethereum contributors.
 #------------------------------------------------------------------------------
 
 require 'formula'
@@ -35,12 +35,10 @@ class CppEthereum < Formula
   option "without-evmjit", "Build without JIT (and its LLVM dependency)"
   option "with-debug", "Build with debug"
   option "with-vmtrace", "Build with VMTRACE"
-  option "with-paranoia", "Build with -DPARANOID=1"
   option "successful", "Last successful build with --devel only"
 
   depends_on 'boost'
   depends_on 'cmake' => :build
-  depends_on 'cryptopp'
   depends_on 'curl'
   depends_on 'gmp'
   depends_on 'leveldb'
@@ -63,7 +61,6 @@ class CppEthereum < Formula
     end
 
     args << "-DVMTRACE=1" if build.with? "vmtrace"
-    args << "-DPARANOID=1" if build.with? "paranoia"
 
     system "cmake", *args
     system "make"
