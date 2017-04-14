@@ -2,7 +2,7 @@ require 'formula'
 
 class Ethereum < Formula
   homepage 'https://github.com/ethereum/go-ethereum'
-  url 'https://github.com/ethereum/go-ethereum.git', :tag => 'v1.5.9'
+  url 'https://github.com/ethereum/go-ethereum.git', :tag => 'v1.6.0'
 
   devel do
     url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
@@ -17,6 +17,7 @@ class Ethereum < Formula
     bin.install 'build/bin/evm'
     bin.install 'build/bin/geth'
     bin.install 'build/bin/rlpdump'
+    bin.install 'build/bin/puppeth'
   end
 
   test do
