@@ -14,10 +14,15 @@ class Ethereum < Formula
     ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
     system "go", "env" # Debug env
     system "make", "all"
+    bin.install 'build/bin/abigen'
+    bin.install 'build/bin/bootnode'
     bin.install 'build/bin/evm'
+    bin.install 'build/bin/faucet'
     bin.install 'build/bin/geth'
-    bin.install 'build/bin/rlpdump'
     bin.install 'build/bin/puppeth'
+    bin.install 'build/bin/rlpdump'
+    bin.install 'build/bin/swarm'
+    bin.install 'build/bin/wnode'
   end
 
   test do
