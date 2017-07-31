@@ -1,29 +1,24 @@
 #------------------------------------------------------------------------------
 # solidity.rb
 #
-# Homebrew formula for solidity.  Homebrew (http://brew.sh/) is
+# Homebrew formula for solidity.  Homebrew (https://brew.sh/) is
 # the de-facto standard package manager for OS X, and this Ruby script
 # contains the metadata used to map command-line user settings used
-# with the 'brew' command onto build options.
+# with the "brew" command onto build options.
 #
 # Our documentation for the lsoidity Homebrew setup is at:
 #
-# http://solidity.readthedocs.io/en/latest/installing-solidity.html
+# https://solidity.readthedocs.io/en/latest/installing-solidity.html
 #
 # (c) 2014-2017 solidity contributors.
 #------------------------------------------------------------------------------
 
-require 'formula'
-
 class Solidity < Formula
-
   desc "The Solidity Contract-Oriented Programming Language"
-  homepage "http://solidity.readthedocs.org"
+  homepage "https://solidity.readthedocs.org"
   url "https://github.com/ethereum/solidity/releases/download/v0.4.13/solidity_0.4.13.tar.gz"
-  version "0.4.13"
   sha256 "09a987a973ab8f614a836039c022125531475392bee510c4ca394deaea35f82a"
 
-  "./solidity-0.4.13.sierra.bottle.1.tar.gz"
   bottle do
     cellar :any
     rebuild 1
