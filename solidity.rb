@@ -24,6 +24,7 @@ class Solidity < Formula
   sha256 "09a987a973ab8f614a836039c022125531475392bee510c4ca394deaea35f82a"
 
   depends_on "cmake" => :build
+  depends_on "ccache" => :build
   depends_on "boost" => "c++11"
   depends_on "cryptopp"
   depends_on "gmp"
