@@ -23,9 +23,16 @@ class Solidity < Formula
   version "0.4.13"
   sha256 "09a987a973ab8f614a836039c022125531475392bee510c4ca394deaea35f82a"
 
+  "./solidity-0.4.13.sierra.bottle.1.tar.gz"
+  bottle do
+    cellar :any
+    rebuild 1
+    sha256 "8ae37c487a159886ad3f4fa411990a71d2649e6079ad59eba1ef3d716c83b476" => :sierra
+  end
+
   depends_on "cmake" => :build
   depends_on "ccache" => :build
-  depends_on "boost" => "c++11"
+  depends_on "boost"
   depends_on "cryptopp"
   depends_on "gmp"
 
