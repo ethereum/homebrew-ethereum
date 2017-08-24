@@ -6,7 +6,7 @@
 # contains the metadata used to map command-line user settings used
 # with the 'brew' command onto build options.
 #
-# Our documentation for the lsoidity Homebrew setup is at:
+# Our documentation for the solidity Homebrew setup is at:
 #
 # http://solidity.readthedocs.io/en/latest/installing-solidity.html
 #
