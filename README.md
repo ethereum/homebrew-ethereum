@@ -3,6 +3,8 @@ homebrew-ethereum
 
 Homebrew Tap for Ethereum
 
+**Important note: reporting issues with any of these brews should be done at their respective repositories ([Go client](https://github.com/ethereum/go-ethereum), [C++ client](https://github.com/ethereum/cpp-ethereum) and [Solidity](https://github.com/ethereum/solidity)).**
+
 ## Installation
 
 ```
