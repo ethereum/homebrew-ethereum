@@ -13,8 +13,6 @@
 # (c) 2014-2017 solidity contributors.
 #------------------------------------------------------------------------------
 
-require 'formula'
-
 class Solidity < Formula
 
   desc "The Solidity Contract-Oriented Programming Language"

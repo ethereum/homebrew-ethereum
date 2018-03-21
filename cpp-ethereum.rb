@@ -13,8 +13,6 @@
 # (c) 2014-2017 cpp-ethereum contributors.
 #------------------------------------------------------------------------------
 
-require 'formula'
-
 class CppEthereum < Formula
   version '1.3.0'
 
