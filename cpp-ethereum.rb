@@ -47,6 +47,9 @@ class CppEthereum < Formula
     system "cmake", *args
     system "make"
     system "make", "install"
+  end
 
+  test do
+    system "#{bin}/eth", "--version"
   end
 end
