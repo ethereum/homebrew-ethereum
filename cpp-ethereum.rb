@@ -24,13 +24,8 @@ class CppEthereum < Formula
   option "with-vmtrace", "Build with VMTRACE"
   option "successful", "Last successful build with --devel only"
 
-  depends_on 'boost'
-  depends_on 'cmake' => :build
-  depends_on 'curl'
-  depends_on 'gmp'
-  depends_on 'leveldb'
-  depends_on 'libjson-rpc-cpp'
-  depends_on 'miniupnpc'
+  depends_on "cmake" => :build
+  depends_on "leveldb"
 
   def install
     args = *std_cmake_args
