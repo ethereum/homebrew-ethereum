@@ -120,21 +120,6 @@ bottles directly with `brew install <bottle_url>`, see [cpt-obvious](https://bui
 for previous builds.
 
 
-## Options
-
-See `brew info ethereum` or `brew info cpp-ethereum` for all options. `--with-...` features are experimental patches.
-
-#### cpp-ethereum options
-Option                 | desc.
------------------------|---------
-`--with-evmjit`        | Build with LLVM and enable EVMJIT
-`--successful`         | Last successful build using --devel only
-`--with-debug`         | Pass -DCMAKE_BUILD_TYPE=Debug
-`--with-vmtrace`       | Build with -DVMTRACE=1
-`--with-paranoia`      | Build with -DPARANOID=1
-
-**Note:** `--with-evmjit` requires LLVM to be installed with `brew install llvm --HEAD --with-clang`
-
 ## Troubleshooting
 
 * Use `--verbose` to get more info while installing.
