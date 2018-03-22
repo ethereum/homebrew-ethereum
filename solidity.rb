@@ -25,7 +25,7 @@ class Solidity < Formula
   depends_on "boost" => "c++11"
 
   def install
-    system "cmake", ".", *std_cmake_args, "-DTESTS=OFF"
+    system "cmake", ".", *std_cmake_args, "-DTESTS=OFF", "-DCCACHE=OFF"
     system "make", "install"
   end
 
