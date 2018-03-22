@@ -27,7 +27,7 @@ class Solidity < Formula
   depends_on "gmp"
 
   def install
-    system "cmake", ".", *std_cmake_args
+    system "cmake", ".", *std_cmake_args, "-DTESTS=OFF"
     system "make", "install"
   end
 
