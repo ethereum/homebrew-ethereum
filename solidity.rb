@@ -23,11 +23,9 @@ class Solidity < Formula
 
   depends_on "cmake" => :build
   depends_on "boost" => "c++11"
-  depends_on "cryptopp"
-  depends_on "gmp"
 
   def install
-    system "cmake", ".", *std_cmake_args
+    system "cmake", ".", *std_cmake_args, "-DTESTS=OFF", "-DCCACHE=OFF"
     system "make", "install"
   end
 
