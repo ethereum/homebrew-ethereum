@@ -1,6 +1,6 @@
 class Ethereum < Formula
   homepage 'https://github.com/ethereum/go-ethereum'
-  url 'https://github.com/ethereum/go-ethereum.git', :tag => 'v1.8.2'
+  url 'https://github.com/ethereum/go-ethereum.git', :tag => 'v1.8.3'
 
   devel do
     url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
