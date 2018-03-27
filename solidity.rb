@@ -14,7 +14,6 @@
 #------------------------------------------------------------------------------
 
 class Solidity < Formula
-
   desc "The Solidity Contract-Oriented Programming Language"
   homepage "http://solidity.readthedocs.org"
   url "https://github.com/ethereum/solidity/releases/download/v0.4.21/solidity_0.4.21.tar.gz"
@@ -23,6 +22,7 @@ class Solidity < Formula
 
   depends_on "cmake" => :build
   depends_on "boost" => "c++11"
+  depends_on "z3"
 
   def install
     system "cmake", ".", *std_cmake_args, "-DTESTS=OFF", "-DCCACHE=OFF"
