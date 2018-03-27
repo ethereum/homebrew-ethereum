@@ -12,6 +12,10 @@ class Ethereum < Formula
   # Is there a better way to ensure that frameworks (IOKit, CoreServices, etc) are installed?
   depends_on :xcode => :build
 
+  option "with-swarm", "Install swarm"
+
+  # TODO: could use `conflicts_with "swarm", :because => ".."` if there would be a package for it?
+
   depends_on 'go' => :build
 
   def install
@@ -23,7 +27,9 @@ class Ethereum < Formula
     bin.install "build/bin/geth"
     bin.install "build/bin/rlpdump"
     bin.install "build/bin/puppeth"
-    bin.install "build/bin/swarm"
+    if build.with? "swarm"
+      bin.install "build/bin/swarm"
+    end
   end
 
   test do
