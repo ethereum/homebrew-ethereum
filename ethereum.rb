@@ -6,6 +6,9 @@ class Ethereum < Formula
     url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
   end
 
+  # Require El Capitan at least
+  depends_on :macos => :el_capitan
+
   # Is there a better way to ensure that frameworks (IOKit, CoreServices, etc) are installed?
   depends_on :xcode => :build
 
