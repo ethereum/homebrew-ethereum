@@ -22,10 +22,12 @@ class Solidity < Formula
 
   depends_on "cmake" => :build
   depends_on "boost" => "c++11"
+  # Note: due to a homebrew limitation, ccache will always be detected and cannot be turned off.
+  depends_on "ccache" => :build
   depends_on "z3"
 
   def install
-    system "cmake", ".", *std_cmake_args, "-DTESTS=OFF", "-DCCACHE=OFF"
+    system "cmake", ".", *std_cmake_args, "-DTESTS=OFF"
     system "make", "install"
   end
 
