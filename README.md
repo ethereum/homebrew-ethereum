@@ -19,7 +19,6 @@ brew install ethereum
 ### C++ client
 ```
 brew install cpp-ethereum
-brew linkapps cpp-ethereum
 ```
 
 ### Solidity
