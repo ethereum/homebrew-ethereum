@@ -23,10 +23,7 @@ class CppEthereum < Formula
   depends_on "leveldb"
 
   def install
-    args = *std_cmake_args
-    args << "-DVMTRACE=ON"
-
-    system "cmake", ".", *args
+    system "cmake", ".", *std_cmake_args, "-DVMTRACE=ON"
     system "make"
     system "make", "install"
   end
