@@ -3,17 +3,12 @@ homebrew-ethereum
 
 Homebrew Tap for Ethereum
 
-**Important note: reporting issues with any of these brews should be done at their respective repositories ([Go client](https://github.com/ethereum/go-ethereum), [C++ client](https://github.com/ethereum/cpp-ethereum) and [Solidity](https://github.com/ethereum/solidity)).**
+**Important note: reporting issues with any of these brews should be done at their respective repositories ([C++ client](https://github.com/ethereum/cpp-ethereum) and [Solidity](https://github.com/ethereum/solidity)).**
 
 ## Installation
 
 ```
 brew tap ethereum/ethereum
-```
-
-### Go client
-```
-brew install ethereum
 ```
 
 ### C++ client
@@ -27,9 +22,6 @@ brew install solidity
 ```
 
 ## Running
-
-### Go client
-`geth`
 
 ### C++ client
 `eth`
@@ -64,17 +56,7 @@ Failure while executing: git checkout -q -f
 Either try `brew fetch cpp-ethereum --devel` or simply delete the cache with `rm -rf /Library/Caches/Homebrew/cpp-ethereum--git`
 
 
-### Go client
-```
-brew reinstall ethereum --devel
-```
-
-
 ### Current branches
-
-Go:
-* `--devel` is on develop branch
-* normal install is on master branch
 
 C++:
 * `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop)
@@ -88,11 +70,6 @@ brew update && brew upgrade
 ```
 
 ## Minor updates
-
-### Go client
-```
-brew update && brew reinstall ethereum
-```
 
 ### C++ client
 ```
