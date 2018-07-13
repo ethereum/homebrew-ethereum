@@ -1,4 +1,5 @@
 class Ethereum < Formula
+  desc "Official Go implementation of the Ethereum protocol"
   homepage 'https://github.com/ethereum/go-ethereum'
   url 'https://github.com/ethereum/go-ethereum.git', :tag => 'v1.8.12'
 
