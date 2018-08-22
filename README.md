@@ -142,3 +142,7 @@ end
 ```
 
 If you want to submit your change, save your patch in a gist, add your `option 'shiny-option', 'Shiny description'` and the URL to your gist in the patches block and submit a pull request. Make sure to send a pull request to Ethereum also!
+
+## License
+
+[MIT](LICENSE.md) © 2014-2018 ethereum, cpp-ethereum, and solidity contributors
