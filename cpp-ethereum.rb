@@ -16,8 +16,14 @@
 class CppEthereum < Formula
   desc "Ethereum C++ client"
   homepage "http://cpp-ethereum.org"
-  url "https://github.com/ethereum/cpp-ethereum.git", :branch => "develop"
-  version "1.3.0-develop"
+
+  url "https://github.com/ethereum/aleth.git", :tag => "v1.4.0rc5"
+  version "1.4.0rc5"
+
+  devel do
+    url "https://github.com/ethereum/aleth.git", :branch => "master"
+    version "development"
+  end
 
   depends_on "cmake" => :build
   depends_on "leveldb"
@@ -29,6 +35,6 @@ class CppEthereum < Formula
   end
 
   test do
-    system "#{bin}/eth", "--version"
+    system "#{bin}/aleth", "--version"
   end
 end
