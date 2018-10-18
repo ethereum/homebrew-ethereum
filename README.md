@@ -130,6 +130,11 @@ for previous builds.
 * Reinstall with `brew reinstall ethereum.rb` (send a pull request!)
 * Take a walk
 
+Note that the `ethereum` keg exists in [`homebrew-core`](https://github.com/Homebrew/homebrew-core/blob/master/Formula/ethereum.rb). It's not always up to date in `homebrew-core` and you might want to prioritise the version from this tap. To do this, you can pin this tap by running the following command:
+
+```shell
+brew tap-pin ethereum/ethereum
+```
 
 ## Patching
 
