@@ -17,8 +17,8 @@ class CppEthereum < Formula
   desc "Ethereum C++ client"
   homepage "http://cpp-ethereum.org"
 
-  url "https://github.com/ethereum/aleth.git", :tag => "v1.4.0rc5"
-  version "1.4.0rc5"
+  url "https://github.com/ethereum/aleth.git", :tag => "v1.5.2"
+  version "1.5.2"
 
   devel do
     url "https://github.com/ethereum/aleth.git", :branch => "master"
