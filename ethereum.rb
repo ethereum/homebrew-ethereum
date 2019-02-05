@@ -1,10 +1,10 @@
 class Ethereum < Formula
   desc "Official Go implementation of the Ethereum protocol"
-  homepage 'https://github.com/ethereum/go-ethereum'
-  url 'https://github.com/ethereum/go-ethereum.git', :tag => 'v1.8.22'
+  homepage "https://github.com/ethereum/go-ethereum"
+  url "https://github.com/ethereum/go-ethereum.git", :tag => "v1.8.22"
 
   devel do
-    url 'https://github.com/ethereum/go-ethereum.git', :branch => 'master'
+    url "https://github.com/ethereum/go-ethereum.git", :branch => "master"
   end
 
   # Require El Capitan at least
@@ -13,16 +13,16 @@ class Ethereum < Formula
   # Is there a better way to ensure that frameworks (IOKit, CoreServices, etc) are installed?
   depends_on :xcode => :build
 
-  depends_on 'go' => :build
+  depends_on "go" => :build
 
   def install
     ENV["GOROOT"] = "#{HOMEBREW_PREFIX}/opt/go/libexec"
     system "go", "env" # Debug env
     system "make", "all"
-    bin.install 'build/bin/evm'
-    bin.install 'build/bin/geth'
-    bin.install 'build/bin/rlpdump'
-    bin.install 'build/bin/puppeth'
+    bin.install "build/bin/evm"
+    bin.install "build/bin/geth"
+    bin.install "build/bin/rlpdump"
+    bin.install "build/bin/puppeth"
   end
 
   test do
