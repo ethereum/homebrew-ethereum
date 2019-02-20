@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    macos:
+      xcode: "9.4.1"
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install Solidity
+          command: |
+            brew update
+            #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
+            brew install https://raw.githubusercontent.com/ethereum/homebrew-ethereum/${CIRCLE_SHA1}/solidity.rb
+
+      - run:
+          name: Test Formula
+          command: brew test solidity
+
+      - run:
+          name: Test Solidity
+          command: solc --version
