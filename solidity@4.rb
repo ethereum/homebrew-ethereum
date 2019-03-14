@@ -13,15 +13,15 @@
 # (c) 2014-2017 solidity contributors.
 #------------------------------------------------------------------------------
 
-class SolidityAT52 < Formula
+class SolidityAT4 < Formula
   desc "The Solidity Contract-Oriented Programming Language"
   homepage "http://solidity.readthedocs.org"
-  url "https://github.com/ethereum/solidity/releases/download/v0.5.2/solidity_0.5.2.tar.gz"
-  version "0.5.2"
-  sha256 "95dd71f2e2ca2064bfcdc4104455f6cacb315dc29a27d5f6a7f7ef8eb0ec2ee7"
+  url "https://github.com/ethereum/solidity/releases/download/v0.4.25/solidity_0.4.25.tar.gz"
+  version "0.4.25"
+  sha256 "8172c126973eae1d9d6c7b5071910a9c7475ac64df3945f755cee66104add72d"
 
   depends_on "cmake" => :build
-  depends_on "boost" => "c++11"
+  depends_on "boost@1.60" => "c++11"
   # Note: due to a homebrew limitation, ccache will always be detected and cannot be turned off.
   depends_on "ccache" => :build
   depends_on "z3"
