@@ -3,7 +3,7 @@ homebrew-ethereum
 
 Homebrew Tap for Ethereum
 
-**Important note: reporting issues with any of these brews should be done at their respective repositories ([Go client](https://github.com/ethereum/go-ethereum), [C++ client](https://github.com/ethereum/cpp-ethereum) and [Solidity](https://github.com/ethereum/solidity)).**
+**Important note: reporting issues with any of these brews should be done at their respective repositories ([Go client](https://github.com/ethereum/go-ethereum) and [Solidity](https://github.com/ethereum/solidity)).**
 
 ## Installation
 
@@ -16,11 +16,6 @@ brew tap ethereum/ethereum
 brew install ethereum
 ```
 
-### C++ client
-```
-brew install cpp-ethereum
-```
-
 ### Solidity
 ```
 brew install solidity
@@ -31,37 +26,11 @@ brew install solidity
 ### Go client
 `geth`
 
-### C++ client
-`eth`
-
 ### Solidity
 `solc`
 
 ## Development
-Get the latest development version with the `--devel` flag. Use `--build-from-source` if you don't want a pre-built bottle. Alternatively you can use the `--successful` flag (cpp-ethereum only, see [important note below](#important-note-when-using---successful)) or any other [available options](#options).
-
-### C++ client
-```
-brew reinstall cpp-ethereum --devel
-```
-
-For the latest successful build on develop (last successful build from [cpt-obvious](https://build.ethdev.com/waterfall)):
-```
-brew reinstall cpp-ethereum --devel --successful
-```
-
-#### Important note when using --successful
-
-If you get an error looking like this:
-```
-==> Cloning https://github.com/ethereum/cpp-ethereum.git
-Updating /Library/Caches/Homebrew/ethereum--git
-fatal: reference is not a tree: <latest commit hash>
-Error: Failed to download resource "ethereum"
-Failure while executing: git checkout -q -f
-```
-
-Either try `brew fetch cpp-ethereum --devel` or simply delete the cache with `rm -rf /Library/Caches/Homebrew/cpp-ethereum--git`
+Get the latest development version with the `--devel` flag.
 
 
 ### Go client
@@ -74,10 +43,6 @@ brew reinstall ethereum --devel
 
 Go:
 * `--devel` is on develop branch
-* normal install is on master branch
-
-C++:
-* `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop)
 * normal install is on master branch
 
 
@@ -94,17 +59,11 @@ brew update && brew upgrade
 brew update && brew reinstall ethereum
 ```
 
-### C++ client
-```
-brew update && brew reinstall cpp-ethereum
-```
-
 
 ## Versions
 List available versions with:
 ```
 ls -l /usr/local/Cellar/ethereum
-ls -l /usr/local/Cellar/cpp-ethereum
 ```
 
 If you have other versions installed, you can switch with:
