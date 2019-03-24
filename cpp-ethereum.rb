@@ -17,24 +17,7 @@ class CppEthereum < Formula
   desc "Ethereum C++ client"
   homepage "http://cpp-ethereum.org"
 
-  url "https://github.com/ethereum/aleth.git", :tag => "v1.5.2"
-  version "1.5.2"
+  url "https://github.com/ethereum/aleth.git"
 
-  devel do
-    url "https://github.com/ethereum/aleth.git", :branch => "master"
-    version "development"
-  end
-
-  depends_on "cmake" => :build
-  depends_on "leveldb"
-
-  def install
-    system "cmake", ".", *std_cmake_args, "-DVMTRACE=ON"
-    system "make"
-    system "make", "install"
-  end
-
-  test do
-    system "#{bin}/aleth", "--version"
-  end
+  odie "Aleth (formerly cpp-ethereum) has been removed from Homebrew. Please install binary releases from https://github.com/ethereum/aleth/releases."
 end
