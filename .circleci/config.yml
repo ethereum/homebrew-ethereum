@@ -40,3 +40,7 @@ jobs:
       - run:
           name: Test Solidity
           command: solc --version
+
+      - run:
+          name: Install geth
+          command: brew install https://raw.githubusercontent.com/ethereum/homebrew-ethereum/${CIRCLE_SHA1}/ethereum.rb
