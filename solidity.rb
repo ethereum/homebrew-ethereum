@@ -18,7 +18,7 @@ class Solidity < Formula
   homepage "http://solidity.readthedocs.org"
   url "https://github.com/ethereum/solidity/releases/download/v0.5.14/solidity_0.5.14.tar.gz"
   version "0.5.14"
-  sha256 "256ba216089f22813c63b41ac44fc699eb2a537c3ff18980e4e48832e13b35bb"
+  sha256 "b0d0971b5372b88b234dfddba622f73487c4d4ca3f422bbcbcbe5c7f13d7a2d1"
 
   depends_on "cmake" => :build
   depends_on "boost" => "c++11"
