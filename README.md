@@ -17,9 +17,23 @@ brew install ethereum
 ```
 
 ### Solidity
+
+To install the latest release:
 ```
 brew install solidity
 ```
+
+To install the latest 0.5.x release:
+```
+brew install solidity@5
+```
+
+To install the latest 0.4.x release:
+```
+brew install solidity@4
+```
+
+Note: the older releases are not maintained indefinitely, but are provided as a convenience.
 
 ## Running
 
