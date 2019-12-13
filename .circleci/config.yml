@@ -27,6 +27,25 @@ jobs:
           command: brew uninstall boost cmake ccache solidity
 
       - run:
+          name: Install Solidity 0.5
+          command: |
+            brew update
+            #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
+            brew install https://raw.githubusercontent.com/ethereum/homebrew-ethereum/${CIRCLE_SHA1}/solidity@5.rb
+
+      - run:
+          name: Test Formula
+          command: brew test solidity@5
+
+      - run:
+          name: Test Solidity
+          command: solc --version
+
+      - run:
+          name: Cleanup
+          command: brew uninstall boost cmake ccache solidity@5
+
+      - run:
           name: Install Solidity 0.4
           command: |
             brew update
