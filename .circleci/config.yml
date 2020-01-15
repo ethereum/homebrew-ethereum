@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     macos:
-      xcode: "11.0.0"
+      xcode: "11.3.0"
 
     steps:
       - checkout
@@ -10,6 +10,7 @@ jobs:
       - run:
           name: Install Solidity
           command: |
+            brew unlink python@2
             brew update
             #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
             brew install https://raw.githubusercontent.com/ethereum/homebrew-ethereum/${CIRCLE_SHA1}/solidity.rb
