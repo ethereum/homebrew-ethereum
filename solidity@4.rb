@@ -21,7 +21,7 @@ class SolidityAT4 < Formula
   sha256 "22fd4ce2480df4d55602e50dc1606bd7c4cf5bf4658d49ccf7a4644ca0edd5b3"
 
   depends_on "cmake" => :build
-  depends_on "boost@1.60" => "c++11"
+  depends_on "boost" => "1.60"
   # Note: due to a homebrew limitation, ccache will always be detected and cannot be turned off.
   depends_on "ccache" => :build
   depends_on "z3"
