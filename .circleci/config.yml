@@ -18,7 +18,7 @@ jobs:
 
       - run:
           name: Test Formula
-          command: brew test solidity
+          command: brew test solidity.rb
 
       - run:
           name: Test Solidity
