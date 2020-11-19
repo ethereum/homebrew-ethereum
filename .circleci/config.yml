@@ -14,7 +14,7 @@ jobs:
             brew update
             brew upgrade
             #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
-            brew install https://raw.githubusercontent.com/ethereum/homebrew-ethereum/${CIRCLE_SHA1}/solidity.rb
+            brew install ./solidity.rb
 
       - run:
           name: Test Formula
@@ -33,7 +33,7 @@ jobs:
           command: |
             brew update
             #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
-            brew install https://raw.githubusercontent.com/ethereum/homebrew-ethereum/${CIRCLE_SHA1}/solidity@6.rb
+            brew install ./solidity@6.rb
 
       - run:
           name: Test Formula
@@ -52,7 +52,7 @@ jobs:
           command: |
             brew update
             #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
-            brew install https://raw.githubusercontent.com/ethereum/homebrew-ethereum/${CIRCLE_SHA1}/solidity@5.rb
+            brew install ./solidity@5.rb
 
       - run:
           name: Test Formula
@@ -71,7 +71,7 @@ jobs:
           command: |
             brew update
             #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
-            brew install https://raw.githubusercontent.com/ethereum/homebrew-ethereum/${CIRCLE_SHA1}/solidity@4.rb
+            brew install ./solidity@4.rb
 
       - run:
           name: Test Formula
@@ -83,4 +83,4 @@ jobs:
 
       - run:
           name: Install geth
-          command: brew install https://raw.githubusercontent.com/ethereum/homebrew-ethereum/${CIRCLE_SHA1}/ethereum.rb
+          command: brew install ./ethereum.rb
