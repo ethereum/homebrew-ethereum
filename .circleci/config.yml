@@ -33,7 +33,7 @@ jobs:
           command: |
             brew update
             #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
-            brew install https://raw.githubusercontent.com/ethereum/homebrew-ethereum/${CIRCLE_SHA1}/solidity@7.rb
+            brew install ./solidity@7.rb
 
       - run:
           name: Test Formula
@@ -45,7 +45,7 @@ jobs:
 
       - run:
           name: Cleanup
-          command: brew uninstall boost cmake ccache solidity@6
+          command: brew uninstall boost cmake ccache solidity@7
 
       - run:
           name: Install Solidity 0.6
