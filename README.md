@@ -23,6 +23,11 @@ To install the latest release:
 brew install solidity
 ```
 
+To install the latest 0.7.x release:
+```
+brew install solidity@7
+```
+
 To install the latest 0.6.x release:
 ```
 brew install solidity@6
