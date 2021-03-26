@@ -1,17 +1,17 @@
 class Ethereum < Formula
   desc "Official Go implementation of the Ethereum protocol"
   homepage "https://github.com/ethereum/go-ethereum"
-  url "https://github.com/ethereum/go-ethereum.git", :tag => "v1.10.1"
+  url "https://github.com/ethereum/go-ethereum.git", tag: "v1.10.1"
 
   head do
-    url "https://github.com/ethereum/go-ethereum.git", :branch => "master"
+    url "https://github.com/ethereum/go-ethereum.git", branch: "master"
   end
 
   # Require El Capitan at least
-  depends_on :macos => :el_capitan
+  depends_on macos: :el_capitan
 
   # Is there a better way to ensure that frameworks (IOKit, CoreServices, etc) are installed?
-  depends_on :xcode => :build
+  depends_on xcode: :build
 
   depends_on "go" => :build
 
