@@ -2,18 +2,18 @@ version: 2
 jobs:
   build:
     macos:
-      xcode: "11.4.0"
+      xcode: "12.4.0"
 
     steps:
       - checkout
 
       - run:
           name: Install Solidity
+          no_output_timeout: 30m
           command: |
-            brew unlink python@2
             brew update
             brew upgrade
-            #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
+            #brew tap ethereum/ethereum # Actually we should use the rule from the pull request
             brew install ./solidity.rb
 
       - run:
@@ -30,9 +30,10 @@ jobs:
 
       - run:
           name: Install Solidity 0.7
+          no_output_timeout: 30m
           command: |
             brew update
-            #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
+            #brew tap ethereum/ethereum # Actually we should use the rule from the pull request
             brew install ./solidity@7.rb
 
       - run:
@@ -51,7 +52,7 @@ jobs:
           name: Install Solidity 0.6
           command: |
             brew update
-            #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
+            #brew tap ethereum/ethereum # Actually we should use the rule from the pull request
             brew install ./solidity@6.rb
 
       - run:
@@ -70,7 +71,7 @@ jobs:
           name: Install Solidity 0.5
           command: |
             brew update
-            #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
+            #brew tap ethereum/ethereum # Actually we should use the rule from the pull request
             brew install ./solidity@5.rb
 
       - run:
@@ -89,7 +90,7 @@ jobs:
           name: Install Solidity 0.4
           command: |
             brew update
-            #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
+            #brew tap ethereum/ethereum # Actually we should use the rule from the pull request
             brew install ./solidity@4.rb
 
       - run:
