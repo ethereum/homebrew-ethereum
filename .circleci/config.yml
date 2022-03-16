@@ -8,6 +8,7 @@ jobs:
       - checkout
 
       - run:
+          no_output_timeout: 30m
           name: Install Solidity
           command: |
             brew unlink python@2
@@ -29,6 +30,7 @@ jobs:
           command: brew uninstall boost cmake ccache solidity
 
       - run:
+          no_output_timeout: 30m
           name: Install Solidity 0.7
           command: |
             brew update
@@ -48,6 +50,7 @@ jobs:
           command: brew uninstall boost cmake ccache solidity@7
 
       - run:
+          no_output_timeout: 30m
           name: Install Solidity 0.6
           command: |
             brew update
@@ -86,6 +89,7 @@ jobs:
           command: brew uninstall boost cmake ccache solidity@5
 
       - run:
+          no_output_timeout: 30m
           name: Install Solidity 0.4
           command: |
             brew update
