@@ -1,7 +1,7 @@
 class Ethereum < Formula
   desc "Official Go implementation of the Ethereum protocol"
   homepage "https://github.com/ethereum/go-ethereum"
-  url "https://github.com/ethereum/go-ethereum.git", :tag => "v1.11.6"
+  url "https://github.com/ethereum/go-ethereum.git", :tag => "v1.12.0"
 
   head do
     url "https://github.com/ethereum/go-ethereum.git", :branch => "master"
