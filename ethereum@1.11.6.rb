@@ -1,6 +1,6 @@
 # Due to version 1.12 stopped support for pow & ethash, defining a version for the latest version supporting ethash (1.11.6)
 
-class EthereumAT11 < Formula
+class EthereumAT1116 < Formula
   desc "Official Go implementation of the Ethereum protocol"
   homepage "https://github.com/ethereum/go-ethereum"
   url "https://github.com/ethereum/go-ethereum.git", :tag => "v1.11.6"
