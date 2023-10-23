@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     macos:
-      xcode: "11.4.0"
+      xcode: "14.2.0"
 
     steps:
       - checkout
@@ -10,11 +10,11 @@ jobs:
       - run:
           name: Install Solidity
           command: |
-            brew unlink python@2
             brew update
             brew upgrade
             #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
             brew install ./solidity.rb
+          no_output_timeout: 30m
 
       - run:
           name: Test Formula
@@ -34,6 +34,7 @@ jobs:
             brew update
             #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
             brew install ./solidity@7.rb
+          no_output_timeout: 30m
 
       - run:
           name: Test Formula
@@ -53,6 +54,7 @@ jobs:
             brew update
             #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
             brew install ./solidity@6.rb
+          no_output_timeout: 30m
 
       - run:
           name: Test Formula
@@ -72,6 +74,7 @@ jobs:
             brew update
             #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
             brew install ./solidity@5.rb
+          no_output_timeout: 30m
 
       - run:
           name: Test Formula
@@ -91,6 +94,7 @@ jobs:
             brew update
             #brew tap ethereum/ethereum # Acutally we should use the rule from the pull request
             brew install ./solidity@4.rb
+          no_output_timeout: 30m
 
       - run:
           name: Test Formula

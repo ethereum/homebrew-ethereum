@@ -27,7 +27,7 @@ class Solidity < Formula
   depends_on "z3"
 
   def install
-    system "cmake", ".", *std_cmake_args, "-DTESTS=OFF"
+    system "cmake", ".", *std_cmake_args, "-DTESTS=OFF", "-DSTRICT_Z3_VERSION=OFF"
     system "make", "install"
   end
 
