@@ -10,7 +10,7 @@
 #
 # http://cpp-ethereum.org/installing-binaries/osx-homebrew.html
 #
-# (c) 2014-2017 cpp-ethereum contributors.
+# (c) 2014-2018 cpp-ethereum contributors.
 #------------------------------------------------------------------------------
 
 class CppEthereum < Formula

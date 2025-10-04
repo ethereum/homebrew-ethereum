@@ -10,7 +10,7 @@
 #
 # http://solidity.readthedocs.io/en/latest/installing-solidity.html
 #
-# (c) 2014-2017 solidity contributors.
+# (c) 2014-2018 solidity contributors.
 #------------------------------------------------------------------------------
 
 class Solidity < Formula
